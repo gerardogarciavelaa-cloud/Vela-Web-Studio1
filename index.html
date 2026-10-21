@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELA WEB STUDIO | Desarrollo Web, Ciberseguridad & Apps Empresariales</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#e6f8ff',
+                            100: '#b3edff',
+                            400: '#00f0ff', // Neon Cyan
+                            500: '#00d2ff',
+                            600: '#0072ff', // Electric Blue
+                            800: '#0d1527',
+                            900: '#07090e', // Very Dark Blue background
+                            950: '#0b0f17'  // Dark Card background
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #07090E;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Grid Pattern */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 0%, #00F0FF 50%, #0072FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .border-glow {
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .border-glow:hover {
+            border-color: rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(11, 15, 23, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* View Animation Transitions */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .page-view.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07090E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0072FF;
+        }
+    </style>
+</head>
+<body class="bg-grid-pattern antialiased selection:bg-brand-600 selection:text-white flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION MULTI-PÁGINA -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-brand-400 to-cyan-300 p-[1.5px] transition-transform duration-300 group-hover:scale-105">
+                    <div class="w-full h-full bg-brand-900 rounded-[10.5px] flex items-center justify-center relative overflow-hidden">
+                        <svg class="w-6 h-6 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="m9 10-2 2 2 2"/>
+                            <path d="m15 10 2 2-2 2"/>
+                            <path d="M12 8v8"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-wider text-white font-mono">VELA</span>
+                    <span class="text-[10px] tracking-[0.25em] text-brand-400 uppercase -mt-1 font-semibold">Web Studio</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links (Multi-page Switcher) -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium text-slate-300">
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Inicio</button>
+                <button onclick="navigateTo('servicios')" id="nav-servicios" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Servicios</button>
+                <button onclick="navigateTo('auditoria')" id="nav-auditoria" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Auditoría Gratis</button>
+                <button onclick="navigateTo('cotizador')" id="nav-cotizador" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Cotizador</button>
+                <button onclick="navigateTo('nosotros')" id="nav-nosotros" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Nosotros</button>
+                <button onclick="navigateTo('contacto')" id="nav-contacto" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Contacto</button>
+            </nav>
+
+            <!-- CTA Header Button -->
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20cotizar%20un%20proyecto%20digital." target="_blank" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium rounded-xl group bg-gradient-to-br from-brand-400 to-brand-600 group-hover:from-brand-400 group-hover:to-cyan-300 text-white shadow-lg shadow-brand-600/20 hover:shadow-brand-400/40 transition-all">
+                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-brand-900 rounded-[10px] group-hover:bg-opacity-0 font-semibold flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i>
+                        <span>Contactar Asesor</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white text-2xl focus:outline-none p-2">
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
+            <button onclick="navigateTo('home')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Inicio</button>
+            <button onclick="navigateTo('servicios')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Servicios</button>
+            <button onclick="navigateTo('auditoria')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Auditoría Gratis</button>
+            <button onclick="navigateTo('cotizador')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Cotizador Interactivo</button>
+            <button onclick="navigateTo('nosotros')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Nosotros & Calidad</button>
+            <button onclick="navigateTo('contacto')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Contacto Directo</button>
+            <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20cotizar%20un%20proyecto." target="_blank" class="block w-full text-center mt-4 bg-gradient-to-r from-brand-600 to-brand-400 text-white font-bold py-3 rounded-xl shadow-lg">
+                <i class="fa-brands fa-whatsapp mr-2 text-lg"></i> Chat Directo por WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER FOR DYNAMIC VIEWS -->
+    <main class="flex-grow pt-20">
+
+        <!-- ================= PAGE 1: INICIO (HOME) ================= -->
+        <div id="view-home" class="page-view active">
+            
+            <!-- Hero Section -->
+            <section class="relative pt-16 pb-20 md:pt-28 md:pb-32 overflow-hidden">
+                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-brand-600/20 to-brand-400/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="text-center max-w-4xl mx-auto space-y-6">
+                        
+                        <!-- Badge -->
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-400/30 bg-brand-900/80 text-brand-400 text-xs sm:text-sm font-mono font-medium backdrop-blur-md shadow-lg">
+                            <span class="flex h-2 w-2 rounded-full bg-brand-400 animate-ping"></span>
+                            <span>Ingeniería & Desarrollo de Grado Empresarial</span>
+                        </div>
+
+                        <!-- Main Title -->
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                            Desarrollo Web, Ciberseguridad & <span class="text-gradient">Plataformas de Alta Gama</span>
+                        </h1>
+
+                        <!-- Subtitle -->
+                        <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
+                            Transformamos empresas e instituciones con software optimizado, arquitectura cloud de última generación y esquemas de ciberseguridad avanzada.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <button onclick="navigateTo('cotizador')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-400 text-white font-bold text-base shadow-xl shadow-brand-600/25 hover:shadow-brand-400/40 hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2">
+                                <span>Armar Mi Presupuesto</span>
+                                <i class="fa-solid fa-arrow-right text-sm"></i>
+                            </button>
+                            <button onclick="navigateTo('servicios')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-semibold text-base transition-all duration-200 flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-layer-group text-brand-400"></i>
+                                <span>Ver Soluciones Digitales</span>
+                            </button>
+                        </div>
+
+                        <!-- Live Metrics Cards -->
+                        <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+                            <div class="p-5 rounded-xl glass-panel border border-slate-800">
+                                <div class="text-2xl lg:text-3xl font-mono font-bold text-brand-400">&lt; 0.8s</div>
+                                <div class="text-xs text-slate-400 mt-1 font-medium">Tiempo Carga Global</div>
+                            </div>
+                            <div class="p-5 rounded-xl glass-panel border border-slate-800">
+                                <div class="text-2xl lg:text-3xl font-mono font-bold text-emerald-400">100%</div>
+                                <div class="text-xs text-slate-400 mt-1 font-medium">Facturación SAT FEL</div>
+                            </div>
+                            <div class="p-5 rounded-xl glass-panel border border-slate-800">
+                                <div class="text-2xl lg:text-3xl font-mono font-bold text-brand-400">SSL A+</div>
+                                <div class="text-xs text-slate-400 mt-1 font-medium">Grado Ciberseguridad</div>
+                            </div>
+                            <div class="p-5 rounded-xl glass-panel border border-slate-800">
+                                <div class="text-2xl lg:text-3xl font-mono font-bold text-cyan-400">24 / 7</div>
+                                <div class="text-xs text-slate-400 mt-1 font-medium">Monitoreo Cloud</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature Overview Showcase -->
+            <section class="py-16 border-t border-slate-800/60 bg-brand-950/40">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                        <h2 class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400">Propuesta de Valor</h2>
+                        <p class="text-3xl font-extrabold text-white">¿Por qué elegir VELA WEB STUDIO?</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="p-6 rounded-2xl glass-panel border-glow space-y-3">
+                            <div class="w-12 h-12 rounded-xl bg-brand-600/20 border border-brand-400/30 flex items-center justify-center text-brand-400 text-xl">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Velocidad Ultrarrápida</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Optimizamos imágenes, scripts y peticiones al servidor para lograr tiempos de respuesta instantáneos y mayor conversión.</p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl glass-panel border-glow space-y-3">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-400 text-xl">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Ciberseguridad Integrada</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Desarrollamos con arquitectura defensiva contra inyecciones, ataques de fuerza bruta y vulnerabilidades comunes.</p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl glass-panel border-glow space-y-3">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 text-xl">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Cumplimiento Local & SAT</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed">Conexión con pasarelas de pago guatemaltecas (Visanet/NeoNet/5B) y emisión de facturación electrónica FEL SAT.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 2: SERVICIOS (CATÁLOGO COMPLETO) ================= -->
+        <div id="view-servicios" class="page-view">
+            <section class="py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                        <span class="px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 font-mono text-xs font-semibold">Catálogo Profesional de Servicios</span>
+                        <h1 class="text-4xl font-extrabold text-white">Soluciones Digitales a la Medida</h1>
+                        <p class="text-slate-400 text-sm sm:text-base">Diseñamos soluciones tecnológicas personalizadas para cada etapa de tu empresa.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        
+                        <!-- Servicio 1 -->
+                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
+                            <div>
+                                <div class="w-14 h-14 rounded-xl bg-brand-600/20 border border-brand-400/30 flex items-center justify-center text-brand-400 mb-6 text-2xl">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-white mb-3">Desarrollo Web & E-Commerce</h2>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                    Sitios web corporativos, tiendas en línea de alto tráfico y landing pages enfocadas en conversión. Diseños 100% responsivos para móviles y tablets.
+                                </p>
+                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-400"></i> Diseño adaptable a pantallas móviles</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-400"></i> Integración con canal de WhatsApp</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-400"></i> Administración intuitiva de contenidos</li>
+                                </ul>
+                            </div>
+                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-brand-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
+                                Personalizar Cotización
+                            </button>
+                        </div>
+
+                        <!-- Servicio 2 -->
+                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
+                            <div>
+                                <div class="w-14 h-14 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-400 mb-6 text-2xl">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-white mb-3">Ciberseguridad & Blindaje</h2>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                    Auditorías de código, endurecimiento de servidores (hardening), certificados SSL, cabeceras HTTP de seguridad (HSTS, CSP) y copias cifradas.
+                                </p>
+                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Certificación SSL Grado A+</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Protección contra inyecciones SQL/XSS</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Reportes de vulnerabilidades</li>
+                                </ul>
+                            </div>
+                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-cyan-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
+                                Personalizar Cotización
+                            </button>
+                        </div>
+
+                        <!-- Servicio 3 -->
+                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
+                            <div>
+                                <div class="w-14 h-14 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 mb-6 text-2xl">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-white mb-3">Pasarelas de Pago & FEL SAT</h2>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                    Conexión directa con cobros por tarjeta VISA / Mastercard (Visanet, NeoNet, Recurrente) y emisión automática de facturas electrónicas FEL SAT.
+                                </p>
+                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Acepta pagos con tarjeta en línea</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Generación automática de DTE FEL</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Conexión con bancos del sistema</li>
+                                </ul>
+                            </div>
+                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-emerald-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
+                                Personalizar Cotización
+                            </button>
+                        </div>
+
+                        <!-- Servicio 4 -->
+                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
+                            <div>
+                                <div class="w-14 h-14 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-400 mb-6 text-2xl">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-white mb-3">WhatsApp Bots & Sistemas POS</h2>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                    Automatización de atención al cliente en WhatsApp las 24 horas y software de control de inventario, ventas y cajas registradoras.
+                                </p>
+                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Auto-respuestas y toma de pedidos</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Control de existencias e inventarios</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Reportes semanales de ventas</li>
+                                </ul>
+                            </div>
+                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-purple-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
+                                Personalizar Cotización
+                            </button>
+                        </div>
+
+                        <!-- Servicio 5 -->
+                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
+                            <div>
+                                <div class="w-14 h-14 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-6 text-2xl">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-white mb-3">Aplicaciones Móviles Nativas</h2>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                    Desarrollo de aplicaciones para iOS y Android con notificaciones push, sincronización de datos en tiempo real y publicación en tiendas.
+                                </p>
+                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Aplicaciones iOS y Android</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Notificaciones dinámicas</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Gestión en la nube</li>
+                                </ul>
+                            </div>
+                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-amber-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
+                                Personalizar Cotización
+                            </button>
+                        </div>
+
+                        <!-- Servicio 6 -->
+                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
+                            <div>
+                                <div class="w-14 h-14 rounded-xl bg-rose-500/20 border border-rose-400/30 flex items-center justify-center text-rose-400 mb-6 text-2xl">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-white mb-3">Mantenimiento & Respaldos</h2>
+                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                    Planes integrales de supervisión técnica, parches de seguridad periódicos, monitoreo continuo de servidores y copias de seguridad.
+                                </p>
+                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Respaldos automáticos cifrados</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Soporte técnico prioritario</li>
+                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Monitoreo continuo 24/7</li>
+                                </ul>
+                            </div>
+                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-rose-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
+                                Personalizar Cotización
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 3: AUDITORÍA GRATUITA ================= -->
+        <div id="view-auditoria" class="page-view">
+            <section class="py-16 relative">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="p-8 sm:p-12 rounded-3xl bg-brand-950 border border-brand-400/30 glass-panel shadow-2xl relative overflow-hidden">
+                        <div class="absolute -top-24 -right-24 w-72 h-72 bg-brand-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 text-xs font-mono font-semibold">
+                                <i class="fa-solid fa-microchip"></i> Diagnóstico Técnico Express
+                            </span>
+                            <h1 class="text-3xl font-extrabold text-white">Escáner de Seguridad Web</h1>
+                            <p class="text-slate-400 text-sm">Ingresa el dominio de tu negocio para realizar una simulación técnica de los puntos de control clave.</p>
+                        </div>
+
+                        <!-- Input Box -->
+                        <div class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3 mb-8">
+                            <div class="relative flex-grow">
+                                <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500 font-mono text-sm">https://</span>
+                                <input type="text" id="auditUrlInput" placeholder="tuempresa.com" class="w-full pl-20 pr-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono text-sm focus:outline-none focus:border-brand-400 transition-colors">
+                            </div>
+                            <button onclick="runAuditSimulation()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-400 text-white font-bold text-sm shadow-lg shadow-brand-600/30 hover:shadow-brand-400/50 transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <span>Analizar Sitio</span>
+                            </button>
+                        </div>
+
+                        <!-- Live Results Area -->
+                        <div id="auditResultsArea" class="hidden max-w-2xl mx-auto space-y-4 font-mono text-xs">
+                            <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3">
+                                <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                                    <span class="text-slate-400">Punto de Control</span>
+                                    <span class="text-slate-400">Estado Diagnóstico</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-300">1. Certificado SSL & Encriptación HTTPS</span>
+                                    <span class="text-emerald-400 font-bold"><i class="fa-solid fa-check-circle mr-1"></i> HTTPS Activo</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-300">2. Encabezado HSTS (Strict-Transport)</span>
+                                    <span class="text-amber-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Incompleto</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-300">3. Política CSP (Content Security)</span>
+                                    <span class="text-rose-400 font-bold"><i class="fa-solid fa-xmark-circle mr-1"></i> Vulnerable</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-300">4. Subresource Integrity (SRI)</span>
+                                    <span class="text-amber-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Ausente</span>
+                                </div>
+                            </div>
+
+                            <!-- Call to action based on result -->
+                            <div class="p-5 rounded-xl bg-brand-900/80 border border-brand-400/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <div>
+                                    <p class="text-white font-sans font-bold text-sm">¿Deseas corregir estas vulnerabilidades?</p>
+                                    <p class="text-slate-400 font-sans text-xs">Aplica un esquema de blindaje técnico en tu plataforma web.</p>
+                                </div>
+                                <a id="auditWhatsappBtn" href="#" target="_blank" class="px-5 py-3 rounded-xl bg-brand-400 text-brand-950 font-sans font-extrabold text-xs shadow-md hover:bg-cyan-300 transition-colors whitespace-nowrap">
+                                    Solicitar Corrección Técnica
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 4: COTIZADOR INTERACTIVO ================= -->
+        <div id="view-cotizador" class="page-view">
+            <section class="py-16 relative">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                        <span class="px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 font-mono text-xs font-semibold">Configurador Personalizado</span>
+                        <h1 class="text-3xl font-extrabold text-white">Calculadora Interactiva de Proyecto</h1>
+                        <p class="text-slate-400 text-sm">Selecciona las funcionalidades que necesitas para armar una propuesta a tu medida y recibir la cotización vía WhatsApp.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                        
+                        <!-- Modules Checkboxes -->
+                        <div class="lg:col-span-2 space-y-3">
+                            
+                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Diseño Web Profesional / Landing Page" checked onchange="updateTotal()">
+                                    <div>
+                                        <p class="text-white font-bold text-sm">Diseño Web Profesional / Landing Page</p>
+                                        <p class="text-slate-400 text-xs">Estructura adaptable a móviles, optimización y botón de WhatsApp.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Catálogo / Tienda en Línea E-Commerce" onchange="updateTotal()">
+                                    <div>
+                                        <p class="text-white font-bold text-sm">Módulo Tienda / Catálogo en Línea</p>
+                                        <p class="text-slate-400 text-xs">Carrito de compras, inventario y gestión de catálogo.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Pasarela de Cobro con Tarjeta (Visa/Mastercard)" onchange="updateTotal()">
+                                    <div>
+                                        <p class="text-white font-bold text-sm">Cobros con Tarjeta (Visanet / Recurrente)</p>
+                                        <p class="text-slate-400 text-xs">Acepta transacciones con tarjeta de crédito o débito directamente.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Facturación Electrónica SAT (FEL)" onchange="updateTotal()">
+                                    <div>
+                                        <p class="text-white font-bold text-sm">Facturación Electrónica SAT (FEL)</p>
+                                        <p class="text-slate-400 text-xs">Conexión con certificadores para facturar automáticamente.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Blindaje de Ciberseguridad & Certificado SSL" onchange="updateTotal()">
+                                    <div>
+                                        <p class="text-white font-bold text-sm">Blindaje de Ciberseguridad & HSTS/CSP</p>
+                                        <p class="text-slate-400 text-xs">Certificados SSL A+, cortafuegos y protección anti-hackeo.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Bot de Respuestas Automáticas para WhatsApp" onchange="updateTotal()">
+                                    <div>
+                                        <p class="text-white font-bold text-sm">Bot de Respuestas Automáticas para WhatsApp</p>
+                                        <p class="text-slate-400 text-xs">Atención a clientes 24/7 y recopilación de información.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                        </div>
+
+                        <!-- Summary Box -->
+                        <div class="p-6 rounded-2xl bg-brand-950 border border-brand-400/30 glass-panel sticky top-28 space-y-6">
+                            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3">Resumen de Requerimientos</h3>
+
+                            <div id="selectedModulesList" class="space-y-2 text-xs text-slate-300 font-mono">
+                                <div class="flex justify-between">
+                                    <span>• Diseño Web Profesional</span>
+                                    <span class="text-emerald-400">Incluido</span>
+                                </div>
+                            </div>
+
+                            <a id="calcWhatsappLink" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-brand-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>Enviar Selección a WhatsApp</span>
+                            </a>
+
+                            <p class="text-[11px] text-slate-500 text-center leading-tight">
+                                Al presionar el botón se enviará un mensaje estructurado con tus selecciones para enviarte la propuesta formal.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 5: NOSOTROS / METODOLOGÍA ================= -->
+        <div id="view-nosotros" class="page-view">
+            <section class="py-16">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    
+                    <div class="text-center max-w-3xl mx-auto space-y-4">
+                        <span class="px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 font-mono text-xs font-semibold">Calidad & Compromiso</span>
+                        <h1 class="text-4xl font-extrabold text-white">Ingeniería Web de Grado Empresarial</h1>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            En VELA WEB STUDIO diseñamos y desarrollamos soluciones digitales centradas en la velocidad, la seguridad y el crecimiento constante de tu empresa.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-600/20 flex items-center justify-center text-brand-400 text-xl font-bold">
+                                01
+                            </div>
+                            <h2 class="text-xl font-bold text-white">Código Limpio y Optimizado</h2>
+                            <p class="text-slate-400 text-xs leading-relaxed">
+                                Evitamos plantillas genéricas pesadas. Construimos estructuras livianas enfocadas en tiempos de carga ultra-rápidos que posicionan mejor en motores de búsqueda.
+                            </p>
+                        </div>
+
+                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl font-bold">
+                                02
+                            </div>
+                            <h2 class="text-xl font-bold text-white">Seguridad Defensiva</h2>
+                            <p class="text-slate-400 text-xs leading-relaxed">
+                                Cada desarrollo incluye de forma nativa estándares de encriptación SSL, protección de datos y políticas de seguridad contra amenazas digitales.
+                            </p>
+                        </div>
+
+                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl font-bold">
+                                03
+                            </div>
+                            <h2 class="text-xl font-bold text-white">Integraciones Locales</h2>
+                            <p class="text-slate-400 text-xs leading-relaxed">
+                                Dominamos el ecosistema digital de Guatemala, facilitando cobros con tarjetas bancarias y la vinculación con certificadores de facturación SAT.
+                            </p>
+                        </div>
+
+                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-xl font-bold">
+                                04
+                            </div>
+                            <h2 class="text-xl font-bold text-white">Acompañamiento Continuo</h2>
+                            <p class="text-slate-400 text-xs leading-relaxed">
+                                No solo entregamos un proyecto; brindamos soporte técnico constante, monitoreo de disponibilidad y actualizaciones preventivas.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE 6: CONTACTO DIRECTO ================= -->
+        <div id="view-contacto" class="page-view">
+            <section class="py-16">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                        <span class="px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 font-mono text-xs font-semibold">Canales Oficiales</span>
+                        <h1 class="text-3xl font-extrabold text-white">Inicia Tu Proyecto Digital</h1>
+                        <p class="text-slate-400 text-sm">Contáctanos directamente a través de WhatsApp o mediante nuestro formulario de atención.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                        
+                        <!-- Contact Card -->
+                        <div class="p-8 rounded-2xl glass-panel border border-brand-400/30 space-y-6">
+                            <h2 class="text-xl font-bold text-white">Atención Inmediata</h2>
+                            
+                            <div class="space-y-4 text-sm font-mono text-slate-300">
+                                <a href="https://wa.me/50244661266" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-400/50 transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                                    <div>
+                                        <div class="text-xs text-slate-400">WhatsApp Oficial</div>
+                                        <div class="text-white font-bold">+502 4466 1266</div>
+                                    </div>
+                                </a>
+
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                    <i class="fa-solid fa-location-dot text-brand-400 text-xl"></i>
+                                    <div>
+                                        <div class="text-xs text-slate-400">Ubicación Base</div>
+                                        <div class="text-white font-bold">Guatemala, Centroamérica</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                                    <i class="fa-solid fa-clock text-cyan-400 text-xl"></i>
+                                    <div>
+                                        <div class="text-xs text-slate-400">Horario Soporte</div>
+                                        <div class="text-white font-bold">Lunes a Sábado 8:00 - 18:00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form -->
+                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
+                            <h2 class="text-xl font-bold text-white">Envíanos un Mensaje</h2>
+                            
+                            <form onsubmit="handleContactForm(event)" class="space-y-4 font-mono text-xs">
+                                <div>
+                                    <label class="block text-slate-400 mb-1">Nombre Completo</label>
+                                    <input type="text" id="contactName" required placeholder="Tu Nombre" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-400">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-400 mb-1">Nombre de la Empresa</label>
+                                    <input type="text" id="contactCompany" placeholder="Tu Empresa / Negocio" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-400">
+                                </div>
+                                <div>
+                                    <label class="block text-slate-400 mb-1">Mensaje o Proyecto</label>
+                                    <textarea id="contactMessage" rows="4" required placeholder="Describe brevemente tus requerimientos..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-400"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-400 text-white font-sans font-bold text-sm shadow-lg hover:shadow-brand-400/40 transition-all">
+                                    Enviar a WhatsApp Directo
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/80 bg-brand-950 py-12 relative z-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <!-- Logo & Text -->
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-mono font-bold text-sm">
+                        V
+                    </div>
+                    <div>
+                        <span class="font-mono font-bold text-white tracking-wider">VELA WEB STUDIO</span>
+                        <p class="text-xs text-slate-500">Guatemala • Desarrollo Web & Ciberseguridad Empresarial</p>
+                    </div>
+                </div>
+
+                <!-- Nav Footer Links -->
+                <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400 font-mono">
+                    <button onclick="navigateTo('home')" class="hover:text-brand-400">Inicio</button>
+                    <button onclick="navigateTo('servicios')" class="hover:text-brand-400">Servicios</button>
+                    <button onclick="navigateTo('auditoria')" class="hover:text-brand-400">Auditoría</button>
+                    <button onclick="navigateTo('cotizador')" class="hover:text-brand-400">Cotizador</button>
+                    <button onclick="navigateTo('nosotros')" class="hover:text-brand-400">Nosotros</button>
+                    <button onclick="navigateTo('contacto')" class="hover:text-brand-400">Contacto</button>
+                </div>
+
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-600 font-mono gap-2">
+                <div>&copy; <span id="year">2026</span> VELA WEB STUDIO. Todos los derechos reservados.</div>
+                <div class="text-slate-500">Guatemala, C.A. • Tel: +502 4466 1266</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE PERMANENTE DE WHATSAPP -->
+    <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20deseo%20mas%20informacion%20sobre%20sus%20servicios." 
+       target="_blank" 
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-3xl shadow-2xl shadow-emerald-500/40 hover:scale-110 transition-all duration-300 group">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="absolute right-16 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-xs font-mono px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-slate-800">
+            ¡Chatea con nosotros!
+        </span>
+    </a>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // Set dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Multi-page Navigation Router Logic
+        function navigateTo(viewId) {
+            // Hide all page views
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(v => v.classList.remove('active'));
+
+            // Show selected view
+            const targetView = document.getElementById(`view-${viewId}`);
+            if (targetView) {
+                targetView.classList.add('active');
+            }
+
+            // Update Navigation active styling
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-brand-400', 'bg-slate-800/80', 'font-bold');
+                btn.classList.add('text-slate-300');
+            });
+
+            const activeBtn = document.getElementById(`nav-${viewId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('text-brand-400', 'bg-slate-800/80', 'font-bold');
+                activeBtn.classList.remove('text-slate-300');
+            }
+
+            // Close mobile menu if open
+            document.getElementById('mobileMenu').classList.add('hidden');
+
+            // Scroll smoothly to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Audit Simulator Action
+        function runAuditSimulation() {
+            const input = document.getElementById('auditUrlInput').value;
+            const resultsArea = document.getElementById('auditResultsArea');
+            const waBtn = document.getElementById('auditWhatsappBtn');
+
+            if (!input.trim()) {
+                alert("Por favor ingresa un dominio web válido.");
+                return;
+            }
+
+            resultsArea.classList.remove('hidden');
+            const cleanUrl = input.replace('https://', '').replace('http://', '');
+            waBtn.href = `https://wa.me/50244661266?text=Hola,%20analice%20mi%20sitio%20web%20(${encodeURIComponent(cleanUrl)})%20en%20su%20escanner%20y%20quiero%20solucionar%20las%20vulnerabilidades.`;
+        }
+
+        // Calculator Link Builder Functionality
+        function updateTotal() {
+            const checkboxes = document.querySelectorAll('.calc-option');
+            const listContainer = document.getElementById('selectedModulesList');
+            listContainer.innerHTML = '';
+
+            let selectedNames = [];
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    const name = cb.getAttribute('data-name');
+                    selectedNames.push(name);
+
+                    const item = document.createElement('div');
+                    item.className = 'flex justify-between';
+                    item.innerHTML = `<span>• ${name}</span><span class="text-emerald-400">Seleccionado</span>`;
+                    listContainer.appendChild(item);
+                }
+            });
+
+            // Update WhatsApp Link with itemized query
+            const waText = `Hola Vela Web Studio, deseo solicitar una cotización formal para los siguientes componentes:\n\n- ${selectedNames.join('\n- ')}`;
+            document.getElementById('calcWhatsappLink').href = `https://wa.me/50244661266?text=${encodeURIComponent(waText)}`;
+        }
+
+        // Contact Form Handler
+        function handleContactForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const company = document.getElementById('contactCompany').value || 'No especificada';
+            const msg = document.getElementById('contactMessage').value;
+
+            const text = `Hola Vela Web Studio, mi nombre es ${name} (Empresa: ${company}).\n\nMensaje: ${msg}`;
+            window.open(`https://wa.me/50244661266?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // Initialize default view
+        window.onload = function() {
+            navigateTo('home');
+            updateTotal();
+        }
+    </script>
+</body>
+</html>
