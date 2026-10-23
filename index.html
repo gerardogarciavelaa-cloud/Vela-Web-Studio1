@@ -2,7 +2,8 @@
 <html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#01061a">
     <title>Vela Web Studio - Desarrollo Web, Apps Móviles & Ciberseguridad</title>
     
     <!-- Tailwind CSS CDN -->
@@ -31,11 +32,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        @font-face {
+            font-family: 'Google Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-display: block;
+            src: url('assets/google-sans-400.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Google Sans';
+            font-style: normal;
+            font-weight: 500;
+            font-display: block;
+            src: url('assets/google-sans-500.woff2') format('woff2');
+        }
+
+        :root {
+            --u: min(100dvh / 800, max(100vw / 1280, min(100vw / 640, 0.75px)));
+            --ink: #ffffff;
+            --nav: rgba(238, 242, 255, 0.9);
+            --subhead: rgba(226, 233, 255, 0.74);
+            --link: rgba(212, 236, 255, 0.77);
+            --hairline: rgba(255, 255, 255, 0.19);
+            --button: #ffffff;
+            --button-ink: #0a0a0a;
+        }
+
+        @supports not (height: 100dvh) {
+            :root {
+                --u: min(100vh / 800, max(100vw / 1280, min(100vw / 640, 0.75px)));
+            }
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #030712;
+            font-family: 'Plus Jakarta Sans', "Google Sans", sans-serif;
+            background-color: #01061a;
+            background-image: linear-gradient(90deg, #00061a 0%, #01071b 22%, #01071a 45%, #010718 62%, #010614 80%, #020511 100%);
             color: #f8fafc;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: geometricPrecision;
+            font-kerning: normal;
         }
 
         .font-mono {
@@ -92,9 +130,43 @@
                 transform: translateY(0);
             }
         }
+
+        /* Global Video Backdrop Integration */
+        .global-video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        .global-video-el {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 95%);
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 95%);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between relative selection:bg-sky-500 selection:text-white">
+
+    <!-- Global Video Moving Background -->
+    <div class="global-video-bg">
+        <video class="global-video-el" autoplay muted loop playsinline aria-hidden="true">
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261005_182549_18378239-da8f-48a7-9666-d6e0a6a88561.mp4" type="video/mp4">
+        </video>
+    </div>
 
     <!-- Ambient Lighting Layers -->
     <div class="bg-glow-1"></div>
@@ -105,21 +177,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
-                <!-- Brand Logo Vectorizado Incrustado -->
+                <!-- Brand Logo -->
                 <button onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none">
-                    <div class="w-11 h-11 rounded-xl p-1 bg-slate-900 border border-sky-400/40 shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
-                        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Shield -->
-                            <path d="M100 15L175 45V105C175 150 100 185 100 185C100 185 25 150 25 105V45L100 15Z" stroke="#38BDF8" stroke-width="8" fill="#0B132B"/>
-                            <!-- Waves -->
-                            <path d="M55 142C80 135 120 135 145 142M70 150C95 144 105 144 130 150" stroke="#38BDF8" stroke-width="6" stroke-linecap="round"/>
-                            <!-- Sailboat hull & main sail -->
-                            <path d="M68 135L100 42L132 135Z" fill="#0B132B" stroke="#38BDF8" stroke-width="7"/>
-                            <path d="M100 42V135" stroke="#38BDF8" stroke-width="4"/>
-                            <!-- Code Tag </> inside Sail -->
-                            <path d="M80 92L88 84L80 76M120 92L112 84L120 76" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M103 70L97 98" stroke="#38BDF8" stroke-width="5" stroke-linecap="round"/>
-                        </svg>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-sky-500 to-cyan-400 p-0.5 shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                            <i class="fa-solid fa-compass-drafting text-sky-400 text-lg"></i>
+                        </div>
                     </div>
                     <div>
                         <span class="font-extrabold text-lg text-white tracking-wider block font-mono">VELA<span class="text-sky-400">STUDIO</span></span>
@@ -1007,11 +1070,8 @@
                 
                 <!-- Logo & Text -->
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg p-0.5 bg-slate-900 border border-sky-400/40 flex items-center justify-center">
-                        <svg class="w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M100 15L175 45V105C175 150 100 185 100 185C100 185 25 150 25 105V45L100 15Z" stroke="#38BDF8" stroke-width="8" fill="#0B132B"/>
-                            <path d="M68 135L100 42L132 135Z" fill="#0B132B" stroke="#38BDF8" stroke-width="7"/>
-                        </svg>
+                    <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-mono font-bold text-sm">
+                        V
                     </div>
                     <div>
                         <span class="font-mono font-bold text-white tracking-wider">VELA WEB STUDIO</span>
