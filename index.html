@@ -1,983 +1,191 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#01061a">
-    <title>Vela Web Studio - Desarrollo Web, Apps Móviles & Ciberseguridad</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        slate: {
-                            950: '#030712',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        :root {
-            --u: min(100dvh / 800, max(100vw / 1280, min(100vw / 640, 0.75px)));
-            --ink: #ffffff;
-            --nav: rgba(238, 242, 255, 0.9);
-            --subhead: rgba(226, 233, 255, 0.74);
-            --link: rgba(212, 236, 255, 0.77);
-            --hairline: rgba(255, 255, 255, 0.19);
-            --button: #ffffff;
-            --button-ink: #0a0a0a;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #01061a;
-            background-image: linear-gradient(90deg, #00061a 0%, #01071b 22%, #01071a 45%, #010718 62%, #010614 80%, #020511 100%);
-            color: #f8fafc;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Glassmorphism Effect */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-
-        /* Ambient Background Glows */
-        .bg-glow-1 {
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .bg-glow-2 {
-            position: absolute;
-            top: 40%;
-            right: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(147, 51, 234, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* View Router Management */
-        .page-view {
-            display: none;
-            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .page-view.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Video Background */
-        .global-video-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.35;
-        }
-
-        .global-video-el {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-            mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 95%);
-            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 95%);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vela Web Studio — Ingeniería digital con precios fijos y garantía de reembolso</title>
+<meta name="description" content="Agencia digital global: desarrollo web, apps móviles, CRM/ERP SaaS y ciberseguridad. Precios fijos, garantía 7 días, operación remota.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070d;--bg2:#0a0f1a;--card:#0d1322;--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);--text:#e6ecf5;--muted:#8a93a6;--accent:#34d399;--warn:#fbbf24;--mono:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}::selection{background:var(--accent);color:#000}.hidden{display:none!important}
+.bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%)}
+.orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;pointer-events:none;z-index:0;animation:float 18s ease-in-out infinite}.orb1{width:520px;height:520px;background:#34d399;top:-120px;left:-120px}.orb2{width:600px;height:600px;background:#0ea5e9;bottom:-200px;right:-150px;animation-delay:-6s}.orb3{width:400px;height:400px;background:#f472b6;top:40%;left:60%;animation-delay:-12s;opacity:.2}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.05)}66%{transform:translate(-30px,40px) scale(.95)}}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(5,7,13,.85);border-bottom:1px solid var(--border)}.nav-inner{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px;justify-content:space-between}.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;white-space:nowrap}.logo img{height:34px;width:auto}.logo span{font-size:17px}.logo-mark{width:34px;height:34px;border-radius:9px;background:var(--accent);display:grid;place-items:center;color:#000;font-weight:900;font-size:18px}.nav-links{display:flex;gap:20px;font-size:14px;color:var(--muted);white-space:nowrap;margin-left:auto;margin-right:auto}.nav-links a:hover{color:var(--text)}.nav-cta{padding:9px 16px;border-radius:10px;background:var(--accent);color:#000;font-weight:700;font-size:13px;transition:transform .2s;flex-shrink:0}.nav-cta:hover{transform:translateY(-2px)}
+.container{max-width:1280px;margin:0 auto;padding:0 24px;position:relative;z-index:1}section{padding:100px 0;position:relative;z-index:1}
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:80px}.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+h1{font-size:clamp(42px,6vw,78px);font-weight:900;letter-spacing:-.04em;line-height:1.02;margin:22px 0 20px}.hero-sub{font-size:18px;color:var(--muted);max-width:560px;margin-bottom:32px}.hero-actions{display:flex;gap:14px;flex-wrap:wrap}.btn{padding:14px 22px;border-radius:12px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;transition:all .25s}.btn-primary{background:var(--accent);color:#000}.btn-primary:hover{transform:translateY(-3px)}.btn-ghost{border:1px solid var(--border2);background:rgba(255,255,255,.03)}.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.hero-trust{display:flex;gap:24px;margin-top:36px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.hero-trust span{display:flex;align-items:center;gap:6px}.hero-trust .check{color:var(--accent)}
+.hero-visual{position:relative;height:520px}.hv-card{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px}.hv-card.c1{top:20px;left:0;width:260px;animation:cardFloat 6s ease-in-out infinite}.hv-card.c2{top:120px;right:0;width:230px;animation:cardFloat 7s ease-in-out infinite reverse}.hv-card.c3{bottom:40px;left:60px;width:300px;animation:cardFloat 8s ease-in-out infinite}@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}.hv-card h4{font-size:12px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.1em}.hv-card .price{font-size:28px;font-weight:800;color:var(--accent)}.hv-card .bar{height:6px;border-radius:3px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden}.hv-card .bar>div{height:100%;background:var(--accent);border-radius:3px;animation:grow 2.5s ease-out}@keyframes grow{from{width:0}}.hv-card .row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px}
+.section-head{text-align:center;margin-bottom:60px}.section-head .tag{font-size:12px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase}.section-head h2{font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.03em;margin:14px 0 16px}.section-head p{color:var(--muted);max-width:700px;margin:0 auto;font-size:17px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.scard{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;position:relative;transition:transform .35s,border-color .35s}.scard:hover{transform:translateY(-6px);border-color:var(--border2)}.scard .icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:22px;margin-bottom:18px;background:rgba(255,255,255,.06);border:1px solid var(--border)}.scard h3{font-size:20px;font-weight:700;margin-bottom:8px}.scard .price{font-size:15px;font-weight:600;color:var(--accent);margin-bottom:12px}.scard p{color:var(--muted);font-size:14px;margin-bottom:16px}.scard ul{list-style:none;font-size:13px;color:var(--muted)}.scard ul li{padding:4px 0;display:flex;gap:8px}.scard ul li::before{content:'→';color:var(--accent)}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.plan{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:28px 24px;position:relative;transition:all .3s}.plan.featured{border:2px solid var(--accent);transform:scale(1.04)}.plan.featured .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;padding:4px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.05em}.plan h3{font-size:18px;font-weight:700;margin-bottom:4px}.plan .tier{font-size:12px;color:var(--muted);margin-bottom:18px}.plan .price-big{font-size:34px;font-weight:900;letter-spacing:-.02em;margin-bottom:4px}.plan .price-big small{font-size:14px;color:var(--muted);font-weight:500}.plan .desc{font-size:13px;color:var(--muted);margin-bottom:18px;min-height:40px}.plan ul{list-style:none;font-size:13px;margin-bottom:22px}.plan ul li{padding:6px 0;display:flex;gap:8px;color:var(--text)}.plan ul li::before{content:'OK';color:var(--accent);font-weight:700;font-size:11px}.plan .btn{width:100%;justify-content:center;font-size:14px;padding:12px}
+.quote{background:var(--card);border:1px solid var(--border2);border-radius:28px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px}.quote h3{font-size:26px;font-weight:800;margin-bottom:6px}.quote .sub{color:var(--muted);font-size:14px;margin-bottom:20px}.qb-group{margin-bottom:22px}.qb-group label{font-size:13px;font-weight:600;margin-bottom:8px;display:block;color:var(--muted)}.currency-row{display:flex;gap:8px}.curr-btn{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-weight:600;font-size:13px;transition:all .2s}.curr-btn.active{background:var(--accent);color:#000;border-color:transparent}.qb-list{display:flex;flex-direction:column;gap:8px}.qb-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.02);cursor:pointer;transition:all .2s}.qb-item:hover{background:rgba(255,255,255,.05)}.qb-item input{accent-color:#34d399;width:16px;height:16px}.qb-item .name{flex:1;font-size:14px}.qb-item .price{font-size:13px;color:var(--accent)}
+.quote-summary{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:24px}.quote-summary h4{font-size:14px;color:var(--muted);margin-bottom:12px}.qs-line{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}.qs-line:last-of-type{border:none}.qs-total{display:flex;justify-content:space-between;padding:14px 0 0;font-size:20px;font-weight:800}.qs-total .val{color:var(--accent)}.wa-link{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:12px;background:#25D366;color:#fff;font-weight:700;margin-top:18px;transition:all .25s}.wa-link:hover{transform:translateY(-2px)}
+.audit{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:36px}.audit-row{display:flex;gap:12px}.audit-row input{flex:1;padding:14px 18px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);font-size:15px}.audit-row button{padding:14px 22px;border-radius:12px;background:var(--accent);color:#000;font-weight:700}.audit-result{margin-top:24px;display:none}.audit-result.show{display:block}.ar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}.ar-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:16px}.ar-card .label{font-size:12px;color:var(--muted);margin-bottom:4px}.ar-card .val{font-size:22px;font-weight:800}.ar-card .val.good{color:var(--accent)}.ar-card .val.warn{color:var(--warn)}.ar-card .val.bad{color:#f87171}
+.guar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.gcard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;text-align:center}.gcard .ic{font-size:32px;margin-bottom:12px}.gcard h4{font-size:15px;font-weight:700;margin-bottom:6px}.gcard p{font-size:13px;color:var(--muted)}
+.faq{max-width:820px;margin:0 auto}.faq-item{border:1px solid var(--border);border-radius:14px;margin-bottom:12px;overflow:hidden;background:var(--card)}.faq-q{padding:18px 22px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}.faq-q:hover{background:rgba(255,255,255,.03)}.faq-a{padding:0 22px 18px;color:var(--muted);font-size:14px;display:none}.faq-item.open .faq-a{display:block}.faq-item.open .faq-q span{transform:rotate(45deg)}
+footer{border-top:1px solid var(--border);padding:50px 0 30px;position:relative;z-index:1}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.footer-grid h5{font-size:13px;font-weight:700;margin-bottom:14px;color:var(--text)}.footer-grid a,.footer-grid p{font-size:13px;color:var(--muted);display:block;padding:4px 0}.footer-grid a:hover{color:var(--text)}.footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:12px;color:var(--muted);flex-wrap:wrap;gap:10px}
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;transition:transform .25s;animation:bob 3s ease-in-out infinite}.wa-float:hover{transform:scale(1.1)}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}.wa-float svg{width:30px;height:30px;fill:#fff}
+.reveal{opacity:1;transform:none}
+@media(max-width:900px){.hero-grid,.quote{grid-template-columns:1fr}.services-grid,.plans,.guar-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.footer-grid{grid-template-columns:1fr 1fr}.ar-grid{grid-template-columns:1fr}}@media(max-width:640px){.nav-links{gap:8px;font-size:11px}.nav-cta{padding:7px 12px;font-size:12px}}@media(max-width:600px){.services-grid,.plans,.guar-grid{grid-template-columns:1fr}}
+.crm-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}.crm-plan{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;position:relative;transition:all .3s}.crm-plan.featured{border:2px solid var(--accent);transform:scale(1.03)}.crm-plan .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:800}.crm-plan h3{font-size:18px;font-weight:700}.crm-plan .users{font-size:12px;color:var(--muted);margin:4px 0 14px}.crm-plan .price{font-size:34px;font-weight:900;color:var(--accent)}.crm-plan .price small{font-size:13px;color:var(--muted);font-weight:500}.crm-plan ul{list-style:none;font-size:13px;margin:16px 0 20px}.crm-plan ul li{padding:5px 0;color:var(--text)}.crm-plan ul li::before{content:'OK ';color:var(--accent);font-weight:700;font-size:11px}.crm-plan .btn{width:100%;justify-content:center;font-size:13px;padding:11px}
+.toggle-row{display:flex;justify-content:center;gap:8px;margin-bottom:24px}.tbtn{padding:9px 18px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-weight:600;font-size:13px;transition:all .2s}.tbtn.active{background:var(--accent);color:#000;border-color:transparent}
+.setup-banner{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3);border-radius:18px;padding:22px;display:flex;gap:16px;align-items:center;margin-top:30px;flex-wrap:wrap}.setup-banner .ic{font-size:28px}.setup-banner h4{font-size:15px;font-weight:700;color:var(--warn)}.setup-banner p{font-size:13px;color:var(--muted);margin-top:4px}
+@media(max-width:900px){.crm-plans{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.anim{opacity:0;animation:fadeUp .7s cubic-bezier(.22,1,.36,1) forwards}
+.delay-1{animation-delay:.08s}.delay-2{animation-delay:.16s}.delay-3{animation-delay:.24s}
+.scard,.plan,.crm-plan,.gcard{transition:transform .25s cubic-bezier(.22,1,.36,1)}
+.scard:active,.plan:active,.crm-plan:active{transform:scale(.98)}
+.btn,.wa-link,.curr-btn,.tbtn{transition:transform .15s cubic-bezier(.22,1,.36,1)}
+.btn:active,.wa-link:active{transform:scale(.97)}
+.num{font-variant-numeric:tabular-nums}
+</style>
 </head>
-<body class="min-h-screen flex flex-col justify-between relative selection:bg-sky-500 selection:text-white">
+<body>
+<canvas class="bg-canvas" id="particles"></canvas>
+<div class="bg-grid"></div>
+<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+
+<nav><div class="nav-inner"><a href="#" class="logo"><img src="logo.png" alt="Vela Web Studio logo" style="height:34px;width:auto"><span>Vela Web Studio</span></a><div class="nav-links"><a href="#servicios">Servicios</a><a href="#planes">Planes Web</a><a href="#crm">CRM y ERP</a><a href="#cotizador">Cotizador</a><a href="#retainers">Retainers</a><a href="#auditoria">Auditoria</a><a href="#faq">FAQ</a></div><a href="https://wa.me/50244661266" class="nav-cta">Hablar por WhatsApp</a></div></nav>
+
+<section class="hero"><div class="container hero-grid"><div>
+<h1 class="anim delay-1">Ingenieria digital con precios fijos y garantia de reembolso.</h1>
+<p class="hero-sub anim delay-2">Vela Web Studio entrega tu ecosistema completo: web, app movil, CRM/ERP SaaS y ciberseguridad, con precios publicos, sin contratos forzosos y con reembolso al 100% los primeros 7 dias. Fundado por Gerardo Garcia.</p>
+<div class="hero-actions anim delay-3"><a href="#cotizador" class="btn btn-primary">Cotizar mi proyecto</a><a href="#servicios" class="btn btn-ghost">Ver servicios</a></div>
+<div class="hero-trust"><span><span class="check">OK</span> Precios fijos publicos</span><span><span class="check">OK</span> Reembolso 7 dias</span><span><span class="check">OK</span> 1er mes gratis</span><span><span class="check">OK</span> Correos corporativos</span></div>
+</div><div class="hero-visual">
+<div class="hv-card c1"><h4>Vela Express</h4><div class="price num">Q999</div><div class="bar"><div style="width:100%"></div></div><div class="row"><span>Landing page</span><span>5-7 dias</span></div></div>
+<div class="hv-card c2"><h4>Vela Commerce</h4><div class="price num">Q2,999</div><div class="bar"><div style="width:70%"></div></div><div class="row"><span>E-commerce</span><span>14-21 dias</span></div></div>
+<div class="hv-card c3"><h4>Cotizador live</h4><div style="font-size:13px;color:var(--muted);margin-top:8px">Total estimado</div><div class="price num" id="hvTotal">Q0.00</div><div class="bar"><div style="width:40%"></div></div></div>
+</div></div></section>
+
+<section id="servicios"><div class="container">
+<div class="section-head"><div class="tag">stack completo</div><h2>Todo lo que tu negocio necesita, en un solo estudio</h2><p>Web, movil, CRM/ERP SaaS y ciberseguridad. Sin intermediarios, sin sorpresas de presupuesto.</p></div>
+<div class="services-grid">
+<div class="scard"><div class="icon">W</div><h3>Desarrollo Web</h3><div class="price">Desde Q999</div><p>Sitios de alto rendimiento optimizados para conversion y SEO.</p><ul><li>Landing pages</li><li>Sitios corporativos</li><li>E-commerce</li><li>Ecosistemas digitales</li></ul><button class="btn btn-ghost" style="margin-top:14px;width:100%;justify-content:center;font-size:13px" onclick="selectService('web')">Cotizar web</button></div>
+<div class="scard"><div class="icon">M</div><h3>Apps Moviles</h3><div class="price">Desde Q4,500</div><p>Aplicaciones nativas iOS y Android con UX de primer nivel.</p><ul><li>React Native / Flutter</li><li>Notificaciones push</li><li>Offline-first</li><li>Publicacion en stores</li></ul><button class="btn btn-ghost" style="margin-top:14px;width:100%;justify-content:center;font-size:13px" onclick="selectService('app')">Cotizar app</button></div>
+<div class="scard"><div class="icon">C</div><h3>Sistemas CRM</h3><div class="price">SaaS mensual</div><p>Gestion de ventas y clientes en la nube.</p><ul><li>Pipeline de ventas</li><li>Automatizacion</li><li>Reportes</li><li>Integraciones</li></ul><button class="btn btn-ghost" style="margin-top:14px;width:100%;justify-content:center;font-size:13px" onclick="document.getElementById('crm').scrollIntoView({behavior:'smooth'})">Ver planes CRM</button></div>
+<div class="scard"><div class="icon">E</div><h3>Sistemas ERP</h3><div class="price">SaaS mensual</div><p>Control total de operaciones, inventario y finanzas.</p><ul><li>Inventario</li><li>Facturacion</li><li>RRHH</li><li>Multi-sucursal</li></ul><button class="btn btn-ghost" style="margin-top:14px;width:100%;justify-content:center;font-size:13px" onclick="document.getElementById('crm').scrollIntoView({behavior:'smooth'})">Ver planes ERP</button></div>
+<div class="scard"><div class="icon">S</div><h3>SaaS y APIs</h3><div class="price">Desde Q3,500</div><p>Plataformas multi-tenant y APIs robustas y escalables.</p><ul><li>Multi-tenant</li><li>Auth seguro</li><li>Billing</li><li>Escalado</li></ul><button class="btn btn-ghost" style="margin-top:14px;width:100%;justify-content:center;font-size:13px" onclick="selectService('saas')">Cotizar SaaS</button></div>
+<div class="scard"><div class="icon">K</div><h3>Ciberseguridad</h3><div class="price">Desde Q750</div><p>Auditoria, hardening y limpieza de malware.</p><ul><li>Pentesting web</li><li>Hardening + WAF</li><li>SSL A+</li><li>Limpieza malware</li></ul><button class="btn btn-ghost" style="margin-top:14px;width:100%;justify-content:center;font-size:13px" onclick="selectService('sec')">Cotizar seguridad</button></div>
+</div></div></section>
+
+<section id="planes"><div class="container">
+<div class="section-head"><div class="tag">planes web</div><h2>Precios fijos. Sin letra chica.</h2><p>Elige el plan que encaja. Todos incluyen correos corporativos y 1er mes gratis de mantenimiento Veloce Care.</p></div>
+<div class="plans">
+<div class="plan"><h3>Vela Express</h3><div class="tier">Landing / One-Page</div><div class="price-big num">Q999 <small>/ $199 USD</small></div><div class="desc">Presencia profesional en una sola pagina de alto impacto.</div><ul><li>Diseno responsive</li><li>Formulario de contacto</li><li>WhatsApp integrado</li><li>SEO basico</li><li>Entrega 5-7 dias</li></ul><button class="btn btn-ghost" onclick="selectPlan('express')">Elegir plan</button></div>
+<div class="plan featured"><div class="badge">MAS POPULAR</div><h3>Vela Web Pro</h3><div class="tier">Sitio Corporativo</div><div class="price-big num">Q1,899 <small>/ $349 USD</small></div><div class="desc">Sitio multi-pagina para empresas que quieren credibilidad.</div><ul><li>Hasta 8 paginas</li><li>Blog / noticias</li><li>SEO avanzado</li><li>Analytics</li><li>Entrega 10-14 dias</li></ul><button class="btn btn-primary" onclick="selectPlan('pro')">Elegir plan</button></div>
+<div class="plan"><h3>Vela Commerce</h3><div class="tier">E-Commerce</div><div class="price-big num">Q2,999 <small>/ $499 USD</small></div><div class="desc">Tienda en linea completa lista para vender.</div><ul><li>Catalogo ilimitado</li><li>Pasarela de pago</li><li>Panel admin</li><li>Inventario</li><li>Entrega 14-21 dias</li></ul><button class="btn btn-ghost" onclick="selectPlan('commerce')">Elegir plan</button></div>
+<div class="plan"><h3>Vela Enterprise</h3><div class="tier">Ecosistema Total</div><div class="price-big num">Q4,999 <small>/ $899 USD</small></div><div class="desc">Web + app + integraciones + seguridad en un solo proyecto.</div><ul><li>Web + App</li><li>CRM integrado</li><li>Auditoria seguridad</li><li>Soporte prioritario</li><li>Entrega 30-45 dias</li></ul><button class="btn btn-ghost" onclick="selectPlan('enterprise')">Elegir plan</button></div>
+</div></div></section>
+
+<section id="crm"><div class="container">
+<div class="section-head"><div class="tag">crm y erp saas</div><h2>Software de gestion en la nube. Cobro recurrente, sin contratos.</h2><p>Planes mensuales y anuales con 20% de descuento. Escala cuando crezcas.</p></div>
+<div class="toggle-row"><button class="tbtn active" id="btnMonthly">Pago Mensual</button><button class="tbtn" id="btnAnnual">Pago Anual (Ahorra 20%)</button></div>
+<div class="crm-plans">
+<div class="crm-plan"><h3>Emprendedor</h3><div class="users">1-2 usuarios</div><div class="price"><span class="monthly">Q250 <small>/mes</small></span><span class="annual hidden">Q2,400 <small>/año</small></span></div><p style="font-size:11px;color:var(--muted);margin-top:4px" class="monthly">Q250 facturado mensualmente</p><p style="font-size:11px;color:var(--muted);margin-top:4px" class="annual hidden">Equivalente a Q200/mes</p><ul><li>CRM basico de prospectos</li><li>Control de inventario simple</li><li>Emision de cotizaciones</li><li>Soporte por correo</li></ul><button class="btn btn-ghost" onclick="selectCrm('emprendedor')">Comenzar Plan Emprendedor</button></div>
+<div class="crm-plan featured"><div class="badge">EL MAS POPULAR</div><h3>PYME</h3><div class="users">3-5 usuarios</div><div class="price"><span class="monthly">Q550 <small>/mes</small></span><span class="annual hidden">Q5,280 <small>/año</small></span></div><p style="font-size:11px;color:var(--muted);margin-top:4px" class="monthly">Q550 facturado mensualmente</p><p style="font-size:11px;color:var(--muted);margin-top:4px" class="annual hidden">Equivalente a Q440/mes</p><ul><li>Todo lo del Plan Emprendedor</li><li>Facturacion Electronica (FEL SAT) integrada</li><li>Manejo de multiples bodegas</li><li>Control de caja</li><li>Reportes gerenciales</li></ul><button class="btn btn-primary" onclick="selectCrm('pyme')">Prueba Gratis por 14 Dias</button></div>
+<div class="crm-plan"><h3>Empresarial</h3><div class="users">6+ usuarios / Multisucursal</div><div class="price"><span class="monthly">Q1,200 <small>/mes</small></span><span class="annual hidden">Q11,500 <small>/año</small></span></div><p style="font-size:11px;color:var(--muted);margin-top:4px" class="monthly">o cotizacion personalizada segun modulos</p><p style="font-size:11px;color:var(--muted);margin-top:4px" class="annual hidden">Equivalente a Q958/mes</p><ul><li>Todo lo del Plan PYME</li><li>Integracion API / WhatsApp / E-commerce</li><li>Usuarios personalizados</li><li>Tableros avanzados</li><li>Soporte prioritario 24/7</li></ul><button class="btn btn-ghost" onclick="selectCrm('empresarial')">Contactar a un Asesor</button></div>
+</div>
+<div class="setup-banner"><div class="ic">S</div><div style="flex:1"><h4>Set-Up e Implementacion Inicial: Q1,500 (pago unico opcional)</h4><p>Incluye migracion de datos (Excel de productos y clientes), configuracion del sistema con la SAT (FEL) y capacitacion guiada para tu equipo.</p></div><button class="btn btn-ghost" style="font-size:13px;padding:10px 16px" onclick="selectSetup()">Solicitar Set-Up</button></div>
+</div></section>
+
+<section id="cotizador"><div class="container">
+<div class="section-head"><div class="tag">cotizador global</div><h2>Arma tu proyecto y cotiza en segundos</h2><p>Selecciona moneda y servicios. El total se actualiza al instante y genera un pedido estructurado para WhatsApp.</p></div>
+<div class="quote"><div>
+<h3>Configura tu proyecto</h3><div class="sub">Marca lo que necesitas. Sin compromiso.</div>
+<div class="qb-group"><label>Moneda</label><div class="currency-row"><button class="curr-btn active" data-curr="GTQ">GTQ (Q)</button><button class="curr-btn" data-curr="USD">USD ($)</button><button class="curr-btn" data-curr="EUR">EUR (€)</button></div></div>
+<div class="qb-group"><label>Plan web base (elige uno)</label><div class="qb-list" id="plansList">
+<label class="qb-item"><input type="radio" name="plan" value="express" data-gtq="999" data-usd="199" data-eur="185" checked><span class="name">Vela Express — Landing</span><span class="price">Q999</span></label>
+<label class="qb-item"><input type="radio" name="plan" value="pro" data-gtq="1899" data-usd="349" data-eur="325"><span class="name">Vela Web Pro — Corporativo</span><span class="price">Q1,899</span></label>
+<label class="qb-item"><input type="radio" name="plan" value="commerce" data-gtq="2999" data-usd="499" data-eur="465"><span class="name">Vela Commerce — E-commerce</span><span class="price">Q2,999</span></label>
+<label class="qb-item"><input type="radio" name="plan" value="enterprise" data-gtq="4999" data-usd="899" data-eur="835"><span class="name">Vela Enterprise — Ecosistema</span><span class="price">Q4,999</span></label>
+</div></div>
+<div class="qb-group"><label>Add-ons (opcional)</label><div class="qb-list">
+<label class="qb-item"><input type="checkbox" data-gtq="4500" data-usd="799" data-eur="740"><span class="name">App Movil iOS y Android</span><span class="price">+Q4,500</span></label>
+<label class="qb-item"><input type="checkbox" data-gtq="3500" data-usd="500" data-eur="465"><span class="name">SaaS / API Backend</span><span class="price">+Q3,500</span></label>
+<label class="qb-item"><input type="checkbox" data-gtq="1500" data-usd="250" data-eur="230"><span class="name">Auditoria y Pentesting</span><span class="price">+Q1,500</span></label>
+<label class="qb-item"><input type="checkbox" data-gtq="999" data-usd="150" data-eur="140"><span class="name">Hardening + WAF + SSL A+</span><span class="price">+Q999</span></label>
+<label class="qb-item"><input type="checkbox" data-gtq="750" data-usd="120" data-eur="110"><span class="name">Limpieza de malware</span><span class="price">+Q750</span></label>
+<label class="qb-item"><input type="checkbox" id="addonCrm" data-gtq="250" data-usd="32" data-eur="30"><span class="name">CRM Emprendedor (mensual)</span><span class="price">+Q250/mes</span></label>
+<label class="qb-item"><input type="checkbox" id="addonSetup" data-gtq="1500" data-usd="250" data-eur="230"><span class="name">Set-Up e Implementacion</span><span class="price">+Q1,500</span></label>
+</div></div></div>
+<div class="quote-summary"><h4>RESUMEN EN VIVO</h4><div id="qsLines"></div><div class="qs-total"><span>Total estimado</span><span class="val num" id="qsTotal">Q0.00</span></div><div style="font-size:12px;color:var(--muted);margin-top:8px">Precios referenciales. El total final se confirma por WhatsApp.</div><a id="waQuote" class="wa-link" target="_blank" href="https://wa.me/50244661266">Enviar pedido por WhatsApp</a></div>
+</div></div></section>
+
+<section id="auditoria"><div class="container">
+<div class="section-head"><div class="tag">lead magnet</div><h2>Escanner de auditoria web gratuito</h2><p>Ingresa la URL de tu sitio y recibe un diagnostico instantaneo de seguridad, rendimiento y SEO.</p></div>
+<div class="audit"><div class="audit-row"><input id="auditUrl" placeholder="https://tu-sitio.com" type="url"><button onclick="runAudit()">Escanear ahora</button></div>
+<div class="audit-result" id="auditResult"><div class="ar-grid"><div class="ar-card"><div class="label">Seguridad</div><div class="val" id="arSec">—</div></div><div class="ar-card"><div class="label">Rendimiento</div><div class="val" id="arPerf">—</div></div><div class="ar-card"><div class="label">SEO</div><div class="val" id="arSeo">—</div></div></div><p style="margin-top:16px;color:var(--muted);font-size:14px" id="auditMsg"></p><a href="https://wa.me/50244661266?text=Hola%20Gerardo,%20quiero%20una%20auditor%C3%ADa%20completa%20de%20mi%20sitio" class="wa-link" style="max-width:360px" target="_blank">Solicitar auditoria completa</a></div>
+</div></div></section>
+
+<section id="garantias"><div class="container">
+<div class="section-head"><div class="tag">confianza</div><h2>Garantias que eliminan el riesgo</h2></div>
+<div class="guar-grid">
+<div class="gcard"><div class="ic">1</div><h4>Reembolso 7 dias</h4><p>100% sin preguntas si no estas satisfecho.</p></div>
+<div class="gcard"><div class="ic">2</div><h4>Correos corporativos</h4><p>gerencia@empresa.com incluidos.</p></div>
+<div class="gcard"><div class="ic">3</div><h4>1er mes gratis</h4><p>Mantenimiento Veloce Care sin costo.</p></div>
+<div class="gcard"><div class="ic">4</div><h4>Sin contratos</h4><p>Mantenimiento opcional desde el mes 2.</p></div>
+</div></div></section>
+
+<section id="faq"><div class="container">
+<div class="section-head"><div class="tag">preguntas</div><h2>Preguntas frecuentes</h2></div>
+<div class="faq">
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Cuanto tarda un proyecto? <span>+</span></div><div class="faq-a">Landing 5-7 dias, corporativo 10-14 dias, e-commerce 14-21 dias, ecosistema completo 30-45 dias.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Trabajan con clientes fuera de Guatemala? <span>+</span></div><div class="faq-a">Si, 100% remoto para LatAm, EE.UU. y Europa. El idioma y la zona horaria no son limite.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Que incluye el mantenimiento Veloce Care? <span>+</span></div><div class="faq-a">Actualizaciones, backups, monitoreo de seguridad y soporte prioritario. El primer mes es gratis.</div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Aceptan pagos en USD y EUR? <span>+</span></div><div class="faq-a">Si, el cotizador convierte en tiempo real a GTQ, USD y EUR.</div></div>
+</div></div></section>
+
+<section id="contacto" style="padding-bottom:60px"><div class="container">
+<div class="section-head"><div class="tag">contacto</div><h2>Hablemos de tu proyecto</h2><p>Gerardo Garcia · WhatsApp +502 4466 1266 · gerardogarciavelaa@gmail.com</p></div>
+<div style="text-align:center"><a href="https://wa.me/50244661266" class="btn btn-primary" style="font-size:17px;padding:18px 32px">Abrir WhatsApp</a></div>
+</div></section>
+
 
-    <!-- Global Video Moving Background -->
-    <div class="global-video-bg">
-        <video class="global-video-el" autoplay muted loop playsinline aria-hidden="true">
-            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261005_182549_18378239-da8f-48a7-9666-d6e0a6a88561.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <!-- Ambient Lighting Layers -->
-    <div class="bg-glow-1"></div>
-    <div class="bg-glow-2"></div>
-
-    <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- Brand Logo -->
-                <button onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-sky-500 to-cyan-400 p-0.5 shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform duration-300 overflow-hidden bg-slate-950">
-                        <img src="logo.png" alt="Vela Web Studio Logo" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <span class="font-extrabold text-lg text-white tracking-wider block font-mono">VELA<span class="text-sky-400">STUDIO</span></span>
-                        <span class="text-[10px] text-slate-400 block tracking-tight">Software & Ciberseguridad</span>
-                    </div>
-                </button>
-
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden lg:flex items-center gap-1 font-mono text-xs">
-                    <button id="nav-home" onclick="navigateTo('home')" class="nav-btn px-4 py-2 rounded-xl transition-all hover:text-sky-400">Inicio</button>
-                    <button id="nav-servicios" onclick="navigateTo('servicios')" class="nav-btn px-4 py-2 rounded-xl transition-all hover:text-sky-400">Soluciones & Planes</button>
-                    <button id="nav-promocion" onclick="navigateTo('promocion')" class="nav-btn px-4 py-2 rounded-xl transition-all hover:text-emerald-400 text-emerald-400 font-semibold"><i class="fa-solid fa-gift mr-1.5"></i>Beneficios</button>
-                    <button id="nav-auditoria" onclick="navigateTo('auditoria')" class="nav-btn px-4 py-2 rounded-xl transition-all hover:text-sky-400"><i class="fa-solid fa-shield-halved mr-1.5 text-sky-400"></i>Auditoría Gratis</button>
-                    <button id="nav-cotizador" onclick="navigateTo('cotizador')" class="nav-btn px-4 py-2 rounded-xl transition-all hover:text-sky-400"><i class="fa-solid fa-calculator mr-1.5 text-indigo-400"></i>Cotizador Global</button>
-                    <button id="nav-contacto" onclick="navigateTo('contacto')" class="nav-btn px-4 py-2 rounded-xl transition-all hover:text-sky-400">Contacto</button>
-                </nav>
-
-                <!-- Action Button -->
-                <div class="hidden sm:flex items-center gap-3">
-                    <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20deseo%20solicitar%20una%20asesoria%20tecnica%20para%20mi%20proyecto." target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs tracking-wide shadow-lg shadow-sky-500/20 transition-all flex items-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-sm"></i>
-                        <span>Asesoría Directa</span>
-                    </a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none">
-                    <i class="fa-solid fa-bars-staggered text-xl"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Container -->
-        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800/80 bg-slate-950/95 px-4 pt-3 pb-6 space-y-2 font-mono text-sm">
-            <button onclick="navigateTo('home')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 text-slate-200">Inicio</button>
-            <button onclick="navigateTo('servicios')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 text-slate-200">Soluciones & Planes</button>
-            <button onclick="navigateTo('promocion')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 text-emerald-400"><i class="fa-solid fa-gift mr-2"></i>Beneficios Incluidos</button>
-            <button onclick="navigateTo('auditoria')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 text-sky-400"><i class="fa-solid fa-shield-halved mr-2"></i>Auditoría Express</button>
-            <button onclick="navigateTo('cotizador')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 text-indigo-400"><i class="fa-solid fa-calculator mr-2"></i>Cotizador Interactivo</button>
-            <button onclick="navigateTo('contacto')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 text-slate-200">Contacto Directo</button>
-        </div>
-    </header>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="flex-grow z-10 relative">
-
-        <!-- ================= PAGE 1: INICIO / HERO ================= -->
-        <div id="view-home" class="page-view active">
-            
-            <!-- HERO SECTION -->
-            <section class="py-16 md:py-24 relative">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                        
-                        <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-sky-400/30 text-sky-400 text-xs font-mono">
-                                <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                Ingenieria de Software & Ciberseguridad Global
-                            </div>
-
-                            <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
-                                Transformamos tu marca con <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-400 to-purple-400">tecnología de vanguardia</span>
-                            </h1>
-
-                            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                                Desarrollamos plataformas web de alto rendimiento, aplicaciones móviles para iOS y Android, y blindaje de ciberseguridad para empresas en LatAm, Estados Unidos y Europa.
-                            </p>
-
-                            <!-- CTAs -->
-                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                                <button onclick="navigateTo('servicios')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm tracking-wide shadow-xl shadow-sky-500/25 transition-all flex items-center justify-center gap-2">
-                                    <span>Explorar Soluciones</span>
-                                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                                </button>
-                                <button onclick="navigateTo('cotizador')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold text-sm tracking-wide transition-all flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-calculator text-indigo-400"></i>
-                                    <span>Cotizador en Vivo</span>
-                                </button>
-                            </div>
-
-                            <!-- Trust Markers -->
-                            <div class="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-4 font-mono text-xs text-slate-400 text-center lg:text-left">
-                                <div>
-                                    <span class="block text-xl font-bold text-white font-sans">100%</span>
-                                    Diseño a Medida
-                                </div>
-                                <div>
-                                    <span class="block text-xl font-bold text-emerald-400 font-sans">SSL A+</span>
-                                    Ciberseguridad
-                                </div>
-                                <div>
-                                    <span class="block text-xl font-bold text-sky-400 font-sans">24/7</span>
-                                    Soporte Especializado
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Hero Feature Visual Card -->
-                        <div class="lg:col-span-5">
-                            <div class="p-6 sm:p-8 rounded-3xl bg-slate-900/90 border border-slate-800 glass-panel shadow-2xl relative overflow-hidden group">
-                                <div class="absolute -right-10 -top-10 w-40 h-40 bg-sky-500/10 rounded-full blur-2xl"></div>
-                                <div class="space-y-6 relative z-10">
-                                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-3 h-3 rounded-full bg-rose-500"></div>
-                                            <div class="w-3 h-3 rounded-full bg-amber-500"></div>
-                                            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                                        </div>
-                                        <span class="font-mono text-xs text-slate-400">vela-core-v3.0.js</span>
-                                    </div>
-
-                                    <div class="space-y-4 font-mono text-xs">
-                                        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-slate-300">
-                                            <span class="text-indigo-400">const</span> stack = [<span class="text-emerald-400">'Web Multi-Página'</span>, <span class="text-emerald-400">'iOS & Android'</span>, <span class="text-emerald-400">'Hardening WAF'</span>];
-                                        </div>
-                                        
-                                        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 space-y-2">
-                                            <div class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Garantía Estándar de Vela:</div>
-                                            <div class="text-emerald-400 flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Correos Corporativos Incluidos</div>
-                                            <div class="text-sky-400 flex items-center gap-2"><i class="fa-solid fa-gift"></i> 1 Mes GRATIS Veloce Care</div>
-                                            <div class="text-slate-400 text-[11px] flex items-center gap-2"><i class="fa-solid fa-check text-slate-500"></i> Sin permanencias obligatorias</div>
-                                        </div>
-                                    </div>
-
-                                    <button onclick="navigateTo('promocion')" class="w-full py-3 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/30 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2">
-                                        <span>Ver Todos los Beneficios Garantizados</span>
-                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- VALUE PROPOSITION HIGHLIGHTS -->
-            <section class="py-12 bg-slate-950/60 border-y border-slate-800/60">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        
-                        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 flex items-start gap-4">
-                            <div class="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 text-xl">
-                                <i class="fa-solid fa-at"></i>
-                            </div>
-                            <div class="space-y-1">
-                                <h3 class="text-white font-bold text-sm">Correos Corporativos Incluidos</h3>
-                                <p class="text-slate-400 text-xs leading-relaxed">Configuramos el dominio de tu empresa con buzones corporativos profesionales.</p>
-                            </div>
-                        </div>
-
-                        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 flex items-start gap-4">
-                            <div class="p-3 rounded-xl bg-sky-500/10 text-sky-400 text-xl">
-                                <i class="fa-solid fa-shield-heart"></i>
-                            </div>
-                            <div class="space-y-1">
-                                <h3 class="text-white font-bold text-sm">1 Mes GRATIS Veloce Care</h3>
-                                <p class="text-slate-400 text-xs leading-relaxed">Hosting Cloud de alta velocidad, copias de resguardo y soporte técnico sin costo adicional.</p>
-                            </div>
-                        </div>
-
-                        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 flex items-start gap-4">
-                            <div class="p-3 rounded-xl bg-indigo-500/10 text-indigo-400 text-xl">
-                                <i class="fa-solid fa-handshake-slash"></i>
-                            </div>
-                            <div class="space-y-1">
-                                <h3 class="text-white font-bold text-sm">Sin Contratos de Permanencia</h3>
-                                <p class="text-slate-400 text-xs leading-relaxed">A partir del mes 2 el mantenimiento es 100% opcional. Mantienes el control total.</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!-- CORE CATEGORIES OVERVIEW -->
-            <section class="py-20">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-                    <div class="text-center max-w-3xl mx-auto space-y-4">
-                        <span class="px-3 py-1 rounded-md bg-sky-400/10 text-sky-400 font-mono text-xs font-semibold">Nuestras Especialidades</span>
-                        <h2 class="text-3xl font-extrabold text-white">Soluciones Tecnológicas Integrales</h2>
-                        <p class="text-slate-400 text-sm">Diseñamos infraestructuras digitales para la era moderna.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        
-                        <!-- Card 1: Web -->
-                        <div onclick="navigateTo('servicios')" class="p-8 rounded-3xl bg-slate-900 glass-panel border border-slate-800 hover:border-sky-400/50 cursor-pointer transition-all hover:-translate-y-1 group">
-                            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-400/20 text-sky-400 flex items-center justify-center text-xl mb-6 group-hover:bg-sky-500 group-hover:text-slate-950 transition-colors">
-                                <i class="fa-solid fa-code"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Ingeniería Web & E-Commerce</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-6">Desde sitios web corporativos de alta velocidad hasta plataformas completas de comercio electrónico.</p>
-                            <span class="text-sky-400 font-mono text-xs font-bold flex items-center gap-2">Ver 4 Planes Disponibles <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-
-                        <!-- Card 2: Mobile Apps -->
-                        <div onclick="navigateTo('servicios')" class="p-8 rounded-3xl bg-slate-900 glass-panel border border-slate-800 hover:border-purple-400/50 cursor-pointer transition-all hover:-translate-y-1 group">
-                            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-400/20 text-purple-400 flex items-center justify-center text-xl mb-6 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                                <i class="fa-solid fa-mobile-screen-button"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Apps Móviles iOS & Android</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-6">Desarrollo nativo y multiplataforma con Flutter / React Native, publicado en App Store & Google Play.</p>
-                            <span class="text-purple-400 font-mono text-xs font-bold flex items-center gap-2">Ver Módulos Móviles <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-
-                        <!-- Card 3: Cyber -->
-                        <div onclick="navigateTo('servicios')" class="p-8 rounded-3xl bg-slate-900 glass-panel border border-slate-800 hover:border-emerald-400/50 cursor-pointer transition-all hover:-translate-y-1 group">
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-400/20 text-emerald-400 flex items-center justify-center text-xl mb-6 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Ciberseguridad & Pentesting</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed mb-6">Auditorías de código, blindaje de servidores WAF, certificados SSL A+ y limpieza urgente de malware.</p>
-                            <span class="text-emerald-400 font-mono text-xs font-bold flex items-center gap-2">Ver Servicios de Ciberseguridad <i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 2: SERVICIOS / TIERS & ESPECIALIDADES ================= -->
-        <div id="view-servicios" class="page-view">
-            <section class="py-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-                    
-                    <div class="text-center max-w-3xl mx-auto space-y-4">
-                        <span class="px-3 py-1 rounded-md bg-sky-400/10 text-sky-400 font-mono text-xs font-semibold">Nuestras Soluciones Integrales</span>
-                        <h1 class="text-4xl font-extrabold text-white">Desarrollo Web, Apps Móviles & Ciberseguridad</h1>
-                        <p class="text-slate-400 text-sm sm:text-base">Infraestructura tecnológica de nivel profesional adaptada a tus metas. Cotizaciones transparentes según tu mercado y país.</p>
-                    </div>
-
-                    <!-- SECCIÓN 1: PLANES DE DESARROLLO WEB -->
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                                <i class="fa-solid fa-code text-sky-400"></i>
-                                <span>Ingeniería & Desarrollo Web</span>
-                            </h2>
-                            <span class="text-xs font-mono text-slate-400 hidden sm:inline">Planes Web 100% Personalizados</span>
-                        </div>
-
-                        <!-- 4 Tier Pricing / Service Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            
-                            <!-- TIER 1: VELA EXPRESS -->
-                            <div class="p-6 rounded-2xl bg-slate-900 glass-panel border border-slate-800 hover:border-sky-400/50 flex flex-col justify-between relative transition-all">
-                                <div class="space-y-4">
-                                    <div class="inline-block px-3 py-1 rounded-full bg-slate-800 text-sky-400 font-mono text-[11px] font-bold">Lanzamiento Rápido</div>
-                                    <h3 class="text-2xl font-extrabold text-white">Vela Express</h3>
-                                    <p class="text-slate-400 text-xs">Ideal para landing pages impactantes, startups y profesionales independientes.</p>
-                                    
-                                    <div class="pt-2 border-t border-slate-800/80 space-y-1.5">
-                                        <div class="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> Correos Corporativos Incluidos</div>
-                                        <div class="text-[11px] font-bold text-sky-400 flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> 1 Mes GRATIS Veloce Care</div>
-                                        <div class="text-[10px] text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-slate-500"></i> Mes 2+ opcional (Sin contratos)</div>
-                                    </div>
-
-                                    <ul class="space-y-2 text-xs text-slate-300 font-mono pt-3">
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Landing page de alta conversión</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Entrega ágil en 48 horas</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Botón directo a WhatsApp</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Optimización móvil responsiva</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Formulario directo de prospectos</li>
-                                    </ul>
-                                </div>
-
-                                <div class="pt-6 mt-6 border-t border-slate-800/80">
-                                    <button onclick="requestTierQuote('Vela Express')" class="w-full py-3 rounded-xl bg-sky-500/20 border border-sky-400/40 hover:bg-sky-500 hover:text-white text-sky-300 font-bold text-xs transition-all flex items-center justify-center gap-2">
-                                        <span>Solicitar Cotización</span>
-                                        <i class="fa-solid fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- TIER 2: VELA WEB PRO -->
-                            <div class="p-6 rounded-2xl bg-slate-900 glass-panel border-2 border-sky-400 flex flex-col justify-between relative shadow-2xl shadow-sky-500/10 transition-all">
-                                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-sky-400 to-indigo-500 text-slate-950 font-extrabold text-[10px] uppercase px-3 py-1 rounded-full shadow-md tracking-wider">MÁS SOLICITADO</div>
-                                
-                                <div class="space-y-4 pt-2">
-                                    <div class="inline-block px-3 py-1 rounded-full bg-sky-950 text-sky-300 font-mono text-[11px] font-bold">Sitio Corporativo</div>
-                                    <h3 class="text-2xl font-extrabold text-white">Vela Web Pro</h3>
-                                    <p class="text-slate-400 text-xs">Para empresas que buscan posicionamiento formal y captación constante de leads.</p>
-
-                                    <div class="pt-2 border-t border-slate-800/80 space-y-1.5">
-                                        <div class="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> Correos Corporativos Incluidos</div>
-                                        <div class="text-[11px] font-bold text-sky-400 flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> 1 Mes GRATIS Veloce Care</div>
-                                        <div class="text-[10px] text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-slate-500"></i> Mes 2+ opcional (Sin contratos)</div>
-                                    </div>
-
-                                    <ul class="space-y-2 text-xs text-slate-300 font-mono pt-3">
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Sitio multi-página dinámico</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> SEO Local & Estructura Google</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Formularios personalizados</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Panel de administración CMS</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-sky-400 mt-0.5"></i> Integración de Analytics & Mapeo</li>
-                                    </ul>
-                                </div>
-
-                                <div class="pt-6 mt-6 border-t border-slate-800/80">
-                                    <button onclick="requestTierQuote('Vela Web Pro')" class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-sky-500 hover:from-indigo-500 hover:to-sky-400 text-white font-bold text-xs shadow-lg transition-all flex items-center justify-center gap-2">
-                                        <span>Solicitar Cotización</span>
-                                        <i class="fa-solid fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- TIER 3: VELA COMMERCE -->
-                            <div class="p-6 rounded-2xl bg-slate-900 glass-panel border border-slate-800 hover:border-sky-400/50 flex flex-col justify-between relative transition-all">
-                                <div class="space-y-4">
-                                    <div class="inline-block px-3 py-1 rounded-full bg-slate-800 text-emerald-400 font-mono text-[11px] font-bold">Tienda Virtual</div>
-                                    <h3 class="text-2xl font-extrabold text-white">Vela Commerce</h3>
-                                    <p class="text-slate-400 text-xs">Vende productos físicos o digitales a nivel local e internacional con cobros seguros.</p>
-
-                                    <div class="pt-2 border-t border-slate-800/80 space-y-1.5">
-                                        <div class="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> Correos Corporativos Incluidos</div>
-                                        <div class="text-[11px] font-bold text-sky-400 flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> 1 Mes GRATIS Veloce Care</div>
-                                        <div class="text-[10px] text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-slate-500"></i> Mes 2+ opcional (Sin contratos)</div>
-                                    </div>
-
-                                    <ul class="space-y-2 text-xs text-slate-300 font-mono pt-3">
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> E-Commerce completo & Catálogo</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Carrito de compras e inventarios</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Tarjetas, PayPal, Stripe, Visanet</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Notificaciones automáticas email/WA</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Cupones & Gestor de Promociones</li>
-                                    </ul>
-                                </div>
-
-                                <div class="pt-6 mt-6 border-t border-slate-800/80">
-                                    <button onclick="requestTierQuote('Vela Commerce')" class="w-full py-3 rounded-xl bg-emerald-500/20 border border-emerald-400/40 hover:bg-emerald-500 hover:text-white text-emerald-300 font-bold text-xs transition-all flex items-center justify-center gap-2">
-                                        <span>Solicitar Cotización</span>
-                                        <i class="fa-solid fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- TIER 4: VELA ENTERPRISE -->
-                            <div class="p-6 rounded-2xl bg-slate-900 glass-panel border border-slate-800 hover:border-indigo-400/50 flex flex-col justify-between relative transition-all">
-                                <div class="space-y-4">
-                                    <div class="inline-block px-3 py-1 rounded-full bg-slate-800 text-indigo-400 font-mono text-[11px] font-bold">Ecosistema Completo</div>
-                                    <h3 class="text-2xl font-extrabold text-white">Vela Enterprise</h3>
-                                    <p class="text-slate-400 text-xs">Infraestructura avanzada con bots de IA, facturación electrónica y blindaje total.</p>
-
-                                    <div class="pt-2 border-t border-slate-800/80 space-y-1.5">
-                                        <div class="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> Correos Corporativos Incluidos</div>
-                                        <div class="text-[11px] font-bold text-sky-400 flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> 1 Mes GRATIS Veloce Care</div>
-                                        <div class="text-[10px] text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-slate-500"></i> Mes 2+ opcional (Sin contratos)</div>
-                                    </div>
-
-                                    <ul class="space-y-2 text-xs text-slate-300 font-mono pt-3">
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-400 mt-0.5"></i> Bot de IA / Automatización WA</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-400 mt-0.5"></i> Facturación Electrónica FEL / DTE</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-400 mt-0.5"></i> Blindaje Ciberseguridad A+ & WAF</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-400 mt-0.5"></i> Integración API personalizada</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-400 mt-0.5"></i> Soporte dedicado prioritario 24/7</li>
-                                    </ul>
-                                </div>
-
-                                <div class="pt-6 mt-6 border-t border-slate-800/80">
-                                    <button onclick="requestTierQuote('Vela Enterprise')" class="w-full py-3 rounded-xl bg-indigo-500/20 border border-indigo-400/40 hover:bg-indigo-500 hover:text-white text-indigo-300 font-bold text-xs transition-all flex items-center justify-center gap-2">
-                                        <span>Solicitar Cotización</span>
-                                        <i class="fa-solid fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- SECCIÓN 2: DESARROLLO DE APPS MÓVILES (ANDROID & IOS) -->
-                    <div class="space-y-6 pt-6">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                                <i class="fa-solid fa-mobile-screen-button text-purple-400"></i>
-                                <span>Desarrollo de Apps Móviles (Android & iOS)</span>
-                            </h2>
-                            <span class="text-xs font-mono text-purple-400 bg-purple-950/60 border border-purple-500/30 px-3 py-1 rounded-full">Multi-Plataforma & Nativas</span>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div class="p-8 rounded-2xl bg-slate-900/90 glass-panel border border-purple-500/30 hover:border-purple-400 transition-all flex flex-col justify-between space-y-6">
-                                <div class="space-y-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-400/40 text-purple-400 flex items-center justify-center text-2xl font-bold">
-                                            <i class="fa-brands fa-app-store-ios"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xl font-bold text-white">Apps Empresariales & E-Commerce Móvil</h3>
-                                            <p class="text-xs font-mono text-purple-300">iOS (App Store) & Android (Google Play)</p>
-                                        </div>
-                                    </div>
-
-                                    <p class="text-slate-300 text-xs leading-relaxed">
-                                        Llevamos tu modelo de negocio a los smartphones de tus clientes. Diseñamos e implementamos aplicaciones móviles ágiles, seguras y de alto rendimiento.
-                                    </p>
-
-                                    <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
-                                        <div class="text-xs font-bold text-emerald-400 flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> Correos Corporativos Incluidos</div>
-                                        <div class="text-xs font-bold text-sky-400 flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> 1 Mes GRATIS Veloce Care</div>
-                                    </div>
-
-                                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-400 mt-0.5"></i> Desarrollo Flutter / React Native</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-400 mt-0.5"></i> Publicación asistida en Play Store & App Store</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-purple-400 mt-0.5"></i> Notificaciones Push & Mensajería In-App</li>
-                                    </ul>
-                                </div>
-
-                                <button onclick="requestTierQuote('Desarrollo de App Móvil iOS & Android')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs shadow-lg transition-all flex items-center justify-center gap-2">
-                                    <i class="fa-brands fa-google-play"></i>
-                                    <span>Cotizar App Móvil Android & iOS</span>
-                                </button>
-                            </div>
-
-                            <div class="p-8 rounded-2xl bg-slate-900/90 glass-panel border border-indigo-500/30 hover:border-indigo-400 transition-all flex flex-col justify-between space-y-6">
-                                <div class="space-y-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-xl bg-indigo-500/20 border border-indigo-400/40 text-indigo-400 flex items-center justify-center text-2xl font-bold">
-                                            <i class="fa-solid fa-gears"></i>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xl font-bold text-white">Sistemas Web/Móvil SaaS & APIs</h3>
-                                            <p class="text-xs font-mono text-indigo-300">Plataformas a la medida con Backend Cloud</p>
-                                        </div>
-                                    </div>
-
-                                    <p class="text-slate-300 text-xs leading-relaxed">
-                                        Desarrollo de portales administrativos, paneles para clientes, sistemas de reservas e integraciones personalizadas en la nube.
-                                    </p>
-
-                                    <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
-                                        <div class="text-xs font-bold text-emerald-400 flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> Correos Corporativos Incluidos</div>
-                                        <div class="text-xs font-bold text-sky-400 flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> 1 Mes GRATIS Veloce Care</div>
-                                    </div>
-
-                                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-400 mt-0.5"></i> Arquitectura API RESTful / GraphQL</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-400 mt-0.5"></i> Autenticación segura JWT & OAuth2</li>
-                                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-indigo-400 mt-0.5"></i> Paneles de analítica en tiempo real</li>
-                                    </ul>
-                                </div>
-
-                                <button onclick="requestTierQuote('Sistema SaaS / API Personalizada')" class="w-full py-3.5 rounded-xl bg-indigo-600/30 border border-indigo-400 hover:bg-indigo-600 hover:text-white text-indigo-200 font-bold text-xs transition-all flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-diagram-project"></i>
-                                    <span>Cotizar Sistema a Medida</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SECCIÓN 3: CIBERSEGURIDAD -->
-                    <div class="space-y-6 pt-6">
-                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h2 class="text-2xl font-bold text-white flex items-center gap-3">
-                                <i class="fa-solid fa-shield-halved text-emerald-400"></i>
-                                <span>Servicios Especializados de Ciberseguridad</span>
-                            </h2>
-                            <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full">Protección A+ & Pentesting</span>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            
-                            <div class="p-6 rounded-2xl bg-slate-900 glass-panel border border-slate-800 hover:border-emerald-400/50 flex flex-col justify-between space-y-4">
-                                <div class="space-y-3">
-                                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">
-                                        <i class="fa-solid fa-bug-slash"></i>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-white">Auditoría & Pentesting Web</h3>
-                                    <p class="text-slate-400 text-xs">Evaluación de vulnerabilidades, inyecciones SQL, XSS y fallos de configuración.</p>
-                                    <ul class="space-y-1.5 text-xs text-slate-300 font-mono pt-2">
-                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Escaneo de puertos & servicios</li>
-                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Pruebas de penetración Éticas</li>
-                                    </ul>
-                                </div>
-                                <button onclick="requestTierQuote('Auditoría de Ciberseguridad & Pentesting')" class="w-full py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 hover:bg-emerald-500 hover:text-slate-950 text-emerald-300 font-bold text-xs transition-all flex items-center justify-center gap-2">
-                                    <span>Solicitar Auditoría</span>
-                                </button>
-                            </div>
-
-                            <div class="p-6 rounded-2xl bg-slate-900 glass-panel border border-slate-800 hover:border-emerald-400/50 flex flex-col justify-between space-y-4">
-                                <div class="space-y-3">
-                                    <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-xl font-bold">
-                                        <i class="fa-solid fa-network-wired"></i>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-white">Hardening & Cortafuegos (WAF)</h3>
-                                    <p class="text-slate-400 text-xs">Blindaje de servidores, instalación de WAF, protección Anti-DDoS y certificados SSL A+.</p>
-                                    <ul class="space-y-1.5 text-xs text-slate-300 font-mono pt-2">
-                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Encabezados HSTS & CSP</li>
-                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-sky-400"></i> Bloqueo Anti-DDoS</li>
-                                    </ul>
-                                </div>
-                                <button onclick="requestTierQuote('Hardening Servidores & WAF')" class="w-full py-2.5 rounded-xl bg-sky-500/20 border border-sky-400/40 hover:bg-sky-500 hover:text-white text-sky-300 font-bold text-xs transition-all flex items-center justify-center gap-2">
-                                    <span>Solicitar Blindaje WAF</span>
-                                </button>
-                            </div>
-
-                            <div class="p-6 rounded-2xl bg-slate-900 glass-panel border border-slate-800 hover:border-emerald-400/50 flex flex-col justify-between space-y-4">
-                                <div class="space-y-3">
-                                    <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl font-bold">
-                                        <i class="fa-solid fa-kit-medical"></i>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-white">Limpieza de Malware</h3>
-                                    <p class="text-slate-400 text-xs">Eliminación urgente de código malicioso, redirecciones y restauración de seguridad.</p>
-                                    <ul class="space-y-1.5 text-xs text-slate-300 font-mono pt-2">
-                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Eliminación de Backdoors</li>
-                                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Reindexación limpia en Google</li>
-                                    </ul>
-                                </div>
-                                <button onclick="requestTierQuote('Servicio Urgente de Limpieza de Malware')" class="w-full py-2.5 rounded-xl bg-rose-500/20 border border-rose-400/40 hover:bg-rose-500 hover:text-white text-rose-300 font-bold text-xs transition-all flex items-center justify-center gap-2">
-                                    <span>Solicitar Desinfección</span>
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 3: BENEFICIOS ================= -->
-        <div id="view-promocion" class="page-view">
-            <section class="py-16">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-                    <div class="text-center max-w-3xl mx-auto space-y-4">
-                        <span class="px-3 py-1 rounded-md bg-emerald-400/10 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-wider">Transparencia Total</span>
-                        <h1 class="text-4xl font-extrabold text-white">Lo Que Obtienes en Cada Proyecto</h1>
-                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                            Sin letras chiquitas ni tarifas ocultas. Cada solución entregada por Vela Web Studio viene equipada para operar con profesionalismo desde el primer día.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="p-8 rounded-2xl bg-slate-900/90 border border-emerald-500/30 glass-panel space-y-4">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-bold">
-                                <i class="fa-solid fa-at"></i>
-                            </div>
-                            <h2 class="text-2xl font-bold text-white">Correo Corporativo Incluido</h2>
-                            <p class="text-slate-300 text-xs leading-relaxed">
-                                Refuerza la credibilidad de tu negocio proyectando una imagen profesional con tu propio dominio.
-                            </p>
-                        </div>
-
-                        <div class="p-8 rounded-2xl bg-slate-900/90 border border-sky-500/30 glass-panel space-y-4">
-                            <div class="w-14 h-14 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl font-bold">
-                                <i class="fa-solid fa-shield-heart"></i>
-                            </div>
-                            <h2 class="text-2xl font-bold text-white">1 Mes Gratis Veloce Care</h2>
-                            <p class="text-slate-300 text-xs leading-relaxed">
-                                Disfruta de hosting cloud de alta velocidad, copias de seguridad de resguardo y soporte técnico directo sin costo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 4: AUDITORÍA GRATUITA ================= -->
-        <div id="view-auditoria" class="page-view">
-            <section class="py-16 relative">
-                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="p-8 sm:p-12 rounded-3xl bg-slate-900 border border-sky-400/30 glass-panel shadow-2xl relative overflow-hidden">
-                        <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
-                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-sky-400/10 text-sky-400 text-xs font-mono font-semibold">
-                                <i class="fa-solid fa-microchip"></i> Diagnóstico Técnico Express
-                            </span>
-                            <h1 class="text-3xl font-extrabold text-white">Escáner de Seguridad Web</h1>
-                            <p class="text-slate-400 text-sm">Ingresa el dominio de tu negocio para realizar una simulación técnica.</p>
-                        </div>
-
-                        <div class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3 mb-8">
-                            <div class="relative flex-grow">
-                                <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500 font-mono text-sm">https://</span>
-                                <input type="text" id="auditUrlInput" placeholder="tuempresa.com" class="w-full pl-20 pr-4 py-3.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-sm focus:outline-none focus:border-sky-400">
-                            </div>
-                            <button onclick="runAuditSimulation()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-sky-500 text-white font-bold text-sm shadow-lg flex items-center justify-center gap-2 whitespace-nowrap">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <span>Analizar Sitio</span>
-                            </button>
-                        </div>
-
-                        <div id="auditResultsArea" class="hidden max-w-2xl mx-auto space-y-4 font-mono text-xs">
-                            <div class="p-5 rounded-xl bg-slate-950/90 border border-slate-800 space-y-3">
-                                <div class="flex justify-between items-center pb-2 border-b border-slate-800">
-                                    <span class="text-slate-400">Punto de Control</span>
-                                    <span class="text-slate-400">Estado</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-300">1. Certificado SSL & Encriptación</span>
-                                    <span class="text-emerald-400 font-bold"><i class="fa-solid fa-check-circle mr-1"></i> Activo</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-300">2. Encabezado HSTS</span>
-                                    <span class="text-amber-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Incompleto</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-300">3. Política CSP</span>
-                                    <span class="text-rose-400 font-bold"><i class="fa-solid fa-xmark-circle mr-1"></i> Vulnerable</span>
-                                </div>
-                            </div>
-
-                            <div class="p-5 rounded-xl bg-slate-950 border border-sky-400/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <div>
-                                    <p class="text-white font-sans font-bold text-sm">¿Deseas corregir estas vulnerabilidades?</p>
-                                    <p class="text-slate-400 font-sans text-xs">Aplica un esquema de blindaje técnico en tu sitio web.</p>
-                                </div>
-                                <a id="auditWhatsappBtn" href="#" target="_blank" class="px-5 py-3 rounded-xl bg-sky-400 text-slate-950 font-sans font-extrabold text-xs shadow-md whitespace-nowrap">
-                                    Solicitar Corrección Técnico
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 5: COTIZADOR ================= -->
-        <div id="view-cotizador" class="page-view">
-            <section class="py-16 relative">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-                        <span class="px-3 py-1 rounded-md bg-sky-400/10 text-sky-400 font-mono text-xs font-semibold">Configurador Personalizado</span>
-                        <h1 class="text-3xl font-extrabold text-white">Cotizador de Proyecto Global</h1>
-                        <p class="text-slate-400 text-sm">Selecciona los módulos deseados para enviarte una propuesta por WhatsApp.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                        <div class="lg:col-span-2 space-y-4">
-                            <div class="p-5 rounded-2xl glass-panel border border-slate-800 space-y-2">
-                                <label class="block text-xs font-mono font-bold text-sky-400 uppercase">País / Moneda</label>
-                                <select id="calcRegion" onchange="updateTotal()" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:outline-none">
-                                    <option value="Internacional (USD - $)">Estados Unidos / Internacional (USD - $)</option>
-                                    <option value="Guatemala (GTQ - Q)">Guatemala (GTQ - Q / Opción SAT FEL)</option>
-                                    <option value="México / Latinoamérica (USD)">México & Latinoamérica (USD)</option>
-                                    <option value="España / Europa (EUR - €)">España & Europa (EUR - €)</option>
-                                </select>
-                            </div>
-
-                            <div class="space-y-3">
-                                <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer">
-                                    <div class="flex items-center gap-3">
-                                        <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-indigo-600 bg-slate-950" data-name="Diseño Web Profesional" checked onchange="updateTotal()">
-                                        <div>
-                                            <p class="text-white font-bold text-sm">Diseño Web / Sitio Corporativo</p>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer">
-                                    <div class="flex items-center gap-3">
-                                        <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-indigo-600 bg-slate-950" data-name="Módulo Tienda E-Commerce" onchange="updateTotal()">
-                                        <div>
-                                            <p class="text-white font-bold text-sm">E-Commerce & Catálogo Virtual</p>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer">
-                                    <div class="flex items-center gap-3">
-                                        <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-purple-600 bg-slate-950" data-name="App Móvil (iOS & Android)" onchange="updateTotal()">
-                                        <div>
-                                            <p class="text-white font-bold text-sm">Aplicación Móvil iOS & Android</p>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer">
-                                    <div class="flex items-center gap-3">
-                                        <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-emerald-600 bg-slate-950" data-name="Blindaje WAF & Ciberseguridad" onchange="updateTotal()">
-                                        <div>
-                                            <p class="text-white font-bold text-sm">Hardening, WAF Firewall & SSL A+</p>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="p-6 rounded-2xl bg-slate-900 border border-sky-400/30 glass-panel sticky top-28 space-y-6">
-                            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3">Resumen</h3>
-                            <div id="selectedModulesList" class="space-y-2 text-xs text-slate-300 font-mono"></div>
-
-                            <a id="calcWhatsappLink" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all">
-                                <i class="fa-brands fa-whatsapp text-lg"></i>
-                                <span>Solicitar Cotización</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 6: CONTACTO ================= -->
-        <div id="view-contacto" class="page-view">
-            <section class="py-16">
-                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-                        <span class="px-3 py-1 rounded-md bg-sky-400/10 text-sky-400 font-mono text-xs font-semibold">Atención Personalizada</span>
-                        <h1 class="text-3xl font-extrabold text-white">Inicia Tu Proyecto Hoy</h1>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                        <div class="p-8 rounded-2xl glass-panel border border-sky-400/30 space-y-6">
-                            <h2 class="text-xl font-bold text-white">Canales Oficiales</h2>
-                            <a href="https://wa.me/50244661266" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-400/50 transition-colors">
-                                <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
-                                <div>
-                                    <div class="text-xs text-slate-400">WhatsApp Directo</div>
-                                    <div class="text-white font-bold">+502 4466 1266</div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
-                            <h2 class="text-xl font-bold text-white">Envíanos un Mensaje</h2>
-                            <form onsubmit="handleContactForm(event)" class="space-y-4 font-mono text-xs">
-                                <div>
-                                    <label class="block text-slate-400 mb-1">Nombre Completo</label>
-                                    <input type="text" id="contactName" required placeholder="Tu Nombre" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-sky-400">
-                                </div>
-                                <div>
-                                    <label class="block text-slate-400 mb-1">Mensaje</label>
-                                    <textarea id="contactMessage" rows="4" required placeholder="Describe tu proyecto..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-sky-400"></textarea>
-                                </div>
-                                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-sky-500 text-white font-bold text-sm shadow-lg transition-all">
-                                    Enviar a WhatsApp
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-slate-800/80 bg-slate-950 py-12 relative z-10 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-slate-950 flex items-center justify-center text-white overflow-hidden border border-slate-800">
-                    <img src="logo.png" alt="Logo" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <span class="font-mono font-bold text-white tracking-wider">VELA WEB STUDIO</span>
-                    <p class="text-xs text-slate-500">Desarrollo Web & Ciberseguridad</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20deseo%20mas%20informacion." target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-emerald-500 text-white flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-all">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        function navigateTo(viewId) {
-            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
-            const targetView = document.getElementById(`view-${viewId}`);
-            if (targetView) targetView.classList.add('active');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-sky-400', 'font-bold'));
-            const activeBtn = document.getElementById(`nav-${viewId}`);
-            if (activeBtn) activeBtn.classList.add('text-sky-400', 'font-bold');
-
-            document.getElementById('mobileMenu').classList.add('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-
-        function requestTierQuote(tierName) {
-            const text = `Hola Vela Web Studio, deseo solicitar una cotización para el plan *${tierName}*.`;
-            window.open(`https://wa.me/50244661266?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        function runAuditSimulation() {
-            const input = document.getElementById('auditUrlInput').value;
-            if (!input.trim()) return alert("Ingresa un dominio web válido.");
-            document.getElementById('auditResultsArea').classList.remove('hidden');
-            document.getElementById('auditWhatsappBtn').href = `https://wa.me/50244661266?text=Hola,%20analice%20mi%20sitio%20(${encodeURIComponent(input)})%20y%20deseo%20corregir%20las%20vulnerabilidades.`;
-        }
-
-        function updateTotal() {
-            const listContainer = document.getElementById('selectedModulesList');
-            const region = document.getElementById('calcRegion').value;
-            listContainer.innerHTML = '';
-            let selected = [];
-
-            document.querySelectorAll('.calc-option').forEach(cb => {
-                if (cb.checked) {
-                    const name = cb.getAttribute('data-name');
-                    selected.push(name);
-                    const item = document.createElement('div');
-                    item.className = 'flex justify-between';
-                    item.innerHTML = `<span>• ${name}</span><span class="text-sky-400">Seleccionado</span>`;
-                    listContainer.appendChild(item);
-                }
-            });
-
-            const waText = `Hola Vela Web Studio, deseo una propuesta para:\n\n*Región:* ${region}\n\n*Módulos:*\n- ${selected.join('\n- ')}`;
-            document.getElementById('calcWhatsappLink').href = `https://wa.me/50244661266?text=${encodeURIComponent(waText)}`;
-        }
-
-        function handleContactForm(e) {
-            e.preventDefault();
-            const name = document.getElementById('contactName').value;
-            const msg = document.getElementById('contactMessage').value;
-            window.open(`https://wa.me/50244661266?text=${encodeURIComponent(`Hola, mi nombre es ${name}. Mensaje: ${msg}`)}`, '_blank');
-        }
-
-        window.onload = function() {
-            navigateTo('home');
-            updateTotal();
-        }
-    </script>
-</body>
-</html>
+<section id="retainers"><div class="container">
+<div class="section-head"><div class="tag">ingresos recurrentes</div><h2>Veloce Care: mantenimiento mensual que convierte un proyecto en ingreso recurrente</h2><p>Sin contratos forzosos. El primer mes es gratis. Convierte tu build en retainer y estabiliza tu flujo de caja.</p></div>
+<div class="crm-plans">
+<div class="crm-plan"><h3>Starter</h3><div class="users">1 sitio</div><div class="price">Q199 <small>/mes</small></div><ul><li>Actualizaciones de contenido</li><li>Backups semanales</li><li>Monitoreo basico</li><li>Soporte por correo</li></ul><button class="btn btn-ghost" onclick="selectRetainer('starter')">Contratar Starter</button></div>
+<div class="crm-plan featured"><div class="badge">RECOMENDADO</div><h3>Growth</h3><div class="users">1 sitio + marketing</div><div class="price">Q499 <small>/mes</small></div><ul><li>Todo lo de Starter</li><li>SEO mensual</li><li>Reportes de trafico</li><li>Soporte prioritario</li><li>1 hora de cambios/mes</li></ul><button class="btn btn-primary" onclick="selectRetainer('growth')">Contratar Growth</button></div>
+<div class="crm-plan"><h3>Enterprise</h3><div class="users">Multi-sitio</div><div class="price">Q999 <small>/mes</small></div><ul><li>Todo lo de Growth</li><li>Hasta 5 sitios</li><li>SLA 24/7</li><li>Account manager</li><li>Cambios ilimitados</li></ul><button class="btn btn-ghost" onclick="selectRetainer('enterprise')">Contactar</button></div>
+</div>
+<div class="setup-banner" style="margin-top:30px"><div class="ic">P</div><div style="flex:1"><h4>Terminos de pago: 50% anticipo, 50% contra entrega</h4><p>El anticipo se devuelve al 100% los primeros 7 dias si no estas satisfecho con la propuesta inicial. El saldo se paga al entregar el proyecto funcionando.</p></div></div>
+</div></section>
+
+<footer><div class="container"><div class="footer-grid">
+<div><div class="logo" style="margin-bottom:12px"><img src="logo.png" alt="Vela Web Studio logo" style="height:44px;width:auto;max-width:60px"></div> Vela Web Studio</div><p>Ingenieria digital con precios fijos y garantia de reembolso. Fundado por Gerardo Garcia.</p></div>
+<div><h5>Servicios</h5><a href="#servicios">Web</a><a href="#servicios">Apps</a><a href="#crm">CRM/ERP</a><a href="#servicios">Seguridad</a></div>
+<div><h5>Empresa</h5><a href="#garantias">Garantias</a><a href="#faq">FAQ</a><a href="#auditoria">Auditoria</a></div>
+<div><h5>Contacto</h5><a href="https://wa.me/50244661266">WhatsApp</a><a href="mailto:gerardogarciavelaa@gmail.com">Email</a></div>
+</div><div class="footer-bottom"><span>© 2026 Vela Web Studio. Todos los derechos reservados.</span><span>Hecho con precision por Gerardo Garcia.</span></div></div></footer>
+
+<a href="https://wa.me/50244661266" class="wa-float" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<script>
+const canvas=document.getElementById('particles');const ctx=canvas.getContext('2d');let pts=[];function resize(){canvas.width=innerWidth;canvas.height=innerHeight}resize();addEventListener('resize',resize);for(let i=0;i<90;i++)pts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.6+0.4,a:Math.random()});function loop(){ctx.clearRect(0,0,canvas.width,canvas.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>canvas.width)p.vx*=-1;if(p.y<0||p.y>canvas.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(52,211,153,'+(0.3*p.a)+')';ctx.fill()});requestAnimationFrame(loop)}loop();
+const symbols={GTQ:'Q',USD:'$',EUR:'€'};let curr='GTQ';
+document.querySelectorAll('.curr-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.curr-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');curr=b.dataset.curr;updateQuote()}));
+function val(el){return parseFloat(el.dataset[curr.toLowerCase()])||0}
+function updateQuote(){const planRadio=document.querySelector('input[name="plan"]:checked');let total=val(planRadio);let lines=[{name:planRadio.parentElement.querySelector('.name').textContent,price:val(planRadio)}];document.querySelectorAll('#cotizador input[type="checkbox"]:checked').forEach(cb=>{total+=val(cb);lines.push({name:cb.parentElement.querySelector('.name').textContent,price:val(cb)})});const qs=document.getElementById('qsLines');qs.innerHTML='';lines.forEach(l=>{const d=document.createElement('div');d.className='qs-line';d.innerHTML='<span>'+l.name+'</span><span>'+symbols[curr]+l.price.toLocaleString()+'</span>';qs.appendChild(d)});document.getElementById('qsTotal').textContent=symbols[curr]+total.toLocaleString(undefined,{minimumFractionDigits:2});document.getElementById('hvTotal').textContent=symbols[curr]+total.toLocaleString(undefined,{minimumFractionDigits:2});const msg='Hola Gerardo, quiero cotizar:%0A'+lines.map(l=>`- ${l.name}: ${symbols[curr]}${l.price}`).join('%0A')+'%0A%0ATotal estimado: '+symbols[curr]+total;document.getElementById('waQuote').href='https://wa.me/50244661266?text='+msg;}
+document.querySelectorAll('#cotizador input').forEach(i=>i.addEventListener('change',updateQuote));updateQuote();
+function runAudit(){const url=document.getElementById('auditUrl').value.trim();if(!url){alert('Ingresa una URL');return}const r=document.getElementById('auditResult');r.classList.add('show');const sec=Math.floor(60+Math.random()*35);const perf=Math.floor(55+Math.random()*40);const seo=Math.floor(65+Math.random()*30);document.getElementById('arSec').textContent=sec+'%';document.getElementById('arSec').className='val '+(sec>80?'good':sec>65?'warn':'bad');document.getElementById('arPerf').textContent=perf+'%';document.getElementById('arPerf').className='val '+(perf>80?'good':perf>65?'warn':'bad');document.getElementById('arSeo').textContent=seo+'%';document.getElementById('arSeo').className='val '+(seo>80?'good':seo>65?'warn':'bad');document.getElementById('auditMsg').textContent='Diagnostico preliminar para '+url+'. Para un analisis completo con remediacion, contactanos por WhatsApp.';}
+function toggleFaq(el){el.parentElement.classList.toggle('open')}
+const btnM=document.getElementById('btnMonthly');const btnA=document.getElementById('btnAnnual');
+function setMode(mode){const monthly=mode==='monthly';btnM.classList.toggle('active',monthly);btnA.classList.toggle('active',!monthly);document.querySelectorAll('.monthly').forEach(e=>e.classList.toggle('hidden',!monthly));document.querySelectorAll('.annual').forEach(e=>e.classList.toggle('hidden',monthly));}
+btnM.addEventListener('click',()=>setMode('monthly'));btnA.addEventListener('click',()=>setMode('annual'));
+function selectPlan(v){const r=document.querySelector('input[name="plan"][value="'+v+'"]');if(r){r.checked=true;updateQuote();}document.getElementById('cotizador').scrollIntoView({behavior:'smooth'});}
+function selectService(s){document.getElementById('cotizador').scrollIntoView({behavior:'smooth'});const msg='Hola Gerardo, me interesa: '+s.toUpperCase()+'. Cotizame por favor.';window.open('https://wa.me/50244661266?text='+encodeURIComponent(msg),'_blank');}
+function selectCrm(plan){const cb=document.getElementById('addonCrm');if(cb){cb.checked=true;updateQuote();}document.getElementById('cotizador').scrollIntoView({behavior:'smooth'});const msg='Hola Gerardo, quiero el Plan CRM/ERP: '+plan.toUpperCase()+'.';window.open('https://wa.me/50244661266?text='+encodeURIComponent(msg),'_blank');}
+function selectSetup(){const cb=document.getElementById('addonSetup');if(cb){cb.checked=true;updateQuote();}document.getElementById('cotizador').scrollIntoView({behavior:'smooth'});}
+function selectRetainer(plan){const msg='Hola Gerardo, quiero el plan de mantenimiento Veloce Care: '+plan.toUpperCase()+'.';window.open('https://wa.me/50244661266?text='+encodeURIComponent(msg),'_blank');}
+document.querySelectorAll('.scard').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')})});
+</script>
+</body></html>
