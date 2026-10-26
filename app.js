@@ -150,7 +150,8 @@ function renderCatalog() {
       <div class="glow-card rounded-2xl p-6 flex flex-col justify-between">
         <div>
           <h4 class="text-lg font-bold text-white mb-2">${item.name}</h4>
-          <p class="text-xs text-slate-400 mb-6 leading-relaxed font-light">${item.description}</p>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed font-light">${item.description}</p>
+          ${renderIncludes(item)}
         </div>
         <div>
           <div class="text-2xl font-extrabold text-[#22d3ee] mb-4">${formatPrice(item.priceGTQ, item.priceUSD)}</div>
@@ -174,7 +175,8 @@ function renderCatalog() {
         <div class="glow-card rounded-2xl p-6 flex flex-col justify-between">
           <div>
             <h4 class="text-lg font-bold text-white mb-2">${item.name}</h4>
-            <p class="text-xs text-slate-400 mb-6 leading-relaxed font-light">${item.description}</p>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed font-light">${item.description}</p>
+            ${renderIncludes(item)}
           </div>
           <div>
             <div class="text-2xl font-extrabold text-[#22d3ee] mb-1">${priceStr}<span class="text-xs text-slate-400 font-normal">${intervalStr}</span></div>
@@ -195,7 +197,8 @@ function renderCatalog() {
       <div class="glow-card rounded-2xl p-6 flex flex-col justify-between">
         <div>
           <h4 class="text-lg font-bold text-white mb-2">${item.name}</h4>
-          <p class="text-xs text-slate-400 mb-6 leading-relaxed font-light">${item.description}</p>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed font-light">${item.description}</p>
+          ${renderIncludes(item)}
         </div>
         <div>
           <div class="text-2xl font-extrabold text-[#22d3ee] mb-4">${formatPrice(item.priceGTQ, item.priceUSD)}</div>
@@ -208,6 +211,23 @@ function renderCatalog() {
   }
 
   updateCalculatorServices();
+}
+
+function renderIncludes(item) {
+  if (!item.includes || item.includes.length === 0) return '';
+  return `
+    <div class="mt-2 border-t border-[#1e293b] pt-3">
+      <div class="text-[10px] uppercase tracking-wider text-[#22d3ee] font-semibold mb-2">Incluye</div>
+      <ul class="space-y-1">
+        ${item.includes.map(inc => `
+          <li class="text-xs text-slate-300 flex items-center space-x-2">
+            <span class="text-[#22d3ee] text-xs">✓</span>
+            <span>${inc}</span>
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  `;
 }
 
 function updateUI() {

@@ -37,28 +37,32 @@
           "name": "Vela Express",
           "priceGTQ": 999,
           "priceUSD": 199,
-          "description": "Sitio web rápido y profesional, ideal para empezar."
+          "description": "Sitio web rápido y profesional, ideal para empezar.",
+          "includes": ["Diseño Dark Fintech", "Garantía de 7 días", "1 mes de mantenimiento gratis", "Correo corporativo incluido"]
         },
         {
           "id": "web-pro",
           "name": "Web Pro",
           "priceGTQ": 1899,
           "priceUSD": 349,
-          "description": "Página web avanzada con diseño a medida y mayor funcionalidad."
+          "description": "Página web avanzada con diseño a medida y mayor funcionalidad.",
+          "includes": ["Todo lo de Express", "Panel de administración", "Optimización SEO básica", "Favicon personalizado"]
         },
         {
           "id": "commerce",
           "name": "Commerce",
           "priceGTQ": 2999,
           "priceUSD": 499,
-          "description": "Tienda online completa con pasarela de pagos y gestión de productos."
+          "description": "Tienda online completa con pasarela de pagos y gestión de productos.",
+          "includes": ["Todo lo de Web Pro", "Pasarela de pagos", "Gestión de inventario", "Soporte priority"]
         },
         {
           "id": "enterprise",
           "name": "Enterprise",
           "priceGTQ": 4999,
           "priceUSD": 899,
-          "description": "Soluciones corporativas a medida con integraciones y escalabilidad."
+          "description": "Soluciones corporativas a medida con integraciones y escalabilidad.",
+          "includes": ["Diseño UX/UI personalizado", "Integraciones ERP/CRM", "Auditoría de seguridad", "2 meses de mantenimiento"]
         }
       ]
     },
@@ -75,7 +79,8 @@
           "interval": "mes",
           "setupGTQ": null,
           "setupUSD": null,
-          "description": "Plan mensual para emprendedores."
+          "description": "Plan mensual para emprendedores.",
+          "includes": ["Hosting incluido", "SSL certificado", "Soporte básico"]
         },
         {
           "id": "pyme",
@@ -85,7 +90,8 @@
           "interval": "mes",
           "setupGTQ": null,
           "setupUSD": null,
-          "description": "Plan mensual para pequeñas y medianas empresas."
+          "description": "Plan mensual para PYMEs.",
+          "includes": ["Hosting premium", "Backups diarios", "Soporte 24/7"]
         },
         {
           "id": "empresarial",
@@ -95,7 +101,8 @@
           "interval": "mes",
           "setupGTQ": 1500,
           "setupUSD": null,
-          "description": "Plan mensual empresarial con set-up inicial."
+          "description": "Plan empresarial con set-up inicial.",
+          "includes": ["SLA de respuesta 1h", "Escalabilidad ilimitada", "Monitoreo 24/7"]
         }
       ]
     },
@@ -108,35 +115,40 @@
           "name": "Apps Móviles",
           "priceGTQ": 4500,
           "priceUSD": 799,
-          "description": "Aplicaciones móviles nativas e híbridas."
+          "description": "Aplicaciones móviles nativas e híbridas.",
+          "includes": ["Diseño responsive", "Despliegue en Stores"]
         },
         {
           "id": "saas-a-medida",
           "name": "SaaS a Medida",
           "priceGTQ": 3500,
           "priceUSD": 500,
-          "description": "Plataformas SaaS personalizadas para tu negocio."
+          "description": "Plataformas SaaS personalizadas.",
+          "includes": ["Arquitectura cloud", "Documentación API"]
         },
         {
           "id": "pentesting",
           "name": "Pentesting",
           "priceGTQ": 1500,
           "priceUSD": 250,
-          "description": "Pruebas de penetración y evaluación de vulnerabilidades."
+          "description": "Evaluación de vulnerabilidades.",
+          "includes": ["Reporte detallado", "Plan de remediación"]
         },
         {
           "id": "hardening",
           "name": "Hardening",
           "priceGTQ": 999,
           "priceUSD": 150,
-          "description": "Endurecimiento de sistemas y servidores."
+          "description": "Endurecimiento de sistemas.",
+          "includes": ["Auditoría de logs", "Configuración firewall"]
         },
         {
           "id": "desinfeccion-malware",
           "name": "Desinfección de Malware",
           "priceGTQ": 750,
           "priceUSD": 120,
-          "description": "Limpieza y desinfección de sistemas afectados por malware."
+          "description": "Limpieza profunda de malware.",
+          "includes": ["Eliminación de backdoors", "Revisión integridad"]
         }
       ]
     }
