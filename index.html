@@ -1,100 +1,125 @@
 <!DOCTYPE html>
-<html lang="es" class="dark scroll-smooth">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VELA WEB STUDIO | Desarrollo Web, Ciberseguridad & Apps Empresariales</title>
+    <title>Vela Web Studio | Ingeniería Software, Web de Alta Conversión y SaaS</title>
+    <meta name="description" content="Estudio de ingeniería de software especializado en desarrollo web de alta conversión, aplicaciones móviles, ciberseguridad avanzada y SaaS empresarial (CRM/ERP).">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts: Inter & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind Custom Configuration -->
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            50: '#e6f8ff',
-                            100: '#b3edff',
-                            400: '#00f0ff', // Neon Cyan
-                            500: '#00d2ff',
-                            600: '#0072ff', // Electric Blue
-                            800: '#0d1527',
-                            900: '#07090e', // Very Dark Blue background
-                            950: '#0b0f17'  // Dark Card background
+                            darkest: '#011d1c',
+                            dark: '#012624',
+                            mid: '#003734',
+                            teal: '#0d9488',
+                            emerald: '#34d399',
+                            glow: '#edfffe',
+                            pinkGlow: '#fde9ff',
+                            gold: '#fbbf24'
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 4s infinite ease-in-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'scan-line': 'scanLine 2.5s linear infinite'
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        scanLine: {
+                            '0%': { top: '0%' },
+                            '100%': { top: '100%' }
+                        }
                     }
                 }
             }
         }
     </script>
 
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background-color: #07090E;
-            color: #F3F4F6;
+            background-color: #011d1c;
+            color: #e2e8f0;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
-
-        /* Subtle Grid Pattern */
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        
+        /* Particle Background Canvas */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .text-gradient {
-            background: linear-gradient(135deg, #FFFFFF 0%, #00F0FF 50%, #0072FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .border-glow {
-            border: 1px solid rgba(0, 240, 255, 0.15);
+        /* Bioluminescent Glow Glassmorphism */
+        .glass-card {
+            background: rgba(1, 38, 36, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(52, 211, 153, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .border-glow:hover {
-            border-color: rgba(0, 240, 255, 0.5);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
-            transform: translateY(-2px);
+        .glass-card:hover {
+            border-color: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 0 25px rgba(52, 211, 153, 0.2);
+            transform: translateY(-4px);
         }
 
-        /* Glassmorphism */
-        .glass-panel {
-            background: rgba(11, 15, 23, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+        .glass-card-featured {
+            background: rgba(0, 55, 52, 0.75);
+            backdrop-filter: blur(20px);
+            border: 2px solid #34d399;
+            box-shadow: 0 0 30px rgba(52, 211, 153, 0.3);
         }
 
-        /* View Animation Transitions */
-        .page-view {
-            display: none;
-            opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.35s ease, transform 0.35s ease;
+        .glow-text {
+            text-shadow: 0 0 12px rgba(237, 255, 254, 0.6);
         }
 
-        .page-view.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
+        .glow-emerald {
+            text-shadow: 0 0 15px rgba(52, 211, 153, 0.8);
+        }
+
+        .btn-bioluminescence {
+            background: linear-gradient(135deg, #0d9488 0%, #34d399 100%);
+            color: #011d1c;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-bioluminescence:hover {
+            box-shadow: 0 0 30px rgba(52, 211, 153, 0.7), 0 0 10px rgba(253, 233, 255, 0.5);
+            transform: scale(1.02);
         }
 
         /* Custom Scrollbar */
@@ -102,779 +127,1113 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #07090E;
+            background: #011d1c;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1E293B;
+            background: #003734;
             border-radius: 4px;
+            border: 1px solid rgba(52, 211, 153, 0.2);
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #0072FF;
+            background: #34d399;
+        }
+
+        /* Switch Toggle */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #34d399;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0d9488;
         }
     </style>
 </head>
-<body class="bg-grid-pattern antialiased selection:bg-brand-600 selection:text-white flex flex-col min-h-screen">
+<body class="relative min-h-screen text-slate-100 antialiased selection:bg-emerald-400 selection:text-slate-950">
 
-    <!-- HEADER / NAVIGATION MULTI-PÁGINA -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Brand Logo -->
-            <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-brand-400 to-cyan-300 p-[1.5px] transition-transform duration-300 group-hover:scale-105">
-                    <div class="w-full h-full bg-brand-900 rounded-[10.5px] flex items-center justify-center relative overflow-hidden">
-                        <svg class="w-6 h-6 text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            <path d="m9 10-2 2 2 2"/>
-                            <path d="m15 10 2 2-2 2"/>
-                            <path d="M12 8v8"/>
-                        </svg>
+    <!-- Interactive Continuous Particle Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="relative z-10 flex flex-col min-h-screen">
+
+        <!-- HEADER / NAVIGATION -->
+        <header class="sticky top-0 z-50 backdrop-blur-md bg-brand-darkest/80 border-b border-emerald-500/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+                            <i class="fa-solid fa-code text-slate-950 font-black text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-black tracking-tight text-white font-mono">VELA<span class="text-emerald-400">.STUDIO</span></span>
+                            <span class="block text-[10px] uppercase tracking-widest text-emerald-300/70 font-semibold">Engineering & High Conversion</span>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Nav Links -->
+                    <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium font-mono">
+                        <a href="#servicios-web" class="hover:text-emerald-400 transition-colors">DESARROLLO WEB</a>
+                        <a href="#saas-crm" class="hover:text-emerald-400 transition-colors">SAAS CRM/ERP</a>
+                        <a href="#ciber-apps" class="hover:text-emerald-400 transition-colors">APPS & CIBERSEGURIDAD</a>
+                        <a href="#garantias" class="hover:text-emerald-400 transition-colors">GARANTÍA</a>
+                        <a href="#escaner" class="hover:text-emerald-400 transition-colors">AUDITORÍA FREE</a>
+                    </nav>
+
+                    <div class="hidden lg:flex items-center space-x-4">
+                        <a href="#cotizador" class="px-5 py-2.5 rounded-lg btn-bioluminescence text-xs tracking-wider uppercase font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-calculator"></i> Cotizador Global
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="lg:hidden">
+                        <button id="mobileMenuBtn" class="text-slate-300 hover:text-white focus:outline-none p-2">
+                            <i class="fa-solid fa-bars text-2xl"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-xl font-extrabold tracking-wider text-white font-mono">VELA</span>
-                    <span class="text-[10px] tracking-[0.25em] text-brand-400 uppercase -mt-1 font-semibold">Web Studio</span>
-                </div>
-            </a>
+            </div>
 
-            <!-- Desktop Nav Links (Multi-page Switcher) -->
-            <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium text-slate-300">
-                <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Inicio</button>
-                <button onclick="navigateTo('servicios')" id="nav-servicios" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Servicios</button>
-                <button onclick="navigateTo('auditoria')" id="nav-auditoria" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Auditoría Gratis</button>
-                <button onclick="navigateTo('cotizador')" id="nav-cotizador" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Cotizador</button>
-                <button onclick="navigateTo('nosotros')" id="nav-nosotros" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Nosotros</button>
-                <button onclick="navigateTo('contacto')" id="nav-contacto" class="nav-btn px-3 py-2 rounded-lg transition-colors hover:text-brand-400">Contacto</button>
-            </nav>
-
-            <!-- CTA Header Button -->
-            <div class="hidden sm:flex items-center gap-4">
-                <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20cotizar%20un%20proyecto%20digital." target="_blank" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium rounded-xl group bg-gradient-to-br from-brand-400 to-brand-600 group-hover:from-brand-400 group-hover:to-cyan-300 text-white shadow-lg shadow-brand-600/20 hover:shadow-brand-400/40 transition-all">
-                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-brand-900 rounded-[10px] group-hover:bg-opacity-0 font-semibold flex items-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i>
-                        <span>Contactar Asesor</span>
-                    </span>
+            <!-- Mobile Navigation Drawer -->
+            <div id="mobileMenu" class="hidden lg:hidden bg-brand-dark/95 border-b border-emerald-500/20 px-4 pt-2 pb-6 space-y-3 font-mono text-sm">
+                <a href="#servicios-web" class="block py-2 text-slate-300 hover:text-emerald-400" onclick="toggleMobileMenu()">> DESARROLLO WEB</a>
+                <a href="#saas-crm" class="block py-2 text-slate-300 hover:text-emerald-400" onclick="toggleMobileMenu()">> SAAS CRM/ERP</a>
+                <a href="#ciber-apps" class="block py-2 text-slate-300 hover:text-emerald-400" onclick="toggleMobileMenu()">> APPS & CIBERSEGURIDAD</a>
+                <a href="#garantias" class="block py-2 text-slate-300 hover:text-emerald-400" onclick="toggleMobileMenu()">> POLÍTICA DE GARANTÍA</a>
+                <a href="#escaner" class="block py-2 text-slate-300 hover:text-emerald-400" onclick="toggleMobileMenu()">> ESCÁNER DE SEGURIDAD</a>
+                <a href="#cotizador" class="block mt-4 w-full text-center py-3 rounded-lg btn-bioluminescence text-xs tracking-wider uppercase font-bold" onclick="toggleMobileMenu()">
+                    Abrir Cotizador Global
                 </a>
             </div>
+        </header>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white text-2xl focus:outline-none p-2">
-                <i class="fa-solid fa-bars" id="menuIcon"></i>
-            </button>
-        </div>
+        <!-- HERO SECTION -->
+        <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="text-center max-w-4xl mx-auto space-y-8">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-emerald-400/30 text-emerald-300 text-xs font-mono uppercase tracking-widest animate-pulse">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span>Fundador & CTO: Gerardo García | Cobertura Global Remote</span>
+                </div>
 
-        <!-- Mobile Nav Menu -->
-        <div id="mobileMenu" class="hidden md:hidden glass-panel border-b border-slate-800 px-4 pt-2 pb-6 space-y-2">
-            <button onclick="navigateTo('home')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Inicio</button>
-            <button onclick="navigateTo('servicios')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Servicios</button>
-            <button onclick="navigateTo('auditoria')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Auditoría Gratis</button>
-            <button onclick="navigateTo('cotizador')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Cotizador Interactivo</button>
-            <button onclick="navigateTo('nosotros')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Nosotros & Calidad</button>
-            <button onclick="navigateTo('contacto')" class="block w-full text-left py-2.5 px-3 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-400 font-medium">Contacto Directo</button>
-            <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20cotizar%20un%20proyecto." target="_blank" class="block w-full text-center mt-4 bg-gradient-to-r from-brand-600 to-brand-400 text-white font-bold py-3 rounded-xl shadow-lg">
-                <i class="fa-brands fa-whatsapp mr-2 text-lg"></i> Chat Directo por WhatsApp
-            </a>
-        </div>
-    </header>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                    Ingeniería Digital de <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-brand-glow glow-emerald">Alta Conversión</span> y Software Robusto
+                </h1>
 
-    <!-- MAIN CONTENT CONTAINER FOR DYNAMIC VIEWS -->
-    <main class="flex-grow pt-20">
+                <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+                    Transformamos negocios en imperios digitales. Desarrollo web ultra-optimizado, aplicaciones móviles nativas, plataformas SaaS empresariales con facturación SAT y ciberseguridad avanzada.
+                </p>
 
-        <!-- ================= PAGE 1: INICIO (HOME) ================= -->
-        <div id="view-home" class="page-view active">
-            
-            <!-- Hero Section -->
-            <section class="relative pt-16 pb-20 md:pt-28 md:pb-32 overflow-hidden">
-                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-brand-600/20 to-brand-400/10 rounded-full blur-[120px] pointer-events-none"></div>
+                <!-- Dynamic CTA Group -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="#cotizador" class="w-full sm:w-auto px-8 py-4 rounded-xl btn-bioluminescence text-sm tracking-widest uppercase font-black flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-bolt text-base"></i> Cotizar Proyecto Ahora
+                    </a>
+                    <a href="https://wa.me/50244661266?text=Hola%20Gerardo%20Garc%C3%ADa,%20me%20gustar%C3%ADa%20agendar%20una%20consultor%C3%ADa%20para%20mi%20negocio." target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-emerald-300 hover:text-white border border-emerald-500/30 hover:border-emerald-400 text-sm font-semibold tracking-wider uppercase flex items-center justify-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i> Contacto Directo WhatsApp
+                    </a>
+                </div>
 
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="text-center max-w-4xl mx-auto space-y-6">
-                        
-                        <!-- Badge -->
-                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-400/30 bg-brand-900/80 text-brand-400 text-xs sm:text-sm font-mono font-medium backdrop-blur-md shadow-lg">
-                            <span class="flex h-2 w-2 rounded-full bg-brand-400 animate-ping"></span>
-                            <span>Ingeniería & Desarrollo de Grado Empresarial</span>
-                        </div>
-
-                        <!-- Main Title -->
-                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
-                            Desarrollo Web, Ciberseguridad & <span class="text-gradient">Plataformas de Alta Gama</span>
-                        </h1>
-
-                        <!-- Subtitle -->
-                        <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
-                            Transformamos empresas e instituciones con software optimizado, arquitectura cloud de última generación y esquemas de ciberseguridad avanzada.
-                        </p>
-
-                        <!-- Action Buttons -->
-                        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <button onclick="navigateTo('cotizador')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-400 text-white font-bold text-base shadow-xl shadow-brand-600/25 hover:shadow-brand-400/40 hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2">
-                                <span>Armar Mi Presupuesto</span>
-                                <i class="fa-solid fa-arrow-right text-sm"></i>
-                            </button>
-                            <button onclick="navigateTo('servicios')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 font-semibold text-base transition-all duration-200 flex items-center justify-center gap-3">
-                                <i class="fa-solid fa-layer-group text-brand-400"></i>
-                                <span>Ver Soluciones Digitales</span>
-                            </button>
-                        </div>
-
-                        <!-- Live Metrics Cards -->
-                        <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-                            <div class="p-5 rounded-xl glass-panel border border-slate-800">
-                                <div class="text-2xl lg:text-3xl font-mono font-bold text-brand-400">&lt; 0.8s</div>
-                                <div class="text-xs text-slate-400 mt-1 font-medium">Tiempo Carga Global</div>
-                            </div>
-                            <div class="p-5 rounded-xl glass-panel border border-slate-800">
-                                <div class="text-2xl lg:text-3xl font-mono font-bold text-emerald-400">100%</div>
-                                <div class="text-xs text-slate-400 mt-1 font-medium">Facturación SAT FEL</div>
-                            </div>
-                            <div class="p-5 rounded-xl glass-panel border border-slate-800">
-                                <div class="text-2xl lg:text-3xl font-mono font-bold text-brand-400">SSL A+</div>
-                                <div class="text-xs text-slate-400 mt-1 font-medium">Grado Ciberseguridad</div>
-                            </div>
-                            <div class="p-5 rounded-xl glass-panel border border-slate-800">
-                                <div class="text-2xl lg:text-3xl font-mono font-bold text-cyan-400">24 / 7</div>
-                                <div class="text-xs text-slate-400 mt-1 font-medium">Monitoreo Cloud</div>
-                            </div>
-                        </div>
-
+                <!-- Trust Metrics Banner -->
+                <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto border-t border-slate-800/80">
+                    <div class="p-4 rounded-lg glass-card text-center">
+                        <div class="text-2xl font-black text-emerald-400 font-mono">100%</div>
+                        <div class="text-xs text-slate-400 uppercase mt-1">Satisfacción Garantizada</div>
+                    </div>
+                    <div class="p-4 rounded-lg glass-card text-center">
+                        <div class="text-2xl font-black text-emerald-400 font-mono">&lt; 1.0s</div>
+                        <div class="text-xs text-slate-400 uppercase mt-1">Carga Web Ultrarrápida</div>
+                    </div>
+                    <div class="p-4 rounded-lg glass-card text-center">
+                        <div class="text-2xl font-black text-emerald-400 font-mono">SAT FEL</div>
+                        <div class="text-xs text-slate-400 uppercase mt-1">Integración Fiscal Directa</div>
+                    </div>
+                    <div class="p-4 rounded-lg glass-card text-center">
+                        <div class="text-2xl font-black text-emerald-400 font-mono">A+ SSL</div>
+                        <div class="text-xs text-slate-400 uppercase mt-1">Ciberseguridad Grado Militar</div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Feature Overview Showcase -->
-            <section class="py-16 border-t border-slate-800/60 bg-brand-950/40">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-                        <h2 class="text-xs font-mono font-bold uppercase tracking-widest text-brand-400">Propuesta de Valor</h2>
-                        <p class="text-3xl font-extrabold text-white">¿Por qué elegir VELA WEB STUDIO?</p>
-                    </div>
+        <!-- SECTION 1: PLANES DE DESARROLLO WEB (PAQUETES CERRADOS) -->
+        <section id="servicios-web" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-mono tracking-widest text-emerald-400 mb-2">// 01. DESARROLLO WEB DE ALTA CONVERSIÓN</h2>
+                <p class="text-3xl sm:text-5xl font-black text-white tracking-tight">Planes Web con Precio Fijo</p>
+                <p class="text-slate-400 mt-4">Páginas de aterrizaje, sitios corporativos y tiendas virtuales sin costos ocultos.</p>
+            </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="p-6 rounded-2xl glass-panel border-glow space-y-3">
-                            <div class="w-12 h-12 rounded-xl bg-brand-600/20 border border-brand-400/30 flex items-center justify-center text-brand-400 text-xl">
-                                <i class="fa-solid fa-bolt"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white">Velocidad Ultrarrápida</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed">Optimizamos imágenes, scripts y peticiones al servidor para lograr tiempos de respuesta instantáneos y mayor conversión.</p>
-                        </div>
-
-                        <div class="p-6 rounded-2xl glass-panel border-glow space-y-3">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-400 text-xl">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white">Ciberseguridad Integrada</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed">Desarrollamos con arquitectura defensiva contra inyecciones, ataques de fuerza bruta y vulnerabilidades comunes.</p>
-                        </div>
-
-                        <div class="p-6 rounded-2xl glass-panel border-glow space-y-3">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 text-xl">
-                                <i class="fa-solid fa-building-columns"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white">Cumplimiento Local & SAT</h3>
-                            <p class="text-slate-400 text-xs leading-relaxed">Conexión con pasarelas de pago guatemaltecas (Visanet/NeoNet/5B) y emisión de facturación electrónica FEL SAT.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 2: SERVICIOS (CATÁLOGO COMPLETO) ================= -->
-        <div id="view-servicios" class="page-view">
-            <section class="py-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    
-                    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                        <span class="px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 font-mono text-xs font-semibold">Catálogo Profesional de Servicios</span>
-                        <h1 class="text-4xl font-extrabold text-white">Soluciones Digitales a la Medida</h1>
-                        <p class="text-slate-400 text-sm sm:text-base">Diseñamos soluciones tecnológicas personalizadas para cada etapa de tu empresa.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        
-                        <!-- Servicio 1 -->
-                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
-                            <div>
-                                <div class="w-14 h-14 rounded-xl bg-brand-600/20 border border-brand-400/30 flex items-center justify-center text-brand-400 mb-6 text-2xl">
-                                    <i class="fa-solid fa-laptop-code"></i>
-                                </div>
-                                <h2 class="text-xl font-bold text-white mb-3">Desarrollo Web & E-Commerce</h2>
-                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                                    Sitios web corporativos, tiendas en línea de alto tráfico y landing pages enfocadas en conversión. Diseños 100% responsivos para móviles y tablets.
-                                </p>
-                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-400"></i> Diseño adaptable a pantallas móviles</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-400"></i> Integración con canal de WhatsApp</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-400"></i> Administración intuitiva de contenidos</li>
-                                </ul>
-                            </div>
-                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-brand-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
-                                Personalizar Cotización
-                            </button>
-                        </div>
-
-                        <!-- Servicio 2 -->
-                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
-                            <div>
-                                <div class="w-14 h-14 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-400 mb-6 text-2xl">
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                </div>
-                                <h2 class="text-xl font-bold text-white mb-3">Ciberseguridad & Blindaje</h2>
-                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                                    Auditorías de código, endurecimiento de servidores (hardening), certificados SSL, cabeceras HTTP de seguridad (HSTS, CSP) y copias cifradas.
-                                </p>
-                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Certificación SSL Grado A+</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Protección contra inyecciones SQL/XSS</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Reportes de vulnerabilidades</li>
-                                </ul>
-                            </div>
-                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-cyan-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
-                                Personalizar Cotización
-                            </button>
-                        </div>
-
-                        <!-- Servicio 3 -->
-                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
-                            <div>
-                                <div class="w-14 h-14 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 mb-6 text-2xl">
-                                    <i class="fa-solid fa-credit-card"></i>
-                                </div>
-                                <h2 class="text-xl font-bold text-white mb-3">Pasarelas de Pago & FEL SAT</h2>
-                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                                    Conexión directa con cobros por tarjeta VISA / Mastercard (Visanet, NeoNet, Recurrente) y emisión automática de facturas electrónicas FEL SAT.
-                                </p>
-                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Acepta pagos con tarjeta en línea</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Generación automática de DTE FEL</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Conexión con bancos del sistema</li>
-                                </ul>
-                            </div>
-                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-emerald-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
-                                Personalizar Cotización
-                            </button>
-                        </div>
-
-                        <!-- Servicio 4 -->
-                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
-                            <div>
-                                <div class="w-14 h-14 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-400 mb-6 text-2xl">
-                                    <i class="fa-solid fa-robot"></i>
-                                </div>
-                                <h2 class="text-xl font-bold text-white mb-3">WhatsApp Bots & Sistemas POS</h2>
-                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                                    Automatización de atención al cliente en WhatsApp las 24 horas y software de control de inventario, ventas y cajas registradoras.
-                                </p>
-                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Auto-respuestas y toma de pedidos</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Control de existencias e inventarios</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Reportes semanales de ventas</li>
-                                </ul>
-                            </div>
-                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-purple-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
-                                Personalizar Cotización
-                            </button>
-                        </div>
-
-                        <!-- Servicio 5 -->
-                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
-                            <div>
-                                <div class="w-14 h-14 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-6 text-2xl">
-                                    <i class="fa-solid fa-mobile-screen-button"></i>
-                                </div>
-                                <h2 class="text-xl font-bold text-white mb-3">Aplicaciones Móviles Nativas</h2>
-                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                                    Desarrollo de aplicaciones para iOS y Android con notificaciones push, sincronización de datos en tiempo real y publicación en tiendas.
-                                </p>
-                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Aplicaciones iOS y Android</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Notificaciones dinámicas</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400"></i> Gestión en la nube</li>
-                                </ul>
-                            </div>
-                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-amber-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
-                                Personalizar Cotización
-                            </button>
-                        </div>
-
-                        <!-- Servicio 6 -->
-                        <div class="p-8 rounded-2xl bg-brand-950 glass-panel border-glow flex flex-col justify-between">
-                            <div>
-                                <div class="w-14 h-14 rounded-xl bg-rose-500/20 border border-rose-400/30 flex items-center justify-center text-rose-400 mb-6 text-2xl">
-                                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                                </div>
-                                <h2 class="text-xl font-bold text-white mb-3">Mantenimiento & Respaldos</h2>
-                                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">
-                                    Planes integrales de supervisión técnica, parches de seguridad periódicos, monitoreo continuo de servidores y copias de seguridad.
-                                </p>
-                                <ul class="space-y-2.5 text-xs font-mono text-slate-300 mb-6">
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Respaldos automáticos cifrados</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Soporte técnico prioritario</li>
-                                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400"></i> Monitoreo continuo 24/7</li>
-                                </ul>
-                            </div>
-                            <button onclick="navigateTo('cotizador')" class="w-full py-3 rounded-xl bg-brand-900 border border-rose-400/30 hover:bg-brand-600 text-white font-bold text-xs transition-colors">
-                                Personalizar Cotización
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 3: AUDITORÍA GRATUITA ================= -->
-        <div id="view-auditoria" class="page-view">
-            <section class="py-16 relative">
-                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="p-8 sm:p-12 rounded-3xl bg-brand-950 border border-brand-400/30 glass-panel shadow-2xl relative overflow-hidden">
-                        <div class="absolute -top-24 -right-24 w-72 h-72 bg-brand-400/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                        <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
-                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 text-xs font-mono font-semibold">
-                                <i class="fa-solid fa-microchip"></i> Diagnóstico Técnico Express
-                            </span>
-                            <h1 class="text-3xl font-extrabold text-white">Escáner de Seguridad Web</h1>
-                            <p class="text-slate-400 text-sm">Ingresa el dominio de tu negocio para realizar una simulación técnica de los puntos de control clave.</p>
-                        </div>
-
-                        <!-- Input Box -->
-                        <div class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3 mb-8">
-                            <div class="relative flex-grow">
-                                <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500 font-mono text-sm">https://</span>
-                                <input type="text" id="auditUrlInput" placeholder="tuempresa.com" class="w-full pl-20 pr-4 py-3.5 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono text-sm focus:outline-none focus:border-brand-400 transition-colors">
-                            </div>
-                            <button onclick="runAuditSimulation()" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-400 text-white font-bold text-sm shadow-lg shadow-brand-600/30 hover:shadow-brand-400/50 transition-all flex items-center justify-center gap-2 whitespace-nowrap">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                <span>Analizar Sitio</span>
-                            </button>
-                        </div>
-
-                        <!-- Live Results Area -->
-                        <div id="auditResultsArea" class="hidden max-w-2xl mx-auto space-y-4 font-mono text-xs">
-                            <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3">
-                                <div class="flex justify-between items-center pb-2 border-b border-slate-800">
-                                    <span class="text-slate-400">Punto de Control</span>
-                                    <span class="text-slate-400">Estado Diagnóstico</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-300">1. Certificado SSL & Encriptación HTTPS</span>
-                                    <span class="text-emerald-400 font-bold"><i class="fa-solid fa-check-circle mr-1"></i> HTTPS Activo</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-300">2. Encabezado HSTS (Strict-Transport)</span>
-                                    <span class="text-amber-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Incompleto</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-300">3. Política CSP (Content Security)</span>
-                                    <span class="text-rose-400 font-bold"><i class="fa-solid fa-xmark-circle mr-1"></i> Vulnerable</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-slate-300">4. Subresource Integrity (SRI)</span>
-                                    <span class="text-amber-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Ausente</span>
-                                </div>
-                            </div>
-
-                            <!-- Call to action based on result -->
-                            <div class="p-5 rounded-xl bg-brand-900/80 border border-brand-400/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <div>
-                                    <p class="text-white font-sans font-bold text-sm">¿Deseas corregir estas vulnerabilidades?</p>
-                                    <p class="text-slate-400 font-sans text-xs">Aplica un esquema de blindaje técnico en tu plataforma web.</p>
-                                </div>
-                                <a id="auditWhatsappBtn" href="#" target="_blank" class="px-5 py-3 rounded-xl bg-brand-400 text-brand-950 font-sans font-extrabold text-xs shadow-md hover:bg-cyan-300 transition-colors whitespace-nowrap">
-                                    Solicitar Corrección Técnica
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 4: COTIZADOR INTERACTIVO ================= -->
-        <div id="view-cotizador" class="page-view">
-            <section class="py-16 relative">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-                        <span class="px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 font-mono text-xs font-semibold">Configurador Personalizado</span>
-                        <h1 class="text-3xl font-extrabold text-white">Calculadora Interactiva de Proyecto</h1>
-                        <p class="text-slate-400 text-sm">Selecciona las funcionalidades que necesitas para armar una propuesta a tu medida y recibir la cotización vía WhatsApp.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                        
-                        <!-- Modules Checkboxes -->
-                        <div class="lg:col-span-2 space-y-3">
-                            
-                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Diseño Web Profesional / Landing Page" checked onchange="updateTotal()">
-                                    <div>
-                                        <p class="text-white font-bold text-sm">Diseño Web Profesional / Landing Page</p>
-                                        <p class="text-slate-400 text-xs">Estructura adaptable a móviles, optimización y botón de WhatsApp.</p>
-                                    </div>
-                                </div>
-                            </label>
-
-                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Catálogo / Tienda en Línea E-Commerce" onchange="updateTotal()">
-                                    <div>
-                                        <p class="text-white font-bold text-sm">Módulo Tienda / Catálogo en Línea</p>
-                                        <p class="text-slate-400 text-xs">Carrito de compras, inventario y gestión de catálogo.</p>
-                                    </div>
-                                </div>
-                            </label>
-
-                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Pasarela de Cobro con Tarjeta (Visa/Mastercard)" onchange="updateTotal()">
-                                    <div>
-                                        <p class="text-white font-bold text-sm">Cobros con Tarjeta (Visanet / Recurrente)</p>
-                                        <p class="text-slate-400 text-xs">Acepta transacciones con tarjeta de crédito o débito directamente.</p>
-                                    </div>
-                                </div>
-                            </label>
-
-                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Facturación Electrónica SAT (FEL)" onchange="updateTotal()">
-                                    <div>
-                                        <p class="text-white font-bold text-sm">Facturación Electrónica SAT (FEL)</p>
-                                        <p class="text-slate-400 text-xs">Conexión con certificadores para facturar automáticamente.</p>
-                                    </div>
-                                </div>
-                            </label>
-
-                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Blindaje de Ciberseguridad & Certificado SSL" onchange="updateTotal()">
-                                    <div>
-                                        <p class="text-white font-bold text-sm">Blindaje de Ciberseguridad & HSTS/CSP</p>
-                                        <p class="text-slate-400 text-xs">Certificados SSL A+, cortafuegos y protección anti-hackeo.</p>
-                                    </div>
-                                </div>
-                            </label>
-
-                            <label class="p-4 rounded-xl glass-panel border border-slate-800 flex items-center justify-between cursor-pointer hover:border-brand-400/50 transition-all">
-                                <div class="flex items-center gap-3">
-                                    <input type="checkbox" class="calc-option w-5 h-5 rounded border-slate-700 text-brand-500 focus:ring-brand-400 bg-slate-900" data-name="Bot de Respuestas Automáticas para WhatsApp" onchange="updateTotal()">
-                                    <div>
-                                        <p class="text-white font-bold text-sm">Bot de Respuestas Automáticas para WhatsApp</p>
-                                        <p class="text-slate-400 text-xs">Atención a clientes 24/7 y recopilación de información.</p>
-                                    </div>
-                                </div>
-                            </label>
-
-                        </div>
-
-                        <!-- Summary Box -->
-                        <div class="p-6 rounded-2xl bg-brand-950 border border-brand-400/30 glass-panel sticky top-28 space-y-6">
-                            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3">Resumen de Requerimientos</h3>
-
-                            <div id="selectedModulesList" class="space-y-2 text-xs text-slate-300 font-mono">
-                                <div class="flex justify-between">
-                                    <span>• Diseño Web Profesional</span>
-                                    <span class="text-emerald-400">Incluido</span>
-                                </div>
-                            </div>
-
-                            <a id="calcWhatsappLink" href="#" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-brand-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all">
-                                <i class="fa-brands fa-whatsapp text-lg"></i>
-                                <span>Enviar Selección a WhatsApp</span>
-                            </a>
-
-                            <p class="text-[11px] text-slate-500 text-center leading-tight">
-                                Al presionar el botón se enviará un mensaje estructurado con tus selecciones para enviarte la propuesta formal.
-                            </p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 5: NOSOTROS / METODOLOGÍA ================= -->
-        <div id="view-nosotros" class="page-view">
-            <section class="py-16">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-                    
-                    <div class="text-center max-w-3xl mx-auto space-y-4">
-                        <span class="px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 font-mono text-xs font-semibold">Calidad & Compromiso</span>
-                        <h1 class="text-4xl font-extrabold text-white">Ingeniería Web de Grado Empresarial</h1>
-                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                            En VELA WEB STUDIO diseñamos y desarrollamos soluciones digitales centradas en la velocidad, la seguridad y el crecimiento constante de tu empresa.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
-                            <div class="w-12 h-12 rounded-xl bg-brand-600/20 flex items-center justify-center text-brand-400 text-xl font-bold">
-                                01
-                            </div>
-                            <h2 class="text-xl font-bold text-white">Código Limpio y Optimizado</h2>
-                            <p class="text-slate-400 text-xs leading-relaxed">
-                                Evitamos plantillas genéricas pesadas. Construimos estructuras livianas enfocadas en tiempos de carga ultra-rápidos que posicionan mejor en motores de búsqueda.
-                            </p>
-                        </div>
-
-                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl font-bold">
-                                02
-                            </div>
-                            <h2 class="text-xl font-bold text-white">Seguridad Defensiva</h2>
-                            <p class="text-slate-400 text-xs leading-relaxed">
-                                Cada desarrollo incluye de forma nativa estándares de encriptación SSL, protección de datos y políticas de seguridad contra amenazas digitales.
-                            </p>
-                        </div>
-
-                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl font-bold">
-                                03
-                            </div>
-                            <h2 class="text-xl font-bold text-white">Integraciones Locales</h2>
-                            <p class="text-slate-400 text-xs leading-relaxed">
-                                Dominamos el ecosistema digital de Guatemala, facilitando cobros con tarjetas bancarias y la vinculación con certificadores de facturación SAT.
-                            </p>
-                        </div>
-
-                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-xl font-bold">
-                                04
-                            </div>
-                            <h2 class="text-xl font-bold text-white">Acompañamiento Continuo</h2>
-                            <p class="text-slate-400 text-xs leading-relaxed">
-                                No solo entregamos un proyecto; brindamos soporte técnico constante, monitoreo de disponibilidad y actualizaciones preventivas.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-        </div>
-
-        <!-- ================= PAGE 6: CONTACTO DIRECTO ================= -->
-        <div id="view-contacto" class="page-view">
-            <section class="py-16">
-                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    
-                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-                        <span class="px-3 py-1 rounded-md bg-brand-400/10 text-brand-400 font-mono text-xs font-semibold">Canales Oficiales</span>
-                        <h1 class="text-3xl font-extrabold text-white">Inicia Tu Proyecto Digital</h1>
-                        <p class="text-slate-400 text-sm">Contáctanos directamente a través de WhatsApp o mediante nuestro formulario de atención.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                        
-                        <!-- Contact Card -->
-                        <div class="p-8 rounded-2xl glass-panel border border-brand-400/30 space-y-6">
-                            <h2 class="text-xl font-bold text-white">Atención Inmediata</h2>
-                            
-                            <div class="space-y-4 text-sm font-mono text-slate-300">
-                                <a href="https://wa.me/50244661266" target="_blank" class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-400/50 transition-colors">
-                                    <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
-                                    <div>
-                                        <div class="text-xs text-slate-400">WhatsApp Oficial</div>
-                                        <div class="text-white font-bold">+502 4466 1266</div>
-                                    </div>
-                                </a>
-
-                                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
-                                    <i class="fa-solid fa-location-dot text-brand-400 text-xl"></i>
-                                    <div>
-                                        <div class="text-xs text-slate-400">Ubicación Base</div>
-                                        <div class="text-white font-bold">Guatemala, Centroamérica</div>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
-                                    <i class="fa-solid fa-clock text-cyan-400 text-xl"></i>
-                                    <div>
-                                        <div class="text-xs text-slate-400">Horario Soporte</div>
-                                        <div class="text-white font-bold">Lunes a Sábado 8:00 - 18:00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Form -->
-                        <div class="p-8 rounded-2xl glass-panel border border-slate-800 space-y-4">
-                            <h2 class="text-xl font-bold text-white">Envíanos un Mensaje</h2>
-                            
-                            <form onsubmit="handleContactForm(event)" class="space-y-4 font-mono text-xs">
-                                <div>
-                                    <label class="block text-slate-400 mb-1">Nombre Completo</label>
-                                    <input type="text" id="contactName" required placeholder="Tu Nombre" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-400">
-                                </div>
-                                <div>
-                                    <label class="block text-slate-400 mb-1">Nombre de la Empresa</label>
-                                    <input type="text" id="contactCompany" placeholder="Tu Empresa / Negocio" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-400">
-                                </div>
-                                <div>
-                                    <label class="block text-slate-400 mb-1">Mensaje o Proyecto</label>
-                                    <textarea id="contactMessage" rows="4" required placeholder="Describe brevemente tus requerimientos..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-400"></textarea>
-                                </div>
-                                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-400 text-white font-sans font-bold text-sm shadow-lg hover:shadow-brand-400/40 transition-all">
-                                    Enviar a WhatsApp Directo
-                                </button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-slate-800/80 bg-brand-950 py-12 relative z-10 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
-                <!-- Logo & Text -->
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-mono font-bold text-sm">
-                        V
+                <!-- Plan 1: Vela Express -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group">
+                    <div>
+                        <div class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider mb-2">Lanzamiento Rápido</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Vela Express</h3>
+                        <p class="text-xs text-slate-300 mb-6">Ideal para campañas publicitarias, promociones de productos y startups que necesitan tracción inmediata.</p>
+                        
+                        <div class="mb-6 p-4 rounded-xl bg-brand-darkest/60 border border-slate-800">
+                            <div class="text-2xl font-black text-emerald-300 font-mono">Q999<span class="text-xs text-slate-400 font-normal">.00 GTQ</span></div>
+                            <div class="text-sm font-semibold text-slate-400 font-mono">$199.00 USD</div>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-300 mb-8">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Landing Page ultrarrápida en una sola página (One-Page)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Estructura AIDA optimizada para máxima conversión</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Diseño 100% responsivo (Móvil, Tablet, Desktop)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Formulario de contacto + Botón flotante WhatsApp</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="p-3 mb-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 font-mono">
+                            <strong>Beneficio clave:</strong> Presencia digital inmediata y captación directa de prospectos.
+                        </div>
+                        <button onclick="selectPackage('web-express', 'Vela Express', 999, 199)" class="w-full py-3 rounded-xl border border-emerald-400/40 hover:bg-emerald-400 hover:text-slate-950 text-emerald-300 font-bold text-xs uppercase tracking-wider transition-all">
+                            Seleccionar Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Vela Web Pro -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group">
+                    <div>
+                        <div class="text-xs font-mono text-teal-400 font-bold uppercase tracking-wider mb-2">Corporativo Completo</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Vela Web Pro</h3>
+                        <p class="text-xs text-slate-300 mb-6">Para empresas establecidas que buscan consolidar autoridad, presencia de marca y reputación.</p>
+                        
+                        <div class="mb-6 p-4 rounded-xl bg-brand-darkest/60 border border-slate-800">
+                            <div class="text-2xl font-black text-emerald-300 font-mono">Q1,899<span class="text-xs text-slate-400 font-normal">.00 GTQ</span></div>
+                            <div class="text-sm font-semibold text-slate-400 font-mono">$349.00 USD</div>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-300 mb-8">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Sitio corporativo multi-sección (hasta 5 páginas/vistas)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Optimización SEO Local para posicionamiento en Google</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Paneles institucionales, servicios y sección de nosotros</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Integración de mapa interactivo y analítica de tráfico</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="p-3 mb-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 font-mono">
+                            <strong>Beneficio clave:</strong> Máxima confianza institucional y flujo de clientes calificados.
+                        </div>
+                        <button onclick="selectPackage('web-pro', 'Vela Web Pro', 1899, 349)" class="w-full py-3 rounded-xl border border-emerald-400/40 hover:bg-emerald-400 hover:text-slate-950 text-emerald-300 font-bold text-xs uppercase tracking-wider transition-all">
+                            Seleccionar Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 3: Vela Commerce -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative group">
+                    <div>
+                        <div class="text-xs font-mono text-emerald-300 font-bold uppercase tracking-wider mb-2">Ventas Automatizadas</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Vela Commerce</h3>
+                        <p class="text-xs text-slate-300 mb-6">Convierte tu catálogo de productos en un canal de ventas activo las 24 horas del día.</p>
+                        
+                        <div class="mb-6 p-4 rounded-xl bg-brand-darkest/60 border border-slate-800">
+                            <div class="text-2xl font-black text-emerald-300 font-mono">Q2,999<span class="text-xs text-slate-400 font-normal">.00 GTQ</span></div>
+                            <div class="text-sm font-semibold text-slate-400 font-mono">$499.00 USD</div>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-300 mb-8">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Catálogo interactivo con carrito de compras dinámico</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Gestión de inventario y categorías ilimitadas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Pasarelas de Pago: Tarjetas, PayPal, Stripe, Visanet</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span>Notificación automática de pedidos directamente a WhatsApp</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="p-3 mb-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 font-mono">
+                            <strong>Beneficio clave:</strong> Tu tienda facturando en automático 24/7 sin fronteras.
+                        </div>
+                        <button onclick="selectPackage('web-commerce', 'Vela Commerce', 2999, 499)" class="w-full py-3 rounded-xl border border-emerald-400/40 hover:bg-emerald-400 hover:text-slate-950 text-emerald-300 font-bold text-xs uppercase tracking-wider transition-all">
+                            Seleccionar Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 4: Vela Enterprise -->
+                <div class="glass-card glass-card-featured rounded-2xl p-6 flex flex-col justify-between relative group scale-105">
+                    <div class="absolute -top-3.5 right-6 px-3 py-1 bg-emerald-400 text-slate-950 font-black font-mono text-[10px] tracking-widest uppercase rounded-full shadow-lg">
+                        MÁS RECOMENDADO
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-mono text-emerald-300 font-bold uppercase tracking-wider mb-2">Ecosistema Full IA</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Vela Enterprise</h3>
+                        <p class="text-xs text-slate-200 mb-6">Para empresas exigentes que requieren automatización total, bots de IA y facturación SAT.</p>
+                        
+                        <div class="mb-6 p-4 rounded-xl bg-brand-darkest/80 border border-emerald-400/30">
+                            <div class="text-2xl font-black text-emerald-300 font-mono">Q4,999<span class="text-xs text-slate-400 font-normal">.00 GTQ</span></div>
+                            <div class="text-sm font-semibold text-slate-400 font-mono">$899.00 USD</div>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-200 mb-8">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-star text-emerald-400 mt-0.5"></i>
+                                <span>Todo lo incluido en el Plan E-Commerce</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-robot text-emerald-400 mt-0.5"></i>
+                                <span>Bot interactivo con IA para WhatsApp 24/7 (Respuestas/Ventas)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-file-invoice-dollar text-emerald-400 mt-0.5"></i>
+                                <span>Sincronización de Facturación Electrónica SAT / FEL</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-shield-halved text-emerald-400 mt-0.5"></i>
+                                <span>Ciberseguridad Grado Militar A+ con Firewall WAF</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="p-3 mb-4 rounded-lg bg-emerald-400/20 border border-emerald-400/40 text-[11px] text-emerald-200 font-mono">
+                            <strong>Beneficio clave:</strong> Automatización empresarial absoluta, cumplimiento fiscal y cero fricción.
+                        </div>
+                        <button onclick="selectPackage('web-enterprise', 'Vela Enterprise', 4999, 899)" class="w-full py-3.5 rounded-xl btn-bioluminescence font-black text-xs uppercase tracking-wider">
+                            Seleccionar Ecosistema
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: SISTEMAS CRM & ERP EN LA NUBE (SAAS POR SUSCRIPCIÓN) -->
+        <section id="saas-crm" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs uppercase font-mono tracking-widest text-emerald-400 mb-2">// 02. PLATAFORMAS SAAS EN LA NUBE</h2>
+                <p class="text-3xl sm:text-5xl font-black text-white tracking-tight">Sistemas CRM & ERP Empresariales</p>
+                <p class="text-slate-400 mt-4">Controla tus clientes, inventarios, facturación SAT y finanzas desde cualquier lugar.</p>
+                
+                <!-- Toggle Billing Switch -->
+                <div class="mt-8 inline-flex items-center justify-center p-1.5 rounded-2xl glass-card border border-emerald-500/30">
+                    <span id="billingLabelMonthly" class="text-xs font-mono font-bold px-4 py-2 rounded-xl text-emerald-300">Pago Mensual</span>
+                    <label for="billingToggle" class="relative inline-block w-14 h-8 cursor-pointer mx-2">
+                        <input type="checkbox" id="billingToggle" class="sr-only" onchange="toggleBillingCycle()">
+                        <div class="block w-14 h-8 rounded-full bg-brand-darkest border border-emerald-500/40"></div>
+                        <div class="dot absolute left-1 top-1 bg-emerald-400 w-6 h-6 rounded-full transition-transform duration-300"></div>
+                    </label>
+                    <span id="billingLabelAnnual" class="text-xs font-mono font-bold px-4 py-2 rounded-xl text-slate-400 flex items-center gap-1.5">
+                        Pago Anual 
+                        <span class="bg-emerald-400 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">AHORRA 20%</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- SaaS Pricing Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- SaaS Plan 1: Emprendedor -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">1 - 2 Usuarios</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Plan Emprendedor</h3>
+                        
+                        <div class="mb-6">
+                            <div class="price-monthly font-mono">
+                                <span class="text-3xl font-black text-emerald-300">Q250</span><span class="text-sm text-slate-400"> / mes</span>
+                                <div class="text-xs text-slate-400 font-mono mt-1">($32 USD / mes)</div>
+                            </div>
+                            <div class="price-annual hidden font-mono">
+                                <span class="text-3xl font-black text-emerald-300">Q2,400</span><span class="text-sm text-slate-400"> / año</span>
+                                <div class="text-xs text-emerald-400 font-mono mt-1">Equivale a Q200/mes ($26 USD)</div>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-300 mb-8 border-t border-slate-800 pt-6">
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> CRM básico de prospectos y clientes
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Control de inventario simple
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Módulo emisor de cotizaciones
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Soporte técnico vía correo electrónico
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectSaaSPlan('Plan Emprendedor', 'saas-emprendedor')" class="w-full py-3 rounded-xl border border-emerald-400/40 hover:bg-emerald-400 hover:text-slate-950 text-emerald-300 font-bold text-xs uppercase tracking-wider transition-all">
+                        Elegir Plan Emprendedor
+                    </button>
+                </div>
+
+                <!-- SaaS Plan 2: PYME (Featured) -->
+                <div class="glass-card glass-card-featured rounded-2xl p-8 flex flex-col justify-between relative scale-105">
+                    <div class="absolute -top-3.5 right-8 px-3 py-1 bg-emerald-400 text-slate-950 font-black font-mono text-[10px] tracking-widest uppercase rounded-full">
+                        EL MÁS POPULAR
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-mono text-emerald-300 uppercase tracking-widest mb-2">3 - 5 Usuarios</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Plan PYME</h3>
+                        
+                        <div class="mb-6">
+                            <div class="price-monthly font-mono">
+                                <span class="text-3xl font-black text-emerald-300">Q550</span><span class="text-sm text-slate-400"> / mes</span>
+                                <div class="text-xs text-slate-400 font-mono mt-1">($70 USD / mes)</div>
+                            </div>
+                            <div class="price-annual hidden font-mono">
+                                <span class="text-3xl font-black text-emerald-300">Q5,280</span><span class="text-sm text-slate-400"> / año</span>
+                                <div class="text-xs text-emerald-400 font-mono mt-1">Equivale a Q440/mes ($56 USD)</div>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-200 mb-8 border-t border-emerald-500/30 pt-6">
+                            <li class="flex items-center gap-2 font-semibold">
+                                <i class="fa-solid fa-star text-emerald-400"></i> Todo lo del Plan Emprendedor
+                            </li>
+                            <li class="flex items-center gap-2 font-semibold text-emerald-300">
+                                <i class="fa-solid fa-file-invoice text-emerald-400"></i> Facturación Electrónica SAT (FEL) integrada
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Gestión de múltiples bodegas
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Control de caja y arqueos diarios
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Reportes gerenciales e inteligencia de ventas
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectSaaSPlan('Plan PYME', 'saas-pyme')" class="w-full py-3.5 rounded-xl btn-bioluminescence font-black text-xs uppercase tracking-wider">
+                        Elegir Plan PYME
+                    </button>
+                </div>
+
+                <!-- SaaS Plan 3: Empresarial -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">6+ Usuarios / Multisucursal</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Plan Empresarial</h3>
+                        
+                        <div class="mb-6">
+                            <div class="price-monthly font-mono">
+                                <span class="text-3xl font-black text-emerald-300">Q1,200</span><span class="text-sm text-slate-400"> / mes</span>
+                                <div class="text-xs text-slate-400 font-mono mt-1">($150 USD / mes)</div>
+                            </div>
+                            <div class="price-annual hidden font-mono">
+                                <span class="text-3xl font-black text-emerald-300">Q11,500</span><span class="text-sm text-slate-400"> / año</span>
+                                <div class="text-xs text-emerald-400 font-mono mt-1">Suscripción anual total ($1,440 USD)</div>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-3 text-xs text-slate-300 mb-8 border-t border-slate-800 pt-6">
+                            <li class="flex items-center gap-2 font-semibold">
+                                <i class="fa-solid fa-star text-emerald-400"></i> Todo lo del Plan PYME
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Integraciones API / WhatsApp / E-Commerce
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Roles y permisos de usuarios personalizados
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-400"></i> Tableros analíticos avanzados en tiempo real
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <i class="fa-solid fa-headset text-emerald-400"></i> Soporte prioritario dedicado 24/7
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectSaaSPlan('Plan Empresarial', 'saas-empresarial')" class="w-full py-3 rounded-xl border border-emerald-400/40 hover:bg-emerald-400 hover:text-slate-950 text-emerald-300 font-bold text-xs uppercase tracking-wider transition-all">
+                        Elegir Plan Empresarial
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Set-Up Banner -->
+            <div class="mt-12 p-6 rounded-2xl glass-card border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-400/20 text-emerald-300 flex items-center justify-center shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-sliders"></i>
                     </div>
                     <div>
-                        <span class="font-mono font-bold text-white tracking-wider">VELA WEB STUDIO</span>
-                        <p class="text-xs text-slate-500">Guatemala • Desarrollo Web & Ciberseguridad Empresarial</p>
+                        <h4 class="text-lg font-bold text-white">Set-Up e Implementación Inicial: <span class="text-emerald-300 font-mono">Q1,500 GTQ</span> (Pago único opcional)</h4>
+                        <p class="text-xs text-slate-300 mt-1">Incluye migración de datos (Excel de productos y clientes), configuración completa con la SAT (FEL) y capacitación guiada para todo tu equipo.</p>
+                    </div>
+                </div>
+                <button onclick="addSetUpToQuote()" class="shrink-0 px-5 py-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 text-xs font-mono font-bold uppercase tracking-wider transition-all">
+                    + Incluir Set-Up en Cotización
+                </button>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CIBERSEGURIDAD Y APPS MÓVILES -->
+        <section id="ciber-apps" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs uppercase font-mono tracking-widest text-emerald-400 mb-2">// 03. SERVICIOS ESPECIALIZADOS A MEDIDA</h2>
+                <p class="text-3xl sm:text-5xl font-black text-white tracking-tight">Apps Móviles & Ciberseguridad</p>
+                <p class="text-slate-400 mt-4">Soluciones avanzadas de ingeniería para empresas con requerimientos complejos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Service 1 -->
+                <div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Aplicaciones Móviles (iOS & Android)</h3>
+                        <p class="text-xs text-slate-300 mb-4">Desarrollo multiplataforma nativo con Flutter o React Native, sincronización en tiempo real y notificaciones push.</p>
+                        <div class="text-sm font-mono text-emerald-300 font-bold mb-4">Desde Q4,500.00 GTQ / $799.00 USD</div>
+                    </div>
+                    <button onclick="selectCustomService('Aplicaciones Móviles', 4500, 799)" class="w-full py-2.5 rounded-lg border border-emerald-500/30 text-emerald-300 hover:bg-emerald-400 hover:text-slate-950 text-xs font-mono uppercase font-bold transition-all">
+                        Solicitar Proyecto App
+                    </button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Sistemas Web SaaS & APIs a Medida</h3>
+                        <p class="text-xs text-slate-300 mb-4">Arquitectura de software personalizada, microservicios, paneles privados e integración OAuth2 / JWT.</p>
+                        <div class="text-sm font-mono text-emerald-300 font-bold mb-4">Desde Q3,500.00 GTQ / $500.00 USD</div>
+                    </div>
+                    <button onclick="selectCustomService('Sistemas SaaS & APIs', 3500, 500)" class="w-full py-2.5 rounded-lg border border-emerald-500/30 text-emerald-300 hover:bg-emerald-400 hover:text-slate-950 text-xs font-mono uppercase font-bold transition-all">
+                        Solicitar Desarrollo API
+                    </button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-bug"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Auditoría & Pentesting Web</h3>
+                        <p class="text-xs text-slate-300 mb-4">Pruebas de penetración ética, detección de vulnerabilidades OWASP Top 10 y reporte ejecutivo de mitigación.</p>
+                        <div class="text-sm font-mono text-emerald-300 font-bold mb-4">Desde Q1,500.00 GTQ / $250.00 USD</div>
+                    </div>
+                    <button onclick="selectCustomService('Auditoría & Pentesting', 1500, 250)" class="w-full py-2.5 rounded-lg border border-emerald-500/30 text-emerald-300 hover:bg-emerald-400 hover:text-slate-950 text-xs font-mono uppercase font-bold transition-all">
+                        Agendar Pentest
+                    </button>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-card rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-shield-virus"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Hardening de Servidores & WAF (SSL A+)</h3>
+                        <p class="text-xs text-slate-300 mb-4">Configuración de cortafuegos de aplicaciones web (WAF), protección anti-DDoS y fortificación de servidores cloud.</p>
+                        <div class="text-sm font-mono text-emerald-300 font-bold mb-4">Desde Q999.00 GTQ / $150.00 USD</div>
+                    </div>
+                    <button onclick="selectCustomService('Hardening & WAF SSL', 999, 150)" class="w-full py-2.5 rounded-lg border border-emerald-500/30 text-emerald-300 hover:bg-emerald-400 hover:text-slate-950 text-xs font-mono uppercase font-bold transition-all">
+                        Fortalecer Servidor
+                    </button>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="glass-card rounded-xl p-6 flex flex-col justify-between md:col-span-2 lg:col-span-2">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-broom"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Desinfección y Limpieza de Malware Urgente</h3>
+                        <p class="text-xs text-slate-300 mb-4">Eliminación completa de scripts maliciosos, puertas traseras (backdoors), listas negras de Google y restauración segura en menos de 24 horas.</p>
+                        <div class="text-sm font-mono text-emerald-300 font-bold mb-4">Desde Q750.00 GTQ / $120.00 USD</div>
+                    </div>
+                    <button onclick="selectCustomService('Limpieza de Malware Urgente', 750, 120)" class="w-full py-2.5 rounded-lg border border-red-500/40 text-red-300 hover:bg-red-500 hover:text-white text-xs font-mono uppercase font-bold transition-all">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Solicitar Limpieza Urgente
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: POLÍTICA DE CONFIANZA Y GARANTÍAS -->
+        <section id="garantias" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-emerald-400/30 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-3xl">
+                    <h2 class="text-xs uppercase font-mono tracking-widest text-emerald-400 mb-2">// 04. RESPALDO ABSOLUTO PARA TU INVERSIÓN</h2>
+                    <h3 class="text-3xl sm:text-4xl font-black text-white mb-6">Política de Confianza y Garantía Total</h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-400/20 text-emerald-300 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Correos Corporativos Incluidos</h4>
+                                <p class="text-xs text-slate-300 mt-0.5">Configuración de emails institucionales con tu propio dominio (ej. gerencia@tuempresa.com).</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-400/20 text-emerald-300 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">1er Mes GRATIS "Veloce Care"</h4>
+                                <p class="text-xs text-slate-300 mt-0.5">Hosting cloud ultra-rápido, respaldos semanales y soporte técnico sin costo el primer mes.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-400/20 text-emerald-300 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-file-contract"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Sin Contratos Forzosos</h4>
+                                <p class="text-xs text-slate-300 mt-0.5">A partir del 2do mes, la continuidad del servicio de mantenimiento es 100% opcional.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-400/20 text-emerald-300 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-shield-cat"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Reembolso Protegido (7 Días)</h4>
+                                <p class="text-xs text-slate-300 mt-0.5">Si la propuesta inicial no satisface tus expectativas, devolvemos el 100% de tu anticipo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Highlighted Refund Guarantee Box -->
+                    <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/80 to-brand-darkest border border-emerald-400/40 flex items-center gap-4">
+                        <i class="fa-solid fa-award text-4xl text-emerald-400 shrink-0"></i>
+                        <div>
+                            <div class="text-sm font-black text-white uppercase tracking-wider">GARANTÍA DE SATISFACCIÓN 100%</div>
+                            <p class="text-xs text-emerald-200/90 mt-1">En Vela Web Studio eliminamos todo el riesgo. Tu inversión está totalmente respaldada desde el día uno.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ESCÁNER SIMULADO DE AUDITORÍA WEB -->
+        <section id="escaner" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-emerald-500/30">
+                <div class="max-w-3xl mx-auto text-center mb-10">
+                    <h2 class="text-xs uppercase font-mono tracking-widest text-emerald-400 mb-2">// 05. DIAGNÓSTICO EN TIEMPO REAL</h2>
+                    <h3 class="text-3xl font-black text-white">Escáner de Rendimiento & Seguridad Web</h3>
+                    <p class="text-xs text-slate-300 mt-2">Simula una auditoría relámpago del sitio web actual de tu empresa para identificar puntos de fuga de clientes.</p>
+                </div>
+
+                <div class="max-w-2xl mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <div class="relative flex-grow">
+                            <input type="url" id="scannerUrl" placeholder="https://tuempresa.com" class="w-full px-5 py-4 rounded-xl bg-brand-darkest border border-emerald-500/30 text-white font-mono text-sm focus:outline-none focus:border-emerald-400">
+                        </div>
+                        <button onclick="runAuditScanner()" class="px-8 py-4 rounded-xl btn-bioluminescence text-xs font-mono font-bold uppercase tracking-wider shrink-0 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass font-bold"></i> Escanear Gratis
+                        </button>
+                    </div>
+
+                    <!-- Scanner Results Box (Hidden by Default) -->
+                    <div id="scanResults" class="hidden mt-8 p-6 rounded-2xl bg-brand-darkest border border-emerald-400/30 font-mono text-xs space-y-4 relative overflow-hidden">
+                        <div id="scanProgress" class="space-y-2">
+                            <div class="flex justify-between text-slate-300">
+                                <span>Analizando headers de seguridad y SSL...</span>
+                                <span id="scanPercent" class="text-emerald-400 font-bold">0%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div id="scanBar" class="h-full bg-emerald-400 transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div id="scanReport" class="hidden space-y-3 pt-4 border-t border-slate-800">
+                            <div class="text-emerald-300 font-bold text-sm">✓ AUDITORÍA SIMULADA COMPLETADA</div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
+                                <div class="p-3 bg-slate-900/80 rounded-lg">
+                                    <div class="text-slate-400 text-[10px]">VELOCIDAD</div>
+                                    <div class="text-amber-400 font-bold mt-1">LENTA (4.2s)</div>
+                                </div>
+                                <div class="p-3 bg-slate-900/80 rounded-lg">
+                                    <div class="text-slate-400 text-[10px]">SEO SCORE</div>
+                                    <div class="text-amber-400 font-bold mt-1">62 / 100</div>
+                                </div>
+                                <div class="p-3 bg-slate-900/80 rounded-lg col-span-2 sm:col-span-1">
+                                    <div class="text-slate-400 text-[10px]">SEGURIDAD SSL</div>
+                                    <div class="text-red-400 font-bold mt-1">RIESGO MEDIO</div>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 text-[11px]">Tu sitio web actual está perdiendo aproximadamente el 40% de visitas por tiempos de carga elevados y falta de optimización AIDA.</p>
+                            <a id="auditWhatsappBtn" href="#" target="_blank" class="block text-center w-full py-3 rounded-lg bg-emerald-400 text-slate-950 font-bold uppercase tracking-wider text-xs">
+                                Resolver estos problemas con Gerardo García vía WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: COTIZADOR GLOBAL EN TIEMPO REAL -->
+        <section id="cotizador" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border-2 border-emerald-400/40">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-xs uppercase font-mono tracking-widest text-emerald-400 mb-2">// 06. CALCULADORA DENSIDAD DE PROYECTO</h2>
+                    <h3 class="text-3xl sm:text-5xl font-black text-white tracking-tight">Cotizador Global Interactivo</h3>
+                    <p class="text-slate-300 mt-2 text-sm">Selecciona los módulos requeridos y calcula el monto exacto estimado en tiempo real.</p>
+
+                    <!-- Currency Switcher -->
+                    <div class="mt-6 inline-flex items-center gap-2 p-1 rounded-xl bg-brand-darkest border border-emerald-500/30 text-xs font-mono">
+                        <span class="text-slate-400 px-2">Moneda:</span>
+                        <button onclick="setCurrency('GTQ')" id="btnGTQ" class="px-3 py-1.5 rounded-lg bg-emerald-400 text-slate-950 font-bold">GTQ (Q)</button>
+                        <button onclick="setCurrency('USD')" id="btnUSD" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white">USD ($)</button>
+                        <button onclick="setCurrency('EUR')" id="btnEUR" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white">EUR (€)</button>
                     </div>
                 </div>
 
-                <!-- Nav Footer Links -->
-                <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400 font-mono">
-                    <button onclick="navigateTo('home')" class="hover:text-brand-400">Inicio</button>
-                    <button onclick="navigateTo('servicios')" class="hover:text-brand-400">Servicios</button>
-                    <button onclick="navigateTo('auditoria')" class="hover:text-brand-400">Auditoría</button>
-                    <button onclick="navigateTo('cotizador')" class="hover:text-brand-400">Cotizador</button>
-                    <button onclick="navigateTo('nosotros')" class="hover:text-brand-400">Nosotros</button>
-                    <button onclick="navigateTo('contacto')" class="hover:text-brand-400">Contacto</button>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    
+                    <!-- Checklist Options -->
+                    <div class="lg:col-span-2 space-y-4">
+                        <div class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2">Módulos & Servicios Disponibles:</div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            
+                            <label class="p-4 rounded-xl glass-card flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="quote-check rounded text-emerald-400 focus:ring-emerald-400 bg-brand-darkest border-slate-700 w-5 h-5" value="999" data-name="Plan Web Vela Express" onchange="calculateTotal()">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Vela Express</div>
+                                        <div class="text-[11px] text-slate-400">Landing Page Rápida</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-300 font-bold quote-price" data-gtq="999" data-usd="199" data-eur="185">Q999</span>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-card flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="quote-check rounded text-emerald-400 focus:ring-emerald-400 bg-brand-darkest border-slate-700 w-5 h-5" value="1899" data-name="Plan Web Vela Web Pro" onchange="calculateTotal()">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Vela Web Pro</div>
+                                        <div class="text-[11px] text-slate-400">Sitio Multi-Página SEO</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-300 font-bold quote-price" data-gtq="1899" data-usd="349" data-eur="325">Q1,899</span>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-card flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="quote-check rounded text-emerald-400 focus:ring-emerald-400 bg-brand-darkest border-slate-700 w-5 h-5" value="2999" data-name="Plan E-Commerce Vela Commerce" onchange="calculateTotal()">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Vela Commerce</div>
+                                        <div class="text-[11px] text-slate-400">Tienda Virtual + Pagos</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-300 font-bold quote-price" data-gtq="2999" data-usd="499" data-eur="465">Q2,999</span>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-card flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="quote-check rounded text-emerald-400 focus:ring-emerald-400 bg-brand-darkest border-slate-700 w-5 h-5" value="4999" data-name="Plan Ecosistema Vela Enterprise" onchange="calculateTotal()">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Vela Enterprise</div>
+                                        <div class="text-[11px] text-slate-400">E-Commerce + IA + SAT</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-300 font-bold quote-price" data-gtq="4999" data-usd="899" data-eur="835">Q4,999</span>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-card flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="quote-check rounded text-emerald-400 focus:ring-emerald-400 bg-brand-darkest border-slate-700 w-5 h-5" value="250" data-name="SaaS CRM/ERP Plan Emprendedor" onchange="calculateTotal()">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">SaaS Emprendedor</div>
+                                        <div class="text-[11px] text-slate-400">CRM + Cotizador (Mensual)</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-300 font-bold quote-price" data-gtq="250" data-usd="32" data-eur="30">Q250/m</span>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-card flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="quote-check rounded text-emerald-400 focus:ring-emerald-400 bg-brand-darkest border-slate-700 w-5 h-5" value="550" data-name="SaaS CRM/ERP Plan PYME" onchange="calculateTotal()">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">SaaS PYME</div>
+                                        <div class="text-[11px] text-slate-400">ERP + FEL SAT (Mensual)</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-300 font-bold quote-price" data-gtq="550" data-usd="70" data-eur="65">Q550/m</span>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-card flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="checkSetUp" class="quote-check rounded text-emerald-400 focus:ring-emerald-400 bg-brand-darkest border-slate-700 w-5 h-5" value="1500" data-name="Set-Up Implementacion Inicial SAT" onchange="calculateTotal()">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Set-Up Implementación</div>
+                                        <div class="text-[11px] text-slate-400">Migración + Config SAT</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-300 font-bold quote-price" data-gtq="1500" data-usd="200" data-eur="185">Q1,500</span>
+                            </label>
+
+                            <label class="p-4 rounded-xl glass-card flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" class="quote-check rounded text-emerald-400 focus:ring-emerald-400 bg-brand-darkest border-slate-700 w-5 h-5" value="4500" data-name="Desarrollo App Móvil iOS/Android" onchange="calculateTotal()">
+                                    <div>
+                                        <div class="text-sm font-bold text-white">App Móvil Nativa</div>
+                                        <div class="text-[11px] text-slate-400">iOS & Android</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-300 font-bold quote-price" data-gtq="4500" data-usd="799" data-eur="740">Q4,500</span>
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <!-- Live Summary Side Panel -->
+                    <div class="p-6 rounded-2xl bg-brand-darkest border border-emerald-400/40 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xs font-mono uppercase tracking-widest text-slate-400 mb-4">// RESUMEN DE COTIZACIÓN</h4>
+                            <div id="selectedItemsList" class="space-y-2 text-xs text-slate-300 min-h-[120px]">
+                                <span class="text-slate-500 italic">No has seleccionado ningún módulo aún.</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-slate-800 mt-6">
+                            <div class="text-xs text-slate-400 uppercase font-mono">Total Estimado:</div>
+                            <div id="totalDisplay" class="text-3xl font-black text-emerald-300 font-mono my-2">Q0.00 GTQ</div>
+                            <p class="text-[10px] text-slate-400 mb-6">Incluye 1er mes de mantenimiento "Veloce Care" GRATIS y Garantía de Devolución de 7 días.</p>
+
+                            <button onclick="sendQuoteToWhatsApp()" class="w-full py-4 rounded-xl btn-bioluminescence font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Pedido a WhatsApp
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-auto border-t border-emerald-500/20 bg-brand-darkest/90 pt-12 pb-8 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-400 flex items-center justify-center text-slate-950 font-black">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <span class="text-xl font-bold font-mono text-white">VELA WEB STUDIO</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Estudio de ingeniería de software especializado en aplicaciones web de alta conversión, SaaS, aplicaciones móviles y ciberseguridad. Operación remota global.
+                    </p>
                 </div>
 
+                <div>
+                    <h5 class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-4">Contacto Directo</h5>
+                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
+                        <li><i class="fa-solid fa-user text-emerald-400 mr-2"></i> Fundador: Gerardo García</li>
+                        <li><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i> WhatsApp: +502 4466 1266</li>
+                        <li><i class="fa-solid fa-envelope text-emerald-400 mr-2"></i> Correo: gerardogarciavelaa@gmail.com</li>
+                        <li><i class="fa-solid fa-globe text-emerald-400 mr-2"></i> Cobertura: Guatemala, EE. UU., LatAm, Europa</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-4">Garantías de Calidad</h5>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Código semántico, optimización W3C, arquitectura escalable y garantía de devolución íntegra de 7 días. Transparencia técnica absoluta.
+                    </p>
+                </div>
             </div>
 
-            <div class="mt-8 pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-600 font-mono gap-2">
-                <div>&copy; <span id="year">2026</span> VELA WEB STUDIO. Todos los derechos reservados.</div>
-                <div class="text-slate-500">Guatemala, C.A. • Tel: +502 4466 1266</div>
+            <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800 text-center text-xs text-slate-500 font-mono">
+                © <span id="currentYear">2026</span> Vela Web Studio. Todos los derechos reservados. Desarrollado por Gerardo García.
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <!-- BOTÓN FLOTANTE PERMANENTE DE WHATSAPP -->
-    <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20deseo%20mas%20informacion%20sobre%20sus%20servicios." 
-       target="_blank" 
-       class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-3xl shadow-2xl shadow-emerald-500/40 hover:scale-110 transition-all duration-300 group">
-        <i class="fa-brands fa-whatsapp"></i>
-        <span class="absolute right-16 top-1/2 -translate-y-1/2 bg-slate-900 text-white text-xs font-mono px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-slate-800">
-            ¡Chatea con nosotros!
-        </span>
-    </a>
+        <!-- PERMANENT FLOATING WHATSAPP BUTTON -->
+        <a href="https://wa.me/50244661266?text=Hola%20Gerardo%20Garc%C3%ADa,%20vengo%20desde%20el%20sitio%20web%20de%20Vela%20Web%20Studio%20y%20deseo%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-emerald-400 text-slate-950 flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition-transform duration-300 shadow-emerald-400/50">
+            <i class="fa-brands fa-whatsapp font-bold"></i>
+        </a>
 
-    <!-- JAVASCRIPT APP LOGIC -->
+    </div>
+
+    <!-- JAVASCRIPT LOGIC & ANIMATION ENGINE -->
     <script>
-        // Set dynamic year
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // 1. BIOLUMINESCENT PARTICLE BACKGROUND CANVAS
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
 
-        // Multi-page Navigation Router Logic
-        function navigateTo(viewId) {
-            // Hide all page views
-            const views = document.querySelectorAll('.page-view');
-            views.forEach(v => v.classList.remove('active'));
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-            // Show selected view
-            const targetView = document.getElementById(`view-${viewId}`);
-            if (targetView) {
-                targetView.classList.add('active');
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.color = Math.random() > 0.3 ? 'rgba(52, 211, 153, ' : 'rgba(237, 255, 254, ';
+                this.opacity = Math.random() * 0.5 + 0.2;
             }
 
-            // Update Navigation active styling
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach(btn => {
-                btn.classList.remove('text-brand-400', 'bg-slate-800/80', 'font-bold');
-                btn.classList.add('text-slate-300');
-            });
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-            const activeBtn = document.getElementById(`nav-${viewId}`);
-            if (activeBtn) {
-                activeBtn.classList.add('text-brand-400', 'bg-slate-800/80', 'font-bold');
-                activeBtn.classList.remove('text-slate-300');
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
             }
 
-            // Close mobile menu if open
-            document.getElementById('mobileMenu').classList.add('hidden');
-
-            // Scroll smoothly to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            draw() {
+                ctx.fillStyle = this.color + this.opacity + ')';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
+        function initParticles() {
+            particlesArray = [];
+            const particleCount = Math.floor((canvas.width * canvas.height) / 15000);
+            for (let i = 0; i < particleCount; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
 
-        // Audit Simulator Action
-        function runAuditSimulation() {
-            const input = document.getElementById('auditUrlInput').value;
-            const resultsArea = document.getElementById('auditResultsArea');
-            const waBtn = document.getElementById('auditWhatsappBtn');
+        initParticles();
+        animateParticles();
 
-            if (!input.trim()) {
-                alert("Por favor ingresa un dominio web válido.");
+        // 2. CURRENCY & QUOTE CALCULATOR ENGINE
+        let currentCurrency = 'GTQ';
+        const exchangeRates = { GTQ: 1, USD: 0.13, EUR: 0.12 };
+        const currencySymbols = { GTQ: 'Q', USD: '$', EUR: '€' };
+
+        function setCurrency(currency) {
+            currentCurrency = currency;
+            document.getElementById('btnGTQ').className = currency === 'GTQ' ? 'px-3 py-1.5 rounded-lg bg-emerald-400 text-slate-950 font-bold' : 'px-3 py-1.5 rounded-lg text-slate-300 hover:text-white';
+            document.getElementById('btnUSD').className = currency === 'USD' ? 'px-3 py-1.5 rounded-lg bg-emerald-400 text-slate-950 font-bold' : 'px-3 py-1.5 rounded-lg text-slate-300 hover:text-white';
+            document.getElementById('btnEUR').className = currency === 'EUR' ? 'px-3 py-1.5 rounded-lg bg-emerald-400 text-slate-950 font-bold' : 'px-3 py-1.5 rounded-lg text-slate-300 hover:text-white';
+            
+            updatePriceTags();
+            calculateTotal();
+        }
+
+        function updatePriceTags() {
+            const priceElements = document.querySelectorAll('.quote-price');
+            priceElements.forEach(el => {
+                if (currentCurrency === 'GTQ') el.textContent = 'Q' + Number(el.dataset.gtq).toLocaleString();
+                if (currentCurrency === 'USD') el.textContent = '$' + Number(el.dataset.usd).toLocaleString();
+                if (currentCurrency === 'EUR') el.textContent = '€' + Number(el.dataset.eur).toLocaleString();
+            });
+        }
+
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll('.quote-check:checked');
+            let totalGTQ = 0;
+            const selectedList = document.getElementById('selectedItemsList');
+            selectedList.innerHTML = '';
+
+            if (checkboxes.length === 0) {
+                selectedList.innerHTML = '<span class="text-slate-500 italic">No has seleccionado ningún módulo aún.</span>';
+            } else {
+                checkboxes.forEach(cb => {
+                    const priceGTQ = parseFloat(cb.value);
+                    totalGTQ += priceGTQ;
+
+                    const itemRow = document.createElement('div');
+                    itemRow.className = 'flex justify-between items-center text-emerald-300';
+                    itemRow.innerHTML = `<span>• ${cb.dataset.name}</span> <span class="font-mono">${formatPrice(priceGTQ)}</span>`;
+                    selectedList.appendChild(itemRow);
+                });
+            }
+
+            document.getElementById('totalDisplay').textContent = formatPrice(totalGTQ) + ' ' + currentCurrency;
+        }
+
+        function formatPrice(gtqAmount) {
+            if (currentCurrency === 'GTQ') return 'Q' + gtqAmount.toLocaleString();
+            if (currentCurrency === 'USD') return '$' + Math.round(gtqAmount * exchangeRates.USD).toLocaleString();
+            if (currentCurrency === 'EUR') return '€' + Math.round(gtqAmount * exchangeRates.EUR).toLocaleString();
+        }
+
+        // 3. SELECTION INTERACTION HANDLERS
+        function selectPackage(pkgId, name, priceGtq, priceUsd) {
+            document.querySelectorAll('.quote-check').forEach(cb => cb.checked = false);
+            const targetCheckbox = document.querySelector(`.quote-check[data-name*="${name}"]`);
+            if (targetCheckbox) targetCheckbox.checked = true;
+            calculateTotal();
+            document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectSaaSPlan(planName, planCode) {
+            document.querySelectorAll('.quote-check').forEach(cb => cb.checked = false);
+            const targetCheckbox = document.querySelector(`.quote-check[data-name*="${planName}"]`);
+            if (targetCheckbox) targetCheckbox.checked = true;
+            calculateTotal();
+            document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectCustomService(serviceName, priceGtq, priceUsd) {
+            const msg = `Hola Gerardo García, me interesa solicitar información sobre el servicio especializado de *${serviceName}*.`;
+            window.open(`https://wa.me/50244661266?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function addSetUpToQuote() {
+            const check = document.getElementById('checkSetUp');
+            if (check) check.checked = true;
+            calculateTotal();
+            document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendQuoteToWhatsApp() {
+            const checkboxes = document.querySelectorAll('.quote-check:checked');
+            if (checkboxes.length === 0) {
+                alert('Por favor selecciona al menos un servicio o plan en el cotizador.');
                 return;
             }
 
-            resultsArea.classList.remove('hidden');
-            const cleanUrl = input.replace('https://', '').replace('http://', '');
-            waBtn.href = `https://wa.me/50244661266?text=Hola,%20analice%20mi%20sitio%20web%20(${encodeURIComponent(cleanUrl)})%20en%20su%20escanner%20y%20quiero%20solucionar%20las%20vulnerabilidades.`;
-        }
-
-        // Calculator Link Builder Functionality
-        function updateTotal() {
-            const checkboxes = document.querySelectorAll('.calc-option');
-            const listContainer = document.getElementById('selectedModulesList');
-            listContainer.innerHTML = '';
-
-            let selectedNames = [];
-
+            let msg = `*COTIZACIÓN VELA WEB STUDIO*\n`;
+            msg += `-----------------------------------\n`;
             checkboxes.forEach(cb => {
-                if (cb.checked) {
-                    const name = cb.getAttribute('data-name');
-                    selectedNames.push(name);
-
-                    const item = document.createElement('div');
-                    item.className = 'flex justify-between';
-                    item.innerHTML = `<span>• ${name}</span><span class="text-emerald-400">Seleccionado</span>`;
-                    listContainer.appendChild(item);
-                }
+                msg += `- ${cb.dataset.name}\n`;
             });
+            msg += `-----------------------------------\n`;
+            msg += `*Total Estimado:* ${document.getElementById('totalDisplay').textContent}\n`;
+            msg += `*Atención requerida de:* Gerardo García\n\n`;
+            msg += `Hola Gerardo, me gustaría agendar una reunión o continuar con la contratación de este paquete.`;
 
-            // Update WhatsApp Link with itemized query
-            const waText = `Hola Vela Web Studio, deseo solicitar una cotización formal para los siguientes componentes:\n\n- ${selectedNames.join('\n- ')}`;
-            document.getElementById('calcWhatsappLink').href = `https://wa.me/50244661266?text=${encodeURIComponent(waText)}`;
+            window.open(`https://wa.me/50244661266?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // Contact Form Handler
-        function handleContactForm(e) {
-            e.preventDefault();
-            const name = document.getElementById('contactName').value;
-            const company = document.getElementById('contactCompany').value || 'No especificada';
-            const msg = document.getElementById('contactMessage').value;
+        // 4. SAAS BILLING CYCLE TOGGLE
+        function toggleBillingCycle() {
+            const isAnnual = document.getElementById('billingToggle').checked;
+            const monthlyPrices = document.querySelectorAll('.price-monthly');
+            const annualPrices = document.querySelectorAll('.price-annual');
+            const dot = document.querySelector('.dot');
 
-            const text = `Hola Vela Web Studio, mi nombre es ${name} (Empresa: ${company}).\n\nMensaje: ${msg}`;
-            window.open(`https://wa.me/50244661266?text=${encodeURIComponent(text)}`, '_blank');
+            if (isAnnual) {
+                dot.style.transform = 'translateX(24px)';
+                monthlyPrices.forEach(el => el.classList.add('hidden'));
+                annualPrices.forEach(el => el.classList.remove('hidden'));
+                document.getElementById('billingLabelMonthly').className = 'text-xs font-mono font-bold px-4 py-2 rounded-xl text-slate-400';
+                document.getElementById('billingLabelAnnual').className = 'text-xs font-mono font-bold px-4 py-2 rounded-xl text-emerald-300 flex items-center gap-1.5';
+            } else {
+                dot.style.transform = 'translateX(0px)';
+                monthlyPrices.forEach(el => el.classList.remove('hidden'));
+                annualPrices.forEach(el => el.classList.add('hidden'));
+                document.getElementById('billingLabelMonthly').className = 'text-xs font-mono font-bold px-4 py-2 rounded-xl text-emerald-300';
+                document.getElementById('billingLabelAnnual').className = 'text-xs font-mono font-bold px-4 py-2 rounded-xl text-slate-400 flex items-center gap-1.5';
+            }
         }
 
-        // Initialize default view
-        window.onload = function() {
-            navigateTo('home');
-            updateTotal();
+        // 5. SIMULATED AUDIT SCANNER
+        function runAuditScanner() {
+            const url = document.getElementById('scannerUrl').value;
+            if (!url) {
+                alert('Por favor ingresa la URL de tu sitio web.');
+                return;
+            }
+
+            const resultsBox = document.getElementById('scanResults');
+            const progressBar = document.getElementById('scanBar');
+            const progressPercent = document.getElementById('scanPercent');
+            const report = document.getElementById('scanReport');
+
+            resultsBox.classList.remove('hidden');
+            report.classList.add('hidden');
+            progressBar.style.width = '0%';
+            progressPercent.textContent = '0%';
+
+            let percent = 0;
+            const interval = setInterval(() => {
+                percent += 10;
+                progressBar.style.width = percent + '%';
+                progressPercent.textContent = percent + '%';
+
+                if (percent >= 100) {
+                    clearInterval(interval);
+                    report.classList.remove('hidden');
+                    const whatsappMsg = `Hola Gerardo García, acabo de realizar un análisis de mi sitio web (${url}) en su escáner y deseo mejorar mi velocidad, SEO y ciberseguridad.`;
+                    document.getElementById('auditWhatsappBtn').href = `https://wa.me/50244661266?text=${encodeURIComponent(whatsappMsg)}`;
+                }
+            }, 200);
         }
+
+        // 6. MOBILE MENU TOGGLE
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+        // Auto set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
