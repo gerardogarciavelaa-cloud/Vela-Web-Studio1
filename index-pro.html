@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vela Web Studio | Agencia Digital & Ciberseguridad</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#050505;color:#f5f5f5;font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+.hero-heading{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+.magnet{position:relative;display:inline-block;transition:transform .3s ease-out;will-change:transform}
+.magnet.inactive{transition:transform .6s ease-in-out}
+.fi{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.fi.in{opacity:1;transform:translateY(0)}
+.glow-card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:24px;transition:border-color .3s,transform .3s}
+.glow-card:hover{border-color:#333;transform:translateY(-4px)}
+.cta-btn{display:inline-block;padding:18px 40px;border-radius:0;background:#f5f5f5;color:#050505;font-weight:600;text-transform:uppercase;letter-spacing:.15em;font-size:.85rem;text-decoration:none;transition:all .2s;position:relative;overflow:hidden}
+.cta-btn:hover{background:#fff;transform:translateY(-2px)}
+.live-btn{padding:14px 32px;border:1px solid #333;border-radius:0;color:#f5f5f5;font-weight:500;text-transform:uppercase;letter-spacing:.15em;font-size:.85rem;text-decoration:none;transition:all .2s;background:transparent}
+.live-btn:hover{border-color:#f5f5f5;background:#f5f5f5;color:#050505}
+.svc-item{display:grid;grid-template-columns:auto 1fr auto;gap:24px;padding:40px 0;border-bottom:1px solid #1a1a1a;align-items:center;transition:background .3s}
+.svc-item:hover{background:#0a0a0a}
+.svc-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:3rem;color:#666}
+.svc-name{font-weight:600;font-size:1.5rem;margin-bottom:8px}
+.svc-desc{font-weight:300;color:#888;font-size:.95rem;line-height:1.6;max-width:500px}
+.svc-price{font-family:'Instrument Serif',serif;font-size:2rem;text-align:right;white-space:nowrap}
+.char{display:inline-block;opacity:.15;transition:opacity .1s linear}
+@media(max-width:900px){.hero{grid-template-columns:1fr!important}.hero-photo{height:50vh;order:-1}.svc-item{grid-template-columns:1fr;gap:8px}.svc-price{text-align:left}}
+select,input{background:#0f0f0f;color:#f5f5f5;border:1px solid #1a1a1a;border-radius:0;padding:14px 18px;font-size:.95rem;width:100%;font-family:'Space Grotesk',sans-serif;transition:border-color .2s}
+select:focus,input:focus{border-color:#f5f5f5;outline:none}
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20más%20información." target="_blank" rel="noopener noreferrer" style="position:fixed;bottom:24px;right:24px;z-index:50;background:#f5f5f5;color:#050505;padding:16px;border-radius:50%;box-shadow:0 4px 20px rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;transition:transform .2s" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  <svg style="width:28px;height:28px;fill:currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.482 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-1.98-.57-2.25-.298-.27-.61-.3-.984-.3-.374 0-.806.136-1.229.57-.424.434-1.616 1.58-1.974 1.903-.358.323-.717.361-1.091.173-.374-.188-1.573-.58-2.998-1.844-1.108-.991-1.854-2.218-2.071-2.593-.217-.375-.023-.578.164-.766.168-.168.374-.435.561-.653.187-.218.249-.374.374-.623.125-.249.062-.468-.031-.656-.093-.188-.984-2.372-1.348-3.246-.354-.855-.716-.739-.984-.753l-.842-.012c-.27 0-.716.101-1.09.512-.374.411-1.427 1.393-1.427 3.398 0 2.005 1.464 3.94 1.667 4.214.203.274 2.875 4.489 6.969 6.291 3.09 1.371 3.722 1.099 4.391 1.028.669-.071 2.158-.883 2.462-1.737.304-.854.304-1.587.213-1.737z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav style="display:flex;justify-content:space-between;align-items:center;padding:32px 48px;color:#f5f5f5">
+  <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.6rem">Vela <span style="font-family:'Space Grotesk',sans-serif;font-style:normal;font-weight:300;font-size:.9rem;opacity:.5;margin-left:8px">Web Studio</span></div>
+  <div style="display:flex;gap:32px;font-size:.85rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em">
+    <a href="#services" style="transition:opacity .2s" onmouseover="this.style.opacity=.5" onmouseout="this.style.opacity=1">Servicios</a>
+    <a href="#pricing" style="transition:opacity .2s" onmouseover="this.style.opacity=.5" onmouseout="this.style.opacity=1">Precios</a>
+    <a href="#calculator" style="transition:opacity .2s" onmouseover="this.style.opacity=.5" onmouseout="this.style.opacity=1">Cotizador</a>
+    <a href="#simulator" style="transition:opacity .2s" onmouseover="this.style.opacity=.5" onmouseout="this.style.opacity=1">Ciberseguridad</a>
+    <a href="#contacto" style="transition:opacity .2s" onmouseover="this.style.opacity=.5" onmouseout="this.style.opacity=1">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;padding:0 48px 80px;align-items:end">
+  <div style="padding-bottom:40px">
+    <h1 class="hero-heading fi" style="font-size:clamp(4rem,14vw,12rem);line-height:.9;letter-spacing:-.03em;margin-bottom:32px">Tu proyecto,<br>tu estilo.</h1>
+    <p class="fi" style="font-size:1.1rem;color:#888;max-width:420px;line-height:1.6;margin-bottom:40px">No más templates genéricos. Agencia digital y ciberseguridad. Diseñamos tu proyecto 100% a tu medida.</p>
+    <div class="fi" style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="#calculator" class="cta-btn">Cotizar proyecto</a>
+      <a href="#pricing" class="live-btn">Ver catálogo</a>
+    </div>
+  </div>
+  <div style="position:relative;overflow:hidden;height:100%;min-height:60vh;display:flex;align-items:end;justify-content:center">
+    <video src="reel-output.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;opacity:.6" onerror="this.style.display='none'"></video>
+    <div style="position:absolute;bottom:40px;right:0;text-align:right">
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:#666;margin-bottom:8px">Fundado por</div>
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.4rem">Gerardo García</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<section style="padding:60px 0;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;overflow:hidden">
+  <div style="display:flex;gap:48px;animation:marquee 20s linear infinite;white-space:nowrap">
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">Vela Web Studio</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">Tu Proyecto, Tu Estilo</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">No Más Templates</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">100% A Tu Medida</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">Agencia Digital</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">Ciberseguridad</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">Vela Web Studio</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">Tu Proyecto, Tu Estilo</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">No Más Templates</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:2rem;opacity:.3">100% A Tu Medida</span>
+  </div>
+  <style>@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding:120px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+  <div>
+    <h2 class="hero-heading fi" style="font-size:clamp(3rem,8vw,6rem);line-height:.95;margin-bottom:32px">Sobre<br>nosotros.</h2>
+    <p id="about-text" style="color:#888;font-size:1.05rem;line-height:1.7;max-width:480px"></p>
+  </div>
+  <div style="position:relative">
+    <div style="aspect-ratio:4/5;background:#0f0f0f;border:1px solid #1a1a1a;overflow:hidden">
+      <video src="reel-output.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;opacity:.7"></video>
+    </div>
+    <div style="position:absolute;bottom:-20px;left:-20px;background:#f5f5f5;color:#050505;padding:24px;font-family:'Instrument Serif',serif;font-style:italic;font-size:1.2rem">Est. 2024</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="padding:120px 48px;border-top:1px solid #1a1a1a">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:64px;flex-wrap:wrap;gap:24px">
+    <h2 class="hero-heading fi" style="font-size:clamp(3rem,8vw,6rem);line-height:.95">Servicios.</h2>
+    <p style="color:#888;max-width:360px;font-size:.95rem;line-height:1.6">Precios claros y competitivos en Quetzales (GTQ) y Dólares (USD).</p>
+  </div>
+  <div>
+    <div class="svc-item fi"><div class="svc-num">01</div><div><div class="svc-name">Vela Express</div><div class="svc-desc">Landing de alta conversión en 7 días. Cotizador en tiempo real.</div></div><div class="svc-price">Q999</div></div>
+    <div class="svc-item fi"><div class="svc-num">02</div><div><div class="svc-name">Web Pro</div><div class="svc-desc">Sitio corporativo multi-sección con CMS y SEO.</div></div><div class="svc-price">Q1,899</div></div>
+    <div class="svc-item fi"><div class="svc-num">03</div><div><div class="svc-name">Vela Commerce</div><div class="svc-desc">E-commerce completo con pagos e inventario.</div></div><div class="svc-price">Q2,999</div></div>
+    <div class="svc-item fi"><div class="svc-num">04</div><div><div class="svc-name">Enterprise</div><div class="svc-desc">Ecosistemas digitales a medida con integraciones.</div></div><div class="svc-price">Q4,999</div></div>
+    <div class="svc-item fi"><div class="svc-num">05</div><div><div class="svc-name">SaaS Cloud</div><div class="svc-desc">CRM/ERP con planes Emprendedor, PYME y Empresarial.</div></div><div class="svc-price">Q250/mes</div></div>
+    <div class="svc-item fi"><div class="svc-num">06</div><div><div class="svc-name">Ciberseguridad</div><div class="svc-desc">Auditorías, pentesting, hardening y desinfección.</div></div><div class="svc-price">Q1,500+</div></div>
+  </div>
+</section>
+
+<!-- PRECIOS -->
+<section id="pricing" style="padding:120px 48px;background:#0a0a0a;border-top:1px solid #1a1a1a">
+  <h2 class="hero-heading fi" style="font-size:clamp(3rem,8vw,6rem);line-height:.95;margin-bottom:64px">Catálogo<br>comercial.</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">Vela Express</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q999</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">Landing de alta conversión en 7 días. Cotizador en tiempo real.</p><a href="https://wa.me/50244661266?text=Quiero%20Vela%20Express" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">Web Pro</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q1,899</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">Sitio corporativo multi-sección con CMS y SEO.</p><a href="https://wa.me/50244661266?text=Quiero%20Web%20Pro" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">Commerce</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q2,999</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">E-commerce completo con pagos e inventario.</p><a href="https://wa.me/50244661266?text=Quiero%20Commerce" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">Enterprise</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q4,999</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">Ecosistemas digitales a medida con integraciones.</p><a href="https://wa.me/50244661266?text=Quiero%20Enterprise" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">SaaS Emprendedor</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q250<span style="font-size:1rem;color:#888">/mes</span></div><p style="color:#888;font-size:.9rem;margin-bottom:20px">CRM básico para emprendedores.</p><a href="https://wa.me/50244661266?text=Quiero%20SaaS%20Emprendedor" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">SaaS PYME</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q550<span style="font-size:1rem;color:#888">/mes</span></div><p style="color:#888;font-size:.9rem;margin-bottom:20px">ERP completo para PYMEs.</p><a href="https://wa.me/50244661266?text=Quiero%20SaaS%20PYME" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">SaaS Empresarial</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q1,200<span style="font-size:1rem;color:#888">/mes</span></div><p style="color:#888;font-size:.9rem;margin-bottom:20px">Solución enterprise con SAT/FEL.</p><a href="https://wa.me/50244661266?text=Quiero%20SaaS%20Empresarial" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">Pentesting</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q1,500</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">Auditoría de seguridad.</p><a href="https://wa.me/50244661266?text=Quiero%20Pentesting" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">Hardening</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q999</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">Endurecimiento de sistemas.</p><a href="https://wa.me/50244661266?text=Quiero%20Hardening" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">Desinfección Malware</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q750</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">Limpieza de malware.</p><a href="https://wa.me/50244661266?text=Quiero%20Desinfeccion" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">App Móvil</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q4,500</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">iOS/Android nativas.</p><a href="https://wa.me/50244661266?text=Quiero%20App%20Movil" class="live-btn" style="display:inline-block">Cotizar</a></div>
+    <div class="glow-card fi" style="padding:32px"><h3 style="font-weight:600;font-size:1.2rem;margin-bottom:8px">SaaS a Medida</h3><div style="font-family:'Instrument Serif',serif;font-size:3rem;margin:16px 0">Q3,500</div><p style="color:#888;font-size:.9rem;margin-bottom:20px">Software personalizado.</p><a href="https://wa.me/50244661266?text=Quiero%20SaaS%20Medida" class="live-btn" style="display:inline-block">Cotizar</a></div>
+  </div>
+</section>
+
+<!-- COTIZADOR -->
+<section id="calculator" style="padding:120px 48px;background:#050505;border-top:1px solid #1a1a1a">
+  <div style="max-width:768px;margin:0 auto">
+    <h2 class="hero-heading fi" style="font-size:clamp(3rem,8vw,6rem);line-height:.95;margin-bottom:48px">Cotizador.</h2>
+    <div style="background:#0f0f0f;border:1px solid #1a1a1a;padding:40px">
+      <div style="margin-bottom:20px">
+        <label style="display:block;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:#666;margin-bottom:8px">Nivel de servicio</label>
+        <select id="calcLevel"><option value="A">Nivel A: Desarrollo Fijo</option><option value="B">Nivel B: SaaS Recurrente</option><option value="C">Nivel C: Ingeniería y Ciberseguridad</option></select>
+      </div>
+      <div style="margin-bottom:32px">
+        <label style="display:block;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:#666;margin-bottom:8px">Servicio</label>
+        <select id="calcService"></select>
+      </div>
+      <div style="background:#050505;border:1px solid #1a1a1a;padding:24px;display:flex;justify-content:space-between;align-items:center;margin-bottom:32px">
+        <div>
+          <div style="font-size:.75rem;color:#666;margin-bottom:4px">Inversión estimada</div>
+          <div id="calcTotal" style="font-family:'Instrument Serif',serif;font-size:2.5rem">Q999</div>
+        </div>
+        <span id="calcInterval" style="font-size:.75rem;font-weight:500;background:#1a1a1a;color:#888;padding:6px 12px">Pago Único</span>
+      </div>
+      <div style="text-align:center">
+        <a id="calcWhatsAppBtn" href="https://wa.me/50244661266" class="cta-btn" style="display:inline-block">Enviar cotización por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR -->
+<section id="simulator" style="padding:120px 48px;border-top:1px solid #1a1a1a">
+  <div style="max-width:768px;margin:0 auto">
+    <h2 class="hero-heading fi" style="font-size:clamp(3rem,8vw,6rem);line-height:.95;margin-bottom:48px">Simulador<br>de ciberseguridad.</h2>
+    <div style="background:#0f0f0f;border:1px solid #1a1a1a;padding:40px">
+      <p style="color:#888;font-size:.95rem;margin-bottom:24px;line-height:1.6">Evalúa el nivel de protección de tu infraestructura digital actual.</p>
+      <input type="text" id="simUrl" placeholder="https://tusitio.com" style="margin-bottom:16px">
+      <div><button id="simRunBtn" class="cta-btn" style="cursor:pointer;border:none">Ejecutar Diagnóstico Rápido</button></div>
+      <div id="simResults" style="display:none;background:#050505;border:1px solid #1a1a1a;padding:24px;margin-top:24px">
+        <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:12px">Resultados del Diagnóstico:</h3>
+        <p id="simScore" style="font-size:.95rem;margin-bottom:8px;font-weight:600"></p>
+        <p id="simRec" style="font-size:.85rem;color:#888"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REMOTION REEL -->
+<section style="padding:120px 48px;background:#0a0a0a;border-top:1px solid #1a1a1a">
+  <div style="max-width:900px;margin:0 auto">
+    <h2 class="hero-heading fi" style="font-size:clamp(3rem,8vw,6rem);line-height:.95;margin-bottom:48px">Nuestro<br>reel.</h2>
+    <div style="background:#0f0f0f;border:1px solid #1a1a1a;padding:24px">
+      <div style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#050505">
+        <video src="reel-output.mp4" autoplay loop muted playsinline preload="auto" style="width:100%;height:100%;object-fit:cover"></video>
+        <div style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.8);color:#f5f5f5;font-size:.75rem;font-weight:500;padding:6px 12px;letter-spacing:.1em">REMOTION 30FPS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="padding:120px 48px;border-top:1px solid #1a1a1a">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end">
+    <div>
+      <h2 class="hero-heading" style="font-size:clamp(3rem,8vw,6rem);line-height:.95;margin-bottom:32px">Hablemos.</h2>
+      <p style="color:#888;font-size:1rem;line-height:1.7;max-width:400px;margin-bottom:40px">Si tienes un proyecto, una idea o un problema que resolver, escríbeme. Construyamos algo increíble.</p>
+      <a href="https://wa.me/50244661266" class="cta-btn" style="display:inline-block;margin-bottom:16px">WhatsApp</a>
+      <div style="margin-top:16px"><a href="mailto:gerardogarciavelaa@gmail.com" style="color:#666;font-size:.9rem;text-decoration:underline">gerardogarciavelaa@gmail.com</a></div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:#666;margin-bottom:8px">Ubicación</div>
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.4rem;margin-bottom:24px">Guatemala</div>
+      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:#666;margin-bottom:8px">Horario</div>
+      <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.4rem">Lun - Dom, 6:00 - 22:00</div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:48px;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+  <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.2rem">Vela Web Studio</div>
+  <div style="color:#666;font-size:.8rem">Fundado por Gerardo García · Guatemala • WhatsApp +502 4466 1266 • Todos los derechos reservados.</div>
+</footer>
+
+<script>
+const calcData = {
+  A: { 'Vela Express': { price: 'Q999', interval: 'Pago Único' }, 'Web Pro': { price: 'Q1,899', interval: 'Pago Único' }, 'Commerce': { price: 'Q2,999', interval: 'Pago Único' }, 'Enterprise': { price: 'Q4,999', interval: 'Pago Único' } },
+  B: { 'Emprendedor': { price: 'Q250/mes', interval: 'Mensual' }, 'PYME': { price: 'Q550/mes', interval: 'Mensual' }, 'Empresarial': { price: 'Q1,200/mes', interval: 'Mensual' } },
+  C: { 'App Móvil': { price: 'Q4,500', interval: 'Pago Único' }, 'SaaS a Medida': { price: 'Q3,500', interval: 'Pago Único' }, 'Pentesting': { price: 'Q1,500', interval: 'Pago Único' }, 'Hardening': { price: 'Q999', interval: 'Pago Único' }, 'Desinfección Malware': { price: 'Q750', interval: 'Pago Único' } }
+};
+const levelSel=document.getElementById('calcLevel');
+const serviceSel=document.getElementById('calcService');
+const totalEl=document.getElementById('calcTotal');
+const intervalEl=document.getElementById('calcInterval');
+function populateServices(){
+  const level=levelSel.value;
+  serviceSel.innerHTML='';
+  Object.keys(calcData[level]).forEach(s=>{const opt=document.createElement('option');opt.value=s;opt.textContent=s;serviceSel.appendChild(opt);});
+  updateTotal();
+}
+function updateTotal(){
+  const level=levelSel.value;const svc=serviceSel.value;
+  const d=calcData[level][svc];
+  if(d){totalEl.textContent=d.price;intervalEl.textContent=d.interval;}
+}
+levelSel.addEventListener('change',populateServices);
+serviceSel.addEventListener('change',updateTotal);
+populateServices();
+
+const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'50px'});
+document.querySelectorAll('.fi').forEach(el=>io.observe(el));
+document.querySelectorAll('#services .fi').forEach((el,i)=>{el.style.transitionDelay=(i*.08)+'s';});
+document.querySelectorAll('#pricing .fi').forEach((el,i)=>{el.style.transitionDelay=(i*.04)+'s';});
+
+const aboutText="Vela Web Studio es una agencia digital y de ciberseguridad fundada por Gerardo García. Diseñamos tu proyecto 100% a tu medida. No más templates genéricos: cada página es única, adaptada a tu negocio y hecha para crecer contigo. Construyamos algo increíble juntos.";
+const container=document.getElementById('about-text');
+container.innerHTML=aboutText.split('').map(c=>`<span class="char">${c===' '?'&nbsp;':c}</span>`).join('');
+const chars=container.querySelectorAll('.char');
+function updateChars(){const rect=container.getBoundingClientRect();const vh=window.innerHeight;const start=vh*.8,end=vh*.2;const progress=Math.max(0,Math.min(1,(start-rect.top)/(start-end+rect.height)));const total=chars.length;chars.forEach((ch,i)=>{const threshold=i/total;ch.style.opacity=progress>threshold?1:.15;});}
+window.addEventListener('scroll',updateChars,{passive:true});updateChars();
+
+document.getElementById('calcWhatsAppBtn').addEventListener('click',function(e){
+  e.preventDefault();
+  const svc=serviceSel.value;const level=levelSel.value;
+  const msg=`Hola Vela Web Studio, quiero cotizar ${svc} (Nivel ${level})`;
+  window.open('https://wa.me/50244661266?text='+encodeURIComponent(msg),'_blank');
+});
+
+document.getElementById('simRunBtn').addEventListener('click',function(){
+  const url=document.getElementById('simUrl').value;
+  const results=document.getElementById('simResults');
+  const score=document.getElementById('simScore');
+  const rec=document.getElementById('simRec');
+  if(!url){alert('Ingresa una URL');return;}
+  results.style.display='block';
+  const scoreVal=Math.floor(Math.random()*40)+60;
+  score.textContent=`Puntuación de seguridad: ${scoreVal}/100`;
+  if(scoreVal<70) rec.textContent='Recomendación: Implementar hardening WAF, auditoría de vulnerabilidades y monitoreo continuo.';
+  else if(scoreVal<85) rec.textContent='Recomendación: Buen nivel. Considerar pentesting anual y actualización de dependencias.';
+  else rec.textContent='Recomendación: Excelente nivel. Mantener monitoreo y auditorías periódicas.';
+});
+</script>
+</body>
+</html>

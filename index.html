@@ -1,260 +1,332 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es" class="no-js">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vela Web Studio | Agencia Digital & Ciberseguridad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Vela Web Studio | Tu Proyecto, Tu Estilo</title>
+  <meta name="description" content="Diseñamos tu proyecto 100% a tu medida. Web, SaaS, ciberseguridad. No más templates genéricos.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            darkbg: '#0a0f1a',
-            darkcard: '#111827',
-            tealaccent: '#22d3ee',
-            cyanaccent: '#0891b2',
-            darkborder: '#1e293b'
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <meta property="og:title" content="Vela Web Studio | Tu Proyecto, Tu Estilo">
+  <meta property="og:description" content="Diseñamos tu proyecto 100% a tu medida. Web, SaaS, ciberseguridad.">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.className=document.documentElement.className.replace('no-js','js');</script>
 </head>
-<body class="bg-[#0a0f1a] text-[#e2e8f0] min-h-screen flex flex-col selection:bg-cyan-500 selection:text-white">
+<body>
 
-  <!-- CANVAS Y RED CYBERNETIC -->
-  <canvas id="cyberCanvas"></canvas>
-  <div class="cyber-grid-bg"></div>
+  <!-- ===== PRELOADER ===== -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader__panel preloader__panel--a"></div>
+    <div class="preloader__panel preloader__panel--b"></div>
+    <div class="preloader__inner">
+      <svg class="preloader__logo" viewBox="0 0 320 80" fill="currentColor" aria-hidden="true">
+        <use href="#logo-iso" class="pl-iso"/>
+        <use href="#logo-vela" class="pl-letter"/>
+      </svg>
+      <div class="preloader__bar"><span></span></div>
+      <p class="preloader__meta"><span>Vela Web Studio</span><span><b class="js-count">0</b>%</span></p>
+    </div>
+  </div>
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 glass-header">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center space-x-3 transition-transform hover:scale-105 duration-200">
-        <img src="assets/logo.svg" alt="Vela Web Studio" class="h-10 w-auto">
+  <!-- logo sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="logo-iso"><path d="M40 16 C 58 22, 66 34, 62 46 C 58 56, 48 58, 40 58 Z" fill="currentColor"/></g>
+      <g id="logo-vela"><text x="0" y="0" font-size="40" font-weight="700" letter-spacing="8" fill="currentColor">VELA</text></g>
+    </defs>
+  </svg>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" id="top">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Vela Web Studio">
+        <img src="assets/logo.svg" alt="Vela Web Studio" class="logo__img" width="160" height="40">
       </a>
-      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-        <a href="#services" data-i18n="nav.services" class="hover:text-[#22d3ee] transition-colors duration-200">Servicios</a>
-        <a href="#pricing" data-i18n="nav.pricing" class="hover:text-[#22d3ee] transition-colors duration-200">Precios</a>
-        <a href="#calculator" data-i18n="nav.calculator" class="hover:text-[#22d3ee] transition-colors duration-200">Cotizador</a>
-        <a href="#simulator" data-i18n="nav.cyber" class="hover:text-[#22d3ee] transition-colors duration-200">Ciberseguridad</a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#services" data-i18n="nav.services">Servicios</a>
+        <a href="#pricing" data-i18n="nav.pricing">Precios</a>
+        <a href="#calculator" data-i18n="nav.calculator">Cotizador</a>
+        <a href="#simulator" data-i18n="nav.cyber">Ciberseguridad</a>
+        <a href="#contact" data-i18n="nav.contact">Contacto</a>
       </nav>
-      <div class="flex items-center space-x-4">
-        <select id="langSelect" class="bg-[#111827] text-[#22d3ee] border border-[#1e293b] text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-[#22d3ee] transition-all cursor-pointer">
+      <div class="header__actions">
+        <select id="langSelect" class="select" aria-label="Idioma">
           <option value="es">ES</option>
           <option value="en">EN</option>
         </select>
-        <select id="currencySelect" class="bg-[#111827] text-[#22d3ee] border border-[#1e293b] text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-[#22d3ee] transition-all cursor-pointer">
-          <option value="GTQ">Q (GTQ)</option>
-          <option value="USD">$ (USD)</option>
+        <select id="currencySelect" class="select" aria-label="Moneda">
+          <option value="GTQ">Q GTQ</option>
+          <option value="USD">$ USD</option>
         </select>
-        <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20cotizar%20un%20proyecto." target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 bg-gradient-to-r from-[#22d3ee] to-[#0891b2] text-[#0a0f1a] font-semibold text-xs px-4 py-2 rounded-lg glow-effect shimmer-btn hover:opacity-95 transition-all active:scale-95">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.482 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-1.98-.57-2.25-.298-.27-.61-.3-.984-.3-.374 0-.806.136-1.229.57-.424.434-1.616 1.58-1.974 1.903-.358.323-.717.361-1.091.173-.374-.188-1.573-.58-2.998-1.844-1.108-.991-1.854-2.218-2.071-2.593-.217-.375-.023-.578.164-.766.168-.168.374-.435.561-.653.187-.218.249-.374.374-.623.125-.249.062-.468-.031-.656-.093-.188-.984-2.372-1.348-3.246-.354-.855-.716-.739-.984-.753l-.842-.012c-.27 0-.716.101-1.09.512-.374.411-1.427 1.393-1.427 3.398 0 2.005 1.464 3.94 1.667 4.214.203.274 2.875 4.489 6.969 6.291 3.09 1.371 3.722 1.099 4.391 1.028.669-.071 2.158-.883 2.462-1.737.304-.854.304-1.587.213-1.737z"/></svg>
-          <span data-i18n="nav.whatsapp">WhatsApp</span>
-        </a>
+        <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20cotizar%20un%20proyecto." target="_blank" rel="noopener" class="btn btn--primary btn--sm" data-i18n="nav.whatsapp">WhatsApp</a>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="relative pt-24 pb-32 overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/30 via-[#0a0f1a] to-[#0a0f1a] -z-10"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal-on-scroll">
-      <div class="inline-flex items-center space-x-2 bg-cyan-950/80 border border-cyan-800/60 rounded-full px-4 py-1.5 mb-8 animate-float shadow-lg shadow-cyan-500/10">
-        <span class="w-2 h-2 rounded-full bg-[#22d3ee] animate-ping"></span>
-        <span class="text-xs font-semibold text-[#22d3ee] tracking-wide" data-i18n="hero.badge">Agencia Digital & Ciberseguridad • Guatemala</span>
-      </div>
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-        <span data-i18n="hero.title1">Tu Proyecto, Tu Estilo</span><br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#22d3ee] via-cyan-400 to-[#0891b2]" data-i18n="hero.title2">No más templates genéricos</span>
-      </h1>
-      <p class="max-w-3xl mx-auto text-lg sm:text-xl text-slate-400 mb-10 leading-relaxed font-light" data-i18n="hero.subtitle">
-        Diseñamos tu proyecto 100% a tu medida. No más templates genéricos: cada página es única, adaptada a tu negocio y hecha para crecer contigo.
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-5">
-        <a href="#calculator" class="w-full sm:w-auto bg-gradient-to-r from-[#22d3ee] to-[#0891b2] text-[#0a0f1a] font-bold px-8 py-4 rounded-xl glow-effect shimmer-btn hover:opacity-95 transition-all text-sm active:scale-95" data-i18n="hero.ctaPrimary">Cotizar Proyecto</a>
-        <a href="#pricing" class="w-full sm:w-auto bg-[#111827]/80 backdrop-blur-md border border-[#1e293b] text-white font-semibold px-8 py-4 rounded-xl hover:border-[#22d3ee] hover:bg-[#111827] transition-all text-sm active:scale-95" data-i18n="hero.ctaSecondary">Explorar Catálogo</a>
-      </div>
-
-      <!-- REMOTION REEL SHOWCASE EMBED / PREVIEW BANNER -->
-      <div class="mt-16 max-w-4xl mx-auto glow-card rounded-2xl p-4 sm:p-6 bg-[#111827]/90 text-left border border-cyan-500/30">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center space-x-2">
-            <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
-            <span class="text-xs text-slate-400 ml-2 font-mono">vela-studio-reel-remotion.mp4</span>
-          </div>
-          <span class="text-xs font-bold text-[#22d3ee] bg-cyan-950/80 px-3 py-1 rounded-full border border-cyan-800/50">Remotion 60FPS</span>
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <span class="hero__badge" data-i18n="hero.badge">Agencia Digital &amp; Ciberseguridad • Guatemala</span>
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="hero__line-in" data-i18n="hero.title1">Tu Proyecto, Tu Estilo</span></span>
+          <span class="hero__line"><span class="hero__line-in hero__title--accent" data-i18n="hero.title2">No más templates genéricos</span></span>
+        </h1>
+        <p class="hero__subtitle" data-i18n="hero.subtitle">Diseñamos tu proyecto 100% a tu medida. No más templates genéricos: cada página es única, adaptada a tu negocio y hecha para crecer contigo.</p>
+        <div class="hero__actions">
+          <a href="#calculator" class="btn btn--primary" data-i18n="hero.ctaPrimary">Cotizar Proyecto</a>
+          <a href="#pricing" class="btn btn--ghost" data-i18n="hero.ctaSecondary">Explorar Catálogo</a>
         </div>
-        <!-- Remotion Rendered Video Player -->
-        <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-[#0a0f1a] border border-[#1e293b] shadow-2xl">
-          <video
-            src="reel-output.mp4"
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="auto"
-            class="w-full h-full object-cover"
-            style="background: #0a0f1a;"
-          ></video>
-          <div class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/40 flex items-center space-x-1.5">
-            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-            <span>Remotion 30FPS • Tu Proyecto, Tu Estilo</span>
+        <div class="hero__stats">
+          <div class="stat"><div class="stat__num">7 Días</div><div class="stat__label" data-i18n="hero.stats.0.label">Garantía de Entrega</div></div>
+          <div class="stat"><div class="stat__num">+502</div><div class="stat__label" data-i18n="hero.stats.1.label">Soporte Directo WhatsApp</div></div>
+          <div class="stat"><div class="stat__num">100%</div><div class="stat__label" data-i18n="hero.stats.2.label">100% a Tu Medida</div></div>
+        </div>
+      </div>
+      <div class="hero__media">
+        <div class="reel-card">
+          <div class="reel-card__bar">
+            <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+            <span class="reel-card__title">vela-studio-reel.mp4</span>
+            <span class="reel-card__tag">Remotion 30FPS</span>
+          </div>
+          <div class="reel-card__video">
+            <video src="video/reel-output.mp4" autoplay loop muted playsinline preload="auto"></video>
+            <div class="reel-card__live"><span class="live-dot"></span> Tu Proyecto, Tu Estilo</div>
           </div>
         </div>
       </div>
+    </div>
+    <svg class="camino" aria-hidden="true" focusable="false"><path/></svg>
+  </section>
 
-      <!-- STATS -->
-      <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        <div class="glow-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-extrabold text-[#22d3ee] mb-1">7 Días</div>
-          <div class="text-xs text-slate-400 font-medium" data-i18n="hero.stats.0.label">Garantía de Entrega</div>
+  <!-- ===== TRUST BAR ===== -->
+  <section class="trust" data-reveal>
+    <div class="container trust__inner">
+      <div class="trust__item"><span class="trust__icon">✓</span><span data-i18n="trust.0">Satisfacción 100% / Reembolso protegido a 7 días</span></div>
+      <div class="trust__item"><span class="trust__icon">✓</span><span data-i18n="trust.1">Primer mes de mantenimiento gratis (Veloce Care)</span></div>
+      <div class="trust__item"><span class="trust__icon">✓</span><span data-i18n="trust.2">Correos corporativos incluidos</span></div>
+      <div class="trust__item"><span class="trust__icon">✓</span><span data-i18n="trust.3">Sin contratos forzosos</span></div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="section" id="services">
+    <div class="container">
+      <header class="section__head" data-reveal>
+        <h2 class="section__title" data-i18n="services.title">Nuestros Niveles de Servicio</h2>
+        <p class="section__subtitle" data-i18n="services.subtitle">Soluciones estructuradas para cada etapa de madurez digital de tu empresa.</p>
+      </header>
+      <div class="pillars">
+        <article class="pillar" data-reveal>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="10" width="36" height="28" rx="4"/><path d="M6 18h36M16 28h8"/></svg>
+          </div>
+          <h3 data-i18n="services.levelA">Nivel A: Desarrollo Fijo</h3>
+          <p data-i18n="services.levelADesc">Sitios web, e-commerce y ecosistemas digitales de pago único.</p>
+          <a href="#pricing" class="pillar__link">Ver planes →</a>
+        </article>
+        <article class="pillar" data-reveal>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 32c0-8 6-14 16-14s16 6 16 14"/><circle cx="24" cy="14" r="6"/><path d="M8 36h32"/></svg>
+          </div>
+          <h3 data-i18n="services.levelB">Nivel B: SaaS Recurrente</h3>
+          <p data-i18n="services.levelBDesc">CRM/ERP en la nube con planes mensuales o anuales.</p>
+          <a href="#pricing" class="pillar__link">Ver planes →</a>
+        </article>
+        <article class="pillar" data-reveal>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 6l14 6v12c0 10-6 18-14 24-8-6-14-14-14-24V12z"/><path d="M18 24l4 4 8-8"/></svg>
+          </div>
+          <h3 data-i18n="services.levelC">Nivel C: Ingeniería y Ciberseguridad</h3>
+          <p data-i18n="services.levelCDesc">Apps móviles, SaaS a medida, pentesting y hardening.</p>
+          <a href="#simulator" class="pillar__link">Probar simulador →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="section section--alt" id="pricing">
+    <div class="container">
+      <header class="section__head" data-reveal>
+        <h2 class="section__title" data-i18n="pricing.title">Catálogo Comercial Transparente</h2>
+        <p class="section__subtitle" data-i18n="pricing.subtitle">Precios claros y competitivos en Quetzales (GTQ) y Dólares (USD).</p>
+        <div class="billing-toggle" role="group" aria-label="Facturación">
+          <button id="billingMonthly" class="billing-btn is-active" data-i18n="pricing.monthly">Mensual</button>
+          <button id="billingAnnual" class="billing-btn" data-i18n="pricing.annual">Anual (-20%)</button>
         </div>
-        <div class="glow-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-extrabold text-[#22d3ee] mb-1">+502</div>
-          <div class="text-xs text-slate-400 font-medium" data-i18n="hero.stats.1.label">Soporte Directo WhatsApp</div>
+      </header>
+      <h3 class="tier-title" data-i18n="services.levelA">Nivel A: Desarrollo Fijo</h3>
+      <div id="levelAGrid" class="cards-grid"></div>
+      <h3 class="tier-title" data-i18n="services.levelB">Nivel B: SaaS Recurrente</h3>
+      <div id="levelBGrid" class="cards-grid"></div>
+      <h3 class="tier-title" data-i18n="services.levelC">Nivel C: Ingeniería y Ciberseguridad</h3>
+      <div id="levelCGrid" class="cards-grid"></div>
+    </div>
+  </section>
+
+  <!-- ===== CALCULATOR ===== -->
+  <section class="section" id="calculator">
+    <div class="container">
+      <header class="section__head" data-reveal>
+        <h2 class="section__title" data-i18n="calculator.title">Cotizador Global en Tiempo Real</h2>
+        <p class="section__subtitle" data-i18n="calculator.subtitle">Configura los módulos de tu proyecto y calcula el estimado de inversión al instante.</p>
+      </header>
+      <div class="calc" data-reveal>
+        <div class="calc__row">
+          <label for="calcLevel" data-i18n="calculator.selectLevel">Selecciona el Nivel de Servicio:</label>
+          <select id="calcLevel" class="select select--lg">
+            <option value="A">Nivel A: Desarrollo Fijo</option>
+            <option value="B">Nivel B: SaaS Recurrente</option>
+            <option value="C">Nivel C: Ingeniería y Ciberseguridad</option>
+          </select>
         </div>
-        <div class="glow-card rounded-2xl p-6 text-center">
-          <div class="text-3xl font-extrabold text-[#22d3ee] mb-1">100%</div>
-          <div class="text-xs text-slate-400 font-medium" data-i18n="hero.stats.2.label">100% a Tu Medida</div>
+        <div class="calc__row">
+          <label for="calcService" data-i18n="calculator.selectService">Selecciona el Servicio:</label>
+          <select id="calcService" class="select select--lg"></select>
+        </div>
+        <div class="calc__total">
+          <span data-i18n="calculator.estimatedTotal">Inversión Estimada:</span>
+          <strong id="calcTotal">Q0</strong>
+          <span id="calcInterval" class="calc__interval"></span>
+        </div>
+        <a id="calcWhatsAppBtn" href="#" target="_blank" rel="noopener" class="btn btn--primary btn--block" data-i18n="calculator.requestQuote">Enviar Cotización por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW WE WORK ===== -->
+  <section class="section section--alt" id="process">
+    <div class="container">
+      <header class="section__head" data-reveal>
+        <h2 class="section__title">Cómo trabajamos</h2>
+        <p class="section__subtitle">Cuatro pasos, sin sorpresas. Tú decides, nosotros construimos.</p>
+      </header>
+      <ol class="steps">
+        <li class="step" data-reveal><span class="step__num">01</span><h3>Escuchamos</h3><p>Entendemos tu negocio, tu público y lo que quieres lograr. Sin jerga técnica.</p></li>
+        <li class="step" data-reveal><span class="step__num">02</span><h3>Proponemos</h3><p>Dirección de arte y estructura a tu medida. La apruebas antes de construir.</p></li>
+        <li class="step" data-reveal><span class="step__num">03</span><h3>Construimos</h3><p>Código limpio, animaciones con intención, pruebas en celular y escritorio.</p></li>
+        <li class="step" data-reveal><span class="step__num">04</span><h3>Lanzamos</h3><p>Publicación, dominio, QR y un mes de Veloce Care gratis.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== CYBER SIMULATOR ===== -->
+  <section class="section" id="simulator">
+    <div class="container">
+      <header class="section__head" data-reveal>
+        <h2 class="section__title" data-i18n="simulator.title">Simulador de Ciberseguridad</h2>
+        <p class="section__subtitle" data-i18n="simulator.subtitle">Evalúa el nivel de protección de tu infraestructura digital actual.</p>
+      </header>
+      <div class="sim" data-reveal>
+        <div class="sim__row">
+          <label for="simUrl">URL de tu sitio</label>
+          <input id="simUrl" type="url" placeholder="https://tusitio.com" class="input">
+        </div>
+        <button id="simRunBtn" class="btn btn--primary" data-i18n="simulator.runAudit">Ejecutar Diagnóstico Rápido</button>
+        <div id="simResults" class="sim__results hidden">
+          <div class="sim__score"><span data-i18n="simulator.score">Nivel de Exposición:</span> <strong id="simScore"></strong></div>
+          <p id="simRec" class="sim__rec"></p>
+          <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20hardening%20y%20pentesting." target="_blank" rel="noopener" class="btn btn--ghost btn--sm">Cotizar hardening →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CATALOGO / PRECIOS SECTION -->
-  <section id="pricing" class="py-24 bg-[#0a0f1a]/80 border-t border-[#1e293b] relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
-        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4" data-i18n="pricing.title">Catálogo Comercial Transparente</h2>
-        <p class="text-slate-400 text-base sm:text-lg font-light" data-i18n="pricing.subtitle">Precios claros y competitivos en Quetzales (GTQ) y Dólares (USD).</p>
-      </div>
-
-      <!-- NIVEL A: DESARROLLO FIJO -->
-      <div class="mb-20 reveal-on-scroll">
-        <h3 class="text-2xl font-bold text-[#22d3ee] mb-8 flex items-center space-x-3">
-          <span class="w-3 h-3 bg-[#22d3ee] rounded-full shadow-lg shadow-cyan-400/50"></span>
-          <span data-i18n="services.levelA">Nivel A: Desarrollo Fijo</span>
-        </h3>
-        <div id="levelAGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-      </div>
-
-      <!-- NIVEL B: SAAS RECURRENTE -->
-      <div class="mb-20 reveal-on-scroll">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8">
-          <h3 class="text-2xl font-bold text-[#22d3ee] flex items-center space-x-3 mb-4 sm:mb-0">
-            <span class="w-3 h-3 bg-[#0891b2] rounded-full shadow-lg shadow-cyan-600/50"></span>
-            <span data-i18n="services.levelB">Nivel B: SaaS Recurrente</span>
-          </h3>
-          <div class="inline-flex items-center bg-[#111827] border border-[#1e293b] p-1 rounded-xl shadow-inner">
-            <button id="billingMonthly" class="px-4 py-2 text-xs font-bold rounded-lg bg-[#22d3ee] text-[#0a0f1a] transition-all cursor-pointer" data-i18n="pricing.monthly">Mensual</button>
-            <button id="billingAnnual" class="px-4 py-2 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all cursor-pointer" data-i18n="pricing.annual">Anual (-20%)</button>
-          </div>
-        </div>
-        <div id="levelBGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
-      </div>
-
-      <!-- NIVEL C: INGENIERÍA Y CIBERSEGURIDAD -->
-      <div class="reveal-on-scroll">
-        <h3 class="text-2xl font-bold text-[#22d3ee] mb-8 flex items-center space-x-3">
-          <span class="w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-300/50"></span>
-          <span data-i18n="services.levelC">Nivel C: Ingeniería y Ciberseguridad</span>
-        </h3>
-        <div id="levelCGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <!-- ===== TESTIMONIOS ===== -->
+  <section class="section section--alt" id="testimonials">
+    <div class="container">
+      <header class="section__head" data-reveal>
+        <h2 class="section__title">Lo que dicen nuestros clientes</h2>
+        <p class="section__subtitle">[TESTIMONIO REAL DE CLIENTE] — espacio reservado para casos reales con permiso.</p>
+      </header>
+      <div class="testimonials">
+        <blockquote class="testimonial" data-reveal>
+          <p>"[TESTIMONIO REAL DE CLIENTE] — nombre, cargo y empresa."</p>
+          <footer>— [CLIENTE REAL]</footer>
+        </blockquote>
       </div>
     </div>
   </section>
 
-  <!-- COTIZADOR GLOBAL EN TIEMPO REAL -->
-  <section id="calculator" class="py-24 bg-[#111827]/40 border-t border-[#1e293b] backdrop-blur-md">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-3" data-i18n="calculator.title">Cotizador Global en Tiempo Real</h2>
-        <p class="text-slate-400 text-sm sm:text-base font-light" data-i18n="calculator.subtitle">Configura los módulos de tu proyecto y calcula el estimado de inversión al instante.</p>
-      </div>
-      <div class="glow-card rounded-2xl p-8 shadow-2xl">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-          <div>
-            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" data-i18n="calculator.selectLevel">Selecciona el Nivel de Servicio:</label>
-            <select id="calcLevel" class="w-full bg-[#0a0f1a] text-white border border-[#1e293b] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#22d3ee] transition-all cursor-pointer">
-              <option value="A">Nivel A: Desarrollo Fijo</option>
-              <option value="B">Nivel B: SaaS Recurrente</option>
-              <option value="C">Nivel C: Ingeniería y Ciberseguridad</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" data-i18n="calculator.selectService">Selecciona el Servicio:</label>
-            <select id="calcService" class="w-full bg-[#0a0f1a] text-white border border-[#1e293b] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#22d3ee] transition-all cursor-pointer"></select>
-          </div>
-        </div>
-
-        <div class="bg-[#0a0f1a] border border-[#1e293b] rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between mb-8 shadow-inner">
-          <div>
-            <div class="text-xs text-slate-400 font-medium mb-1" data-i18n="calculator.estimatedTotal">Inversión Estimada:</div>
-            <div id="calcTotal" class="text-3xl sm:text-4xl font-extrabold text-[#22d3ee] tracking-tight">Q999</div>
-          </div>
-          <div class="mt-4 sm:mt-0">
-            <span id="calcInterval" class="text-xs font-semibold bg-cyan-950/80 border border-cyan-800/50 text-[#22d3ee] px-4 py-1.5 rounded-full shadow-sm">Pago Único</span>
-          </div>
-        </div>
-
-        <div class="text-center">
-          <button id="calcWhatsAppBtn" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-[#22d3ee] to-[#0891b2] text-[#0a0f1a] font-bold px-8 py-4 rounded-xl glow-effect shimmer-btn hover:opacity-95 transition-all text-sm active:scale-95 cursor-pointer">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.482 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-1.98-.57-2.25-.298-.27-.61-.3-.984-.3-.374 0-.806.136-1.229.57-.424.434-1.616 1.58-1.974 1.903-.358.323-.717.361-1.091.173-.374-.188-1.573-.58-2.998-1.844-1.108-.991-1.854-2.218-2.071-2.593-.217-.375-.023-.578.164-.766.168-.168.374-.435.561-.653.187-.218.249-.374.374-.623.125-.249.062-.468-.031-.656-.093-.188-.984-2.372-1.348-3.246-.354-.855-.716-.739-.984-.753l-.842-.012c-.27 0-.716.101-1.09.512-.374.411-1.427 1.393-1.427 3.398 0 2.005 1.464 3.94 1.667 4.214.203.274 2.875 4.489 6.969 6.291 3.09 1.371 3.722 1.099 4.391 1.028.669-.071 2.158-.883 2.462-1.737.304-.854.304-1.587.213-1.737z"/></svg>
-            <span data-i18n="calculator.requestQuote">Enviar Cotización por WhatsApp</span>
-          </button>
-        </div>
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="container container--narrow">
+      <header class="section__head" data-reveal>
+        <h2 class="section__title">Preguntas frecuentes</h2>
+      </header>
+      <div class="faq">
+        <details class="faq__item" data-reveal>
+          <summary>¿Cuánto tarda un proyecto?</summary>
+          <p>Depende del plan. Una landing (Vela Express) se entrega en 7 días. Proyectos más grandes se cotizan por alcance.</p>
+        </details>
+        <details class="faq__item" data-reveal>
+          <summary>¿Qué incluye el precio?</summary>
+          <p>Diseño personalizado, garantía de 7 días, primer mes de mantenimiento gratis (Veloce Care) y correo corporativo incluido.</p>
+        </details>
+        <details class="faq__item" data-reveal>
+          <summary>¿Trabajan fuera de Guatemala?</summary>
+          <p>Sí. Atendemos LatAm, US y Europa. La conversación se cierra por WhatsApp.</p>
+        </details>
+        <details class="faq__item" data-reveal>
+          <summary>¿Ofrecen garantía?</summary>
+          <p>Satisfacción 100% / Reembolso protegido a 7 días. Si no te convence, te devolvemos tu dinero.</p>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- SIMULADOR DE CIBERSEGURIDAD -->
-  <section id="simulator" class="py-24 bg-[#0a0f1a] border-t border-[#1e293b]">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-3" data-i18n="simulator.title">Simulador de Ciberseguridad</h2>
-        <p class="text-slate-400 text-sm sm:text-base font-light" data-i18n="simulator.subtitle">Evalúa el nivel de protección de tu infraestructura digital actual.</p>
-      </div>
-      <div class="glow-card rounded-2xl p-8 text-center">
-        <div class="max-w-xl mx-auto mb-8">
-          <input type="text" id="simUrl" placeholder="https://tusitio.com" class="w-full bg-[#0a0f1a] text-white border border-[#1e293b] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#22d3ee] mb-4 text-center transition-all">
-          <button id="simRunBtn" class="bg-gradient-to-r from-[#22d3ee] to-[#0891b2] text-[#0a0f1a] font-bold px-8 py-3 rounded-xl glow-effect shimmer-btn hover:opacity-95 transition-all text-sm active:scale-95 cursor-pointer" data-i18n="simulator.runAudit">Ejecutar Diagnóstico Rápido</button>
-        </div>
-        <div id="simResults" class="hidden bg-[#0a0f1a] border border-[#1e293b] rounded-xl p-6 text-left shadow-inner">
-          <h3 class="text-lg font-bold text-[#22d3ee] mb-3" data-i18n="simulator.resultsTitle">Resultados del Diagnóstico:</h3>
-          <p id="simScore" class="text-sm text-slate-300 mb-2 font-semibold"></p>
-          <p id="simRec" class="text-xs text-slate-400 font-light"></p>
-        </div>
-      </div>
+  <!-- ===== FINAL CTA ===== -->
+  <section class="cta-final" id="contact">
+    <div class="container cta-final__inner" data-reveal>
+      <h2>Hablemos por WhatsApp</h2>
+      <p>Cuéntanos qué necesitas y te respondemos con una propuesta a tu medida.</p>
+      <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20cotizar%20un%20proyecto%20a%20mi%20medida." target="_blank" rel="noopener" class="btn btn--primary btn--lg">Abrir WhatsApp (+52 4466 1266)</a>
+      <p class="cta-final__mail">o escríbenos a <a href="mailto:gerardogarciavelaa@gmail.com">gerardogarciavelaa@gmail.com</a></p>
     </div>
   </section>
 
-  <!-- WHATSAPP FLOTANTE -->
-  <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio,%20quiero%20más%20información." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-[#22d3ee] to-[#0891b2] text-[#0a0f1a] p-4 rounded-full shadow-2xl whatsapp-float hover:scale-110 transition-transform flex items-center justify-center cursor-pointer">
-    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.482 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-1.98-.57-2.25-.298-.27-.61-.3-.984-.3-.374 0-.806.136-1.229.57-.424.434-1.616 1.58-1.974 1.903-.358.323-.717.361-1.091.173-.374-.188-1.573-.58-2.998-1.844-1.108-.991-1.854-2.218-2.071-2.593-.217-.375-.023-.578.164-.766.168-.168.374-.435.561-.653.187-.218.249-.374.374-.623.125-.249.062-.468-.031-.656-.093-.188-.984-2.372-1.348-3.246-.354-.855-.716-.739-.984-.753l-.842-.012c-.27 0-.716.101-1.09.512-.374.411-1.427 1.393-1.427 3.398 0 2.005 1.464 3.94 1.667 4.214.203.274 2.875 4.489 6.969 6.291 3.09 1.371 3.722 1.099 4.391 1.028.669-.071 2.158-.883 2.462-1.737.304-.854.304-1.587.213-1.737z"/></svg>
-  </a>
-
-  <!-- FOOTER -->
-  <footer class="bg-[#0a0f1a] border-t border-[#1e293b] py-12 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 text-center md:text-left">
-      <div class="flex items-center space-x-3">
-        <img src="assets/logo.svg" alt="Vela Web Studio" class="h-8 w-auto">
-        <span class="text-xs text-slate-400 font-light" data-i18n="footer.founder">Fundado por Gerardo García</span>
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/logo.svg" alt="Vela Web Studio" width="200" height="50">
+        <p>Agencia digital &amp; ciberseguridad. Tu proyecto, tu estilo.</p>
       </div>
-      <div class="text-xs text-slate-500 font-light">
-        <span data-i18n="footer.contactInfo">Guatemala • WhatsApp +502 4466 1266</span> • <span data-i18n="footer.rights">Todos los derechos reservados.</span>
+      <div class="footer__cols">
+        <div>
+          <h4>Servicios</h4>
+          <a href="#services">Desarrollo web</a>
+          <a href="#pricing">SaaS recurrente</a>
+          <a href="#simulator">Ciberseguridad</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <a href="https://wa.me/50244661266" target="_blank" rel="noopener">WhatsApp +52 4466 1266</a>
+          <a href="mailto:gerardogarciavelaa@gmail.com">gerardogarciavelaa@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span id="year"></span> Vela Web Studio. Todos los derechos reservados.</span>
+        <span>Fundado por Gerardo García • Guatemala</span>
       </div>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <a href="https://wa.me/50244661266?text=Hola%20Vela%20Web%20Studio" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.482 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-1.98-.57-2.25-.298-.27-.61-.3-.984-.3-.374 0-.806.136-1.229.57-.424.434-1.616 1.58-1.974 1.903-.358.323-.717.361-1.091.173-.374-.188-1.573-.58-2.998-1.844-1.108-.991-1.854-2.218-2.071-2.593-.217-.375-.023-.578.164-.766.168-.168.374-.435.561-.653.187-.218.249-.374.374-.623.125-.249.062-.468-.031-.656-.093-.188-.984-2.372-1.348-3.246-.354-.855-.716-.739-.984-.753l-.842-.012c-.27 0-.716.101-1.09.512-.374.411-1.427 1.393-1.427 3.398 0 2.005 1.464 3.94 1.667 4.214.203.274 2.875 4.489 6.969 6.291 3.09 1.371 3.722 1.099 4.391 1.028.669-.071 2.158-.883 2.462-1.737.304-.854.304-1.587.213-1.737z"/></svg>
+  </a>
+
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
+  <script src="vendor/SplitText.min.js" defer></script>
+  <script src="vendor/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
