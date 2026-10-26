@@ -1,0 +1,144 @@
+{
+  "brand": {
+    "name": "Vela Web Studio",
+    "founder": "Gerardo García",
+    "style": "Dark Fintech",
+    "colors": {
+      "background": "#0a0f1a",
+      "accentTeal": "#22d3ee",
+      "accentCyan": "#0891b2"
+    },
+    "locale": "bilingual",
+    "languages": ["es", "en"]
+  },
+  "contact": {
+    "whatsapp": "+502 4466 1266",
+    "email": "gerardogarciavelaa@gmail.com"
+  },
+  "trust": {
+    "guaranteeDays": 7,
+    "guaranteeLabel": "Garantía de 7 días"
+  },
+  "billing": {
+    "currency": {
+      "GTQ": "Quetzal",
+      "USD": "Dólar"
+    },
+    "annualDiscount": 0.20,
+    "annualDiscountLabel": "-20%"
+  },
+  "levels": {
+    "A": {
+      "name": "Desarrollo Fijo",
+      "model": "fixed",
+      "items": [
+        {
+          "id": "vela-express",
+          "name": "Vela Express",
+          "priceGTQ": 999,
+          "priceUSD": 199,
+          "description": "Sitio web rápido y profesional, ideal para empezar."
+        },
+        {
+          "id": "web-pro",
+          "name": "Web Pro",
+          "priceGTQ": 1899,
+          "priceUSD": 349,
+          "description": "Página web avanzada con diseño a medida y mayor funcionalidad."
+        },
+        {
+          "id": "commerce",
+          "name": "Commerce",
+          "priceGTQ": 2999,
+          "priceUSD": 499,
+          "description": "Tienda online completa con pasarela de pagos y gestión de productos."
+        },
+        {
+          "id": "enterprise",
+          "name": "Enterprise",
+          "priceGTQ": 4999,
+          "priceUSD": 899,
+          "description": "Soluciones corporativas a medida con integraciones y escalabilidad."
+        }
+      ]
+    },
+    "B": {
+      "name": "SaaS Recurrente",
+      "model": "recurring",
+      "switch": "mensual/anual",
+      "items": [
+        {
+          "id": "emprendedor",
+          "name": "Emprendedor",
+          "priceGTQ": 250,
+          "priceUSD": null,
+          "interval": "mes",
+          "setupGTQ": null,
+          "setupUSD": null,
+          "description": "Plan mensual para emprendedores."
+        },
+        {
+          "id": "pyme",
+          "name": "PYME",
+          "priceGTQ": 550,
+          "priceUSD": null,
+          "interval": "mes",
+          "setupGTQ": null,
+          "setupUSD": null,
+          "description": "Plan mensual para pequeñas y medianas empresas."
+        },
+        {
+          "id": "empresarial",
+          "name": "Empresarial",
+          "priceGTQ": 1200,
+          "priceUSD": null,
+          "interval": "mes",
+          "setupGTQ": 1500,
+          "setupUSD": null,
+          "description": "Plan mensual empresarial con set-up inicial."
+        }
+      ]
+    },
+    "C": {
+      "name": "Ingeniería y Ciberseguridad",
+      "model": "fixed",
+      "items": [
+        {
+          "id": "apps-moviles",
+          "name": "Apps Móviles",
+          "priceGTQ": 4500,
+          "priceUSD": 799,
+          "description": "Aplicaciones móviles nativas e híbridas."
+        },
+        {
+          "id": "saas-a-medida",
+          "name": "SaaS a Medida",
+          "priceGTQ": 3500,
+          "priceUSD": 500,
+          "description": "Plataformas SaaS personalizadas para tu negocio."
+        },
+        {
+          "id": "pentesting",
+          "name": "Pentesting",
+          "priceGTQ": 1500,
+          "priceUSD": 250,
+          "description": "Pruebas de penetración y evaluación de vulnerabilidades."
+        },
+        {
+          "id": "hardening",
+          "name": "Hardening",
+          "priceGTQ": 999,
+          "priceUSD": 150,
+          "description": "Endurecimiento de sistemas y servidores."
+        },
+        {
+          "id": "desinfeccion-malware",
+          "name": "Desinfección de Malware",
+          "priceGTQ": 750,
+          "priceUSD": 120,
+          "description": "Limpieza y desinfección de sistemas afectados por malware."
+        }
+      ]
+    }
+  }
+}

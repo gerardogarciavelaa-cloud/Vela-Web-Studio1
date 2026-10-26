@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "services": "Services",
+    "pricing": "Pricing",
+    "saas": "Recurring SaaS",
+    "cyber": "Cybersecurity",
+    "calculator": "Calculator",
+    "contact": "Contact",
+    "whatsapp": "WhatsApp"
+  },
+  "hero": {
+    "badge": "Digital Agency & Cybersecurity • Guatemala",
+    "title1": "Cutting-Edge Web Engineering",
+    "title2": "& Offensive Cybersecurity",
+    "subtitle": "We transform ideas into lightning-fast, secure digital ecosystems with flawless Dark Fintech design to scale your business across LATAM and the world.",
+    "ctaPrimary": "Get a Quote",
+    "ctaSecondary": "Explore Catalog",
+    "stats": [
+      { "number": "7 Days", "label": "Delivery Guarantee" },
+      { "number": "+502", "label": "Direct WhatsApp Support" },
+      { "number": "100%", "label": "Dark Fintech Aesthetic" }
+    ]
+  },
+  "services": {
+    "title": "Our Service Tiers",
+    "subtitle": "Structured solutions for every stage of your company's digital maturity.",
+    "levelA": "Tier A: Fixed Development",
+    "levelB": "Tier B: Recurring SaaS",
+    "levelC": "Tier C: Engineering & Cybersecurity",
+    "perMonth": "/ mo",
+    "setupFee": "+ Initial setup",
+    "selectPlan": "Select Plan",
+    "contactWhatsApp": "Quote via WhatsApp"
+  },
+  "pricing": {
+    "title": "Transparent Commercial Catalog",
+    "subtitle": "Clear and competitive pricing in Quetzales (GTQ) and US Dollars (USD).",
+    "monthly": "Monthly",
+    "annual": "Annual (-20%)",
+    "save": "Save 20%"
+  },
+  "calculator": {
+    "title": "Real-Time Global Calculator",
+    "subtitle": "Configure your project modules and calculate the estimated investment instantly.",
+    "selectLevel": "Select Service Tier:",
+    "selectService": "Select Service:",
+    "selectCurrency": "Currency:",
+    "estimatedTotal": "Estimated Investment:",
+    "requestQuote": "Send Quote via WhatsApp"
+  },
+  "simulator": {
+    "title": "Cybersecurity Simulator",
+    "subtitle": "Evaluate the protection level of your current digital infrastructure.",
+    "runAudit": "Run Quick Diagnostic",
+    "resultsTitle": "Diagnostic Results:",
+    "score": "Exposure Level:",
+    "recommendation": "Hardening Recommendation"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "founder": "Founded by Gerardo García",
+    "contactInfo": "Guatemala • WhatsApp +502 4466 1266",
+    "disclaimer": "Dark Fintech design with Teal/Cyan accents."
+  }
+}

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" role="img" aria-label="Vela Web Studio logo">
+  <title>Vela Web Studio</title>
+  <desc>Isotipo estilizado con forma de vela y wordmark tipográfico "VELA" en paleta Dark Fintech.</desc>
+
+  <defs>
+    <linearGradient id="sailGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="55%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#0e7490"/>
+    </linearGradient>
+    <linearGradient id="mastGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fondo sutil del logo (transparente en sí, pero con círculo de luz para el isotipo) -->
+  <circle cx="40" cy="40" r="34" fill="url(#glow)"/>
+
+  <!-- Isotipo: vela estilizada -->
+  <g filter="url(#softGlow)">
+    <!-- Mástil -->
+    <path d="M40 60 L40 14" stroke="url(#mastGrad)" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- Vela (curva de bezier que sugiere movimiento) -->
+    <path d="M40 16
+             C 58 22, 66 34, 62 46
+             C 58 56, 48 58, 40 58
+             Z"
+          fill="url(#sailGrad)" stroke="#0a0f1a" stroke-width="1.2" stroke-linejoin="round"/>
+    <!-- Reflejo de luz en la vela -->
+    <path d="M44 22
+             C 52 26, 56 34, 53 42
+             C 51 47, 47 48, 44 48
+             Z"
+          fill="#a5f3fc" opacity="0.32"/>
+    <!-- Base del mástil (pequeña quilla) -->
+    <path d="M32 60 L48 60 L44 66 L36 66 Z" fill="#0e7490" stroke="#0a0f1a" stroke-width="1"/>
+  </g>
+
+  <!-- Wordmark "VELA" -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="700">
+    <text x="80" y="54" font-size="40" letter-spacing="8" fill="#e0f2fe">VELA</text>
+    <text x="80" y="68" font-size="7" letter-spacing="6" fill="#22d3ee" opacity="0.85">WEB STUDIO</text>
+  </g>
+</svg>

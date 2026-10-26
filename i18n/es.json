@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "services": "Servicios",
+    "pricing": "Precios",
+    "saas": "SaaS Recurrente",
+    "cyber": "Ciberseguridad",
+    "calculator": "Cotizador",
+    "contact": "Contacto",
+    "whatsapp": "WhatsApp"
+  },
+  "hero": {
+    "badge": "Agencia Digital & Ciberseguridad • Guatemala",
+    "title1": "Ingeniería Web de Vanguardia",
+    "title2": "& Ciberseguridad Ofensiva",
+    "subtitle": "Transformamos ideas en ecosistemas digitales ultrarrápidos, seguros y con diseño Dark Fintech impecable para escalar tu negocio en LATAM y el mundo.",
+    "ctaPrimary": "Cotizar Proyecto",
+    "ctaSecondary": "Explorar Catálogo",
+    "stats": [
+      { "number": "7 Días", "label": "Garantía de Entrega" },
+      { "number": "+502", "label": "Soporte Directo WhatsApp" },
+      { "number": "100%", "label": "Dark Fintech Estética" }
+    ]
+  },
+  "services": {
+    "title": "Nuestros Niveles de Servicio",
+    "subtitle": "Soluciones estructuradas para cada etapa de madurez digital de tu empresa.",
+    "levelA": "Nivel A: Desarrollo Fijo",
+    "levelB": "Nivel B: SaaS Recurrente",
+    "levelC": "Nivel C: Ingeniería y Ciberseguridad",
+    "perMonth": "/ mes",
+    "setupFee": "+ Set-up inicial",
+    "selectPlan": "Seleccionar Plan",
+    "contactWhatsApp": "Cotizar por WhatsApp"
+  },
+  "pricing": {
+    "title": "Catálogo Comercial Transparente",
+    "subtitle": "Precios claros y competitivos en Quetzales (GTQ) y Dólares (USD).",
+    "monthly": "Mensual",
+    "annual": "Anual (-20%)",
+    "save": "Ahorra 20%"
+  },
+  "calculator": {
+    "title": "Cotizador Global en Tiempo Real",
+    "subtitle": "Configura los módulos de tu proyecto y calcula el estimado de inversión al instante.",
+    "selectLevel": "Selecciona el Nivel de Servicio:",
+    "selectService": "Selecciona el Servicio:",
+    "selectCurrency": "Moneda:",
+    "estimatedTotal": "Inversión Estimada:",
+    "requestQuote": "Enviar Cotización por WhatsApp"
+  },
+  "simulator": {
+    "title": "Simulador de Ciberseguridad",
+    "subtitle": "Evalúa el nivel de protección de tu infraestructura digital actual.",
+    "runAudit": "Ejecutar Diagnóstico Rápido",
+    "resultsTitle": "Resultados del Diagnóstico:",
+    "score": "Nivel de Exposición:",
+    "recommendation": "Recomendación de Hardening"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "founder": "Fundado por Gerardo García",
+    "contactInfo": "Guatemala • WhatsApp +502 4466 1266",
+    "disclaimer": "Diseño Dark Fintech con acentos Teal/Cyan."
+  }
+}

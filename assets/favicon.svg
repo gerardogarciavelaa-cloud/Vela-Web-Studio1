@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Vela Web Studio favicon">
+  <title>Vela Web Studio</title>
+  <desc>Versión reducida del isotipo de vela, legible a tamaño favicon.</desc>
+
+  <defs>
+    <linearGradient id="sailGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="60%" stop-color="#0891b2"/>
+      <stop offset="100%" stop-color="#0e7490"/>
+    </linearGradient>
+    <linearGradient id="mastGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo oscuro de la marca -->
+  <rect x="0" y="0" width="32" height="32" rx="6" fill="#0a0f1a"/>
+
+  <!-- Mástil -->
+  <path d="M16 26 L16 5" stroke="url(#mastGrad)" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Vela simplificada, trazos gruesos para legibilidad -->
+  <path d="M16 6
+           C 22 9, 25 14, 23 19
+           C 21 23, 18 24, 16 24
+           Z"
+        fill="url(#sailGrad)" stroke="#0a0f1a" stroke-width="0.8" stroke-linejoin="round"/>
+
+  <!-- Quilla base -->
+  <path d="M12 26 L20 26 L18 28 L14 28 Z" fill="#0e7490" stroke="#0a0f1a" stroke-width="0.6"/>
+</svg>

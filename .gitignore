@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+reel/node_modules/
+package-lock.json
+reel/package-lock.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Rendered outputs (optional — keep if you want the reel MP4 in repo)
+# reel-output.mp4
+
+# Env
+.env
+.env.local
