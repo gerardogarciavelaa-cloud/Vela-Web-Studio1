@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vela Web Studio — Gerardo García | Ingeniería Digital y Ciberseguridad</title>
+<meta name="description" content="Vela Web Studio por Gerardo García. Desarrollo web premium, SaaS CRM/ERP, apps móviles, pentesting y hardening de servidores. Guatemala, LATAM, USA, Europa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<div class="noise-overlay"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#hero" class="brand" aria-label="Vela Web Studio">
+      <svg class="brand-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4df3ff"/>
+            <stop offset="50%" stop-color="#7c5cff"/>
+            <stop offset="100%" stop-color="#ff4df0"/>
+          </linearGradient>
+          <radialGradient id="g2" cx="0.5" cy="0.5" r="0.5">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#4df3ff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <path d="M24 2 L44 13 L44 35 L24 46 L4 35 L4 13 Z" fill="none" stroke="url(#g1)" stroke-width="1.6"/>
+        <path d="M24 8 L38 16 L38 32 L24 40 L10 32 L10 16 Z" fill="none" stroke="url(#g1)" stroke-width="1" opacity="0.5"/>
+        <path d="M14 18 L24 30 L34 18" fill="none" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="24" cy="30" r="2.2" fill="url(#g2)"/>
+        <circle cx="24" cy="30" r="1.2" fill="#ffffff"/>
+      </svg>
+      <span class="brand-text">VELA<span class="brand-sub">WEB STUDIO</span></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#packages" data-i18n="nav_packages">Paquetes</a>
+      <a href="#saas" data-i18n="nav_saas">SaaS</a>
+      <a href="#engineering" data-i18n="nav_eng">Ingeniería</a>
+      <a href="#cotizador" data-i18n="nav_quote">Cotizador</a>
+      <a href="#scanner" data-i18n="nav_scan">Scanner</a>
+      <a href="#contact" data-i18n="nav_contact">Contacto</a>
+    </nav>
+    <div class="header-actions">
+      <select id="langSelect" class="lang-select" aria-label="Idioma">
+        <option value="es" selected>ES</option>
+        <option value="en">EN</option>
+      </select>
+      <a class="btn btn-ghost" href="https://wa.me/50244661266?text=Hola%20Gerardo,%20quiero%20informaci%C3%B3n%20sobre%20Vela%20Web%20Studio." target="_blank" rel="noopener" data-i18n="btn_wa">WhatsApp</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="container hero-inner">
+    <div class="hero-eyebrow"><span class="pulse-dot"></span> OPERATIVO · REMOTO GLOBAL · BASE GUATEMALA</div>
+    <h1 class="hero-title">
+      Ingeniería de <span class="grad">velocidad digital</span><br/>
+      para la próxima década.
+    </h1>
+    <p class="hero-sub">Vela Web Studio — fundada por Gerardo García — construye ecosistemas web de alto rendimiento, plataformas SaaS CRM/ERP, aplicaciones móviles y ciberseguridad de grado militar para negocios ambiciosos en Guatemala, LATAM, USA y Europa. Sin contratos de permanencia. Sin presupuesto inicial. Pura ejecución.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#cotizador">Construir mi Cotización <span class="arrow">→</span></a>
+      <a class="btn btn-secondary" href="#scanner">Escaneo de Seguridad Gratis</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" data-count="100">0</span><span class="stat-suf">%</span><span class="stat-lbl">Entrega Remota</span></div>
+      <div class="stat"><span class="stat-num" data-count="24">0</span><span class="stat-suf">/7</span><span class="stat-lbl">Bot WhatsApp con IA</span></div>
+      <div class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-suf"> días</span><span class="stat-lbl">Garantía de Devolución</span></div>
+      <div class="stat"><span class="stat-num" data-count="0">0</span><span class="stat-suf">$</span><span class="stat-lbl">Contratos de Permanencia</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">desplaza para explorar</div>
+</section>
+
+<section class="trust">
+  <div class="container trust-grid">
+    <div class="trust-item"><span class="trust-icon">✉</span><div><strong>Correo Corporativo Incluido</strong><p>gerencia@tuempresa.com — identidad de marca desde el día uno.</p></div></div>
+    <div class="trust-item"><span class="trust-icon">☁</span><div><strong>1er Mes GRATIS — Veloce Care</strong><p>Mantenimiento y monitoreo cloud sin costo por 30 días.</p></div></div>
+    <div class="trust-item"><span class="trust-icon">⚖</span><div><strong>Cero Contratos de Permanencia</strong><p>Mes a mes opcional después del mes 1. Todo es tuyo.</p></div></div>
+    <div class="trust-item"><span class="trust-icon">🛡</span><div><strong>Garantía 7 Días de Devolución</strong><p>100% satisfacción protegida. Sin preguntas.</p></div></div>
+  </div>
+</section>
+
+<section class="section" id="packages">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">TIER A · DESARROLLO A PRECIO FIJO</span>
+      <h2>Paquetes de Desarrollo Web</h2>
+      <p>Sitios web de grado producción diseñados para conversión, velocidad y autoridad.</p>
+    </div>
+    <div class="cards-grid">
+      <article class="pkg-card" data-sku="express">
+        <div class="pkg-tier">ENTRADA</div>
+        <h3>Vela Express</h3>
+        <p class="pkg-desc">Landing Page / Una Página</p>
+        <div class="pkg-price"><span class="cur" data-gtq="999" data-usd="199" data-eur="185">Q999.00</span><span class="per">pago único</span></div>
+        <ul class="pkg-features">
+          <li>Layout ultrarrápido de una sección</li>
+          <li>Copywriting con framework AIDA</li>
+          <li>Responsive móvil</li>
+          <li>Formulario de contacto + CTA WhatsApp</li>
+          <li><strong>Beneficio:</strong> Presencia digital inmediata</li>
+        </ul>
+        <button class="btn btn-card" data-action="quote" data-sku="express">Seleccionar Plan</button>
+      </article>
+      <article class="pkg-card" data-sku="pro">
+        <div class="pkg-tier">CORPORATIVO</div>
+        <h3>Vela Web Pro</h3>
+        <p class="pkg-desc">Sitio Corporativo Multipágina</p>
+        <div class="pkg-price"><span class="cur" data-gtq="1899" data-usd="349" data-eur="325">Q1,899.00</span><span class="per">pago único</span></div>
+        <ul class="pkg-features">
+          <li>Hasta 5 vistas multipágina</li>
+          <li>Configuración Google Local SEO</li>
+          <li>Paneles institucionales</li>
+          <li>Estructura de blog</li>
+          <li><strong>Beneficio:</strong> Autoridad de marca inigualable</li>
+        </ul>
+        <button class="btn btn-card" data-action="quote" data-sku="pro">Seleccionar Plan</button>
+      </article>
+      <article class="pkg-card featured" data-sku="commerce">
+        <div class="pkg-badge">MÁS POPULAR</div>
+        <div class="pkg-tier">COMERCIO</div>
+        <h3>Vela Commerce</h3>
+        <p class="pkg-desc">Tienda Online E-Commerce</p>
+        <div class="pkg-price"><span class="cur" data-gtq="2999" data-usd="499" data-eur="465">Q2,999.00</span><span class="per">pago único</span></div>
+        <ul class="pkg-features">
+          <li>Catálogo interactivo de productos</li>
+          <li>Carrito y checkout</li>
+          <li>Gestión de inventario</li>
+          <li>Pasarelas (Tarjetas, PayPal, Stripe, Visanet)</li>
+          <li><strong>Beneficio:</strong> Motor de ventas 24/7 automatizado</li>
+        </ul>
+        <button class="btn btn-card" data-action="quote" data-sku="commerce">Seleccionar Plan</button>
+      </article>
+      <article class="pkg-card" data-sku="enterprise">
+        <div class="pkg-tier">ECOSISTEMA</div>
+        <h3>Vela Enterprise</h3>
+        <p class="pkg-desc">Ecosistema Digital Total</p>
+        <div class="pkg-price"><span class="cur" data-gtq="4999" data-usd="899" data-eur="835">Q4,999.00</span><span class="per">pago único</span></div>
+        <ul class="pkg-features">
+          <li>Todo lo de E-Commerce</li>
+          <li>Chatbot WhatsApp con IA 24/7</li>
+          <li>Facturación Electrónica (SAT/FEL)</li>
+          <li>Hardening ciberseguridad A+</li>
+          <li><strong>Beneficio:</strong> Automatización total y cumplimiento fiscal</li>
+        </ul>
+        <button class="btn btn-card" data-action="quote" data-sku="enterprise">Seleccionar Plan</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="saas">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">TIER B · SUSCRIPCIÓN RECURRENTE</span>
+      <h2>Cloud SaaS CRM & ERP</h2>
+      <p>Opera todo tu negocio desde una sola plataforma inteligente.</p>
+    </div>
+    <div class="billing-toggle-wrap">
+      <span class="billing-label">Mensual</span>
+      <button class="billing-toggle" id="billingToggle" aria-pressed="false"><span class="toggle-knob"></span></button>
+      <span class="billing-label">Anual <span class="discount-chip">-20%</span></span>
+    </div>
+    <div class="saas-grid">
+      <article class="saas-card" data-sku="emprendedor">
+        <div class="saas-tier">1–2 USUARIOS</div>
+        <h3>Plan Emprendedor</h3>
+        <div class="saas-price"><span class="cur" data-monthly-gtq="250" data-monthly-usd="32" data-annual-gtq="2400" data-annual-usd="3072" data-annual-mo-gtq="200">Q250</span><span class="per" id="per-emprendedor">/mes</span></div>
+        <ul class="saas-features">
+          <li>CRM básico de prospectos</li>
+          <li>Inventario simple</li>
+          <li>Generador de cotizaciones</li>
+          <li>Soporte por email</li>
+        </ul>
+        <button class="btn btn-card" data-action="quote" data-sku="emprendedor">Seleccionar Plan</button>
+      </article>
+      <article class="saas-card featured" data-sku="pyme">
+        <div class="pkg-badge">MÁS POPULAR</div>
+        <div class="saas-tier">3–5 USUARIOS</div>
+        <h3>Plan PYME</h3>
+        <div class="saas-price"><span class="cur" data-monthly-gtq="550" data-monthly-usd="70" data-annual-gtq="5280" data-annual-usd="6720" data-annual-mo-gtq="440">Q550</span><span class="per" id="per-pyme">/mes</span></div>
+        <ul class="saas-features">
+          <li>Todo lo de Emprendedor</li>
+          <li>Facturación SAT/FEL</li>
+          <li>Gestión multi-bodega</li>
+          <li>Control de caja (arqueos)</li>
+          <li>Reportes gerenciales en tiempo real</li>
+        </ul>
+        <button class="btn btn-card" data-action="quote" data-sku="pyme">Seleccionar Plan</button>
+      </article>
+      <article class="saas-card" data-sku="empresarial">
+        <div class="saas-tier">6+ USUARIOS / MULTISITIO</div>
+        <h3>Plan Empresarial</h3>
+        <div class="saas-price"><span class="cur" data-monthly-gtq="1200" data-monthly-usd="150" data-annual-gtq="11500" data-annual-usd="14400" data-annual-mo-gtq="958">Q1,200</span><span class="per" id="per-empresarial">/mes</span></div>
+        <ul class="saas-features">
+          <li>Todo lo de PYME</li>
+          <li>Integraciones API / WhatsApp / E-Commerce</li>
+          <li>Roles y usuarios personalizados</li>
+          <li>Dashboards analíticos avanzados</li>
+          <li>Soporte prioritario 24/7</li>
+        </ul>
+        <button class="btn btn-card" data-action="quote" data-sku="empresarial">Seleccionar Plan</button>
+      </article>
+    </div>
+    <div class="setup-banner">
+      <div class="setup-left">
+        <span class="setup-tag">PAGO ÚNICO · OPCIONAL</span>
+        <h4>Implementación e Inicio</h4>
+        <p>Migración inicial de datos (importación Excel de clientes/productos), configuración FEL SAT completa, capacitación guiada al equipo.</p>
+      </div>
+      <div class="setup-right">
+        <div class="setup-price"><span class="cur" data-gtq="1500" data-usd="250" data-eur="235">Q1,500.00</span></div>
+        <button class="btn btn-card" data-action="quote" data-sku="setup">Agregar a Cotización</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="engineering">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">TIER C · INGENIERÍA AVANZADA Y CIBERSEGURIDAD</span>
+      <h2>Precios Desde</h2>
+      <p>Servicios especializados de ingeniería y seguridad ofensiva/defensiva.</p>
+    </div>
+    <div class="eng-grid">
+      <div class="eng-card" data-sku="mobile"><div class="eng-icon">📱</div><h4>Apps Móviles (iOS & Android)</h4><p>Flutter / React Native, notificaciones push, compras in-app.</p><div class="eng-price">Desde <span class="cur" data-gtq="4500" data-usd="799" data-eur="745">Q4,500.00</span></div><button class="btn btn-card small" data-action="quote" data-sku="mobile">Cotizar</button></div>
+      <div class="eng-card" data-sku="saasapi"><div class="eng-icon">⚙</div><h4>SaaS Web Personalizado & APIs</h4><p>Paneles privados seguros, backends OAuth2/JWT.</p><div class="eng-price">Desde <span class="cur" data-gtq="3500" data-usd="500" data-eur="465">Q3,500.00</span></div><button class="btn btn-card small" data-action="quote" data-sku="saasapi">Cotizar</button></div>
+      <div class="eng-card" data-sku="pentest"><div class="eng-icon">🕵</div><h4>Auditoría Web & Pentesting</h4><p>Hacking ético OWASP Top 10 y reportes forenses.</p><div class="eng-price">Desde <span class="cur" data-gtq="1500" data-usd="250" data-eur="235">Q1,500.00</span></div><button class="btn btn-card small" data-action="quote" data-sku="pentest">Cotizar</button></div>
+      <div class="eng-card" data-sku="hardening"><div class="eng-icon">🔒</div><h4>Hardening de Servidores & WAF</h4><p>WAF perimetral, anti-DDoS, cifrado militar, SSL A+.</p><div class="eng-price">Desde <span class="cur" data-gtq="999" data-usd="150" data-eur="140">Q999.00</span></div><button class="btn btn-card small" data-action="quote" data-sku="hardening">Cotizar</button></div>
+      <div class="eng-card" data-sku="malware"><div class="eng-icon">🧹</div><h4>Limpieza y Desinfección de Malware</h4><p>Eliminación profunda de payloads, limpieza de backlinks, restauración de emergencia.</p><div class="eng-price">Desde <span class="cur" data-gtq="750" data-usd="120" data-eur="112">Q750.00</span></div><button class="btn btn-card small" data-action="quote" data-sku="malware">Cotizar</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cotizador">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">COTIZADOR GLOBAL EN TIEMPO REAL</span>
+      <h2>Construye tu Cotización</h2>
+      <p>Selecciona servicios, cambia de moneda y envía a WhatsApp un desglose profesional.</p>
+    </div>
+    <div class="cotizador-layout">
+      <div class="cotizador-left">
+        <div class="cot-card">
+          <div class="cot-head">
+            <label>Moneda</label>
+            <select id="currencySelect">
+              <option value="GTQ">GTQ · Quetzales (Q)</option>
+              <option value="USD">USD · Dólares ($)</option>
+              <option value="EUR">EUR · Euros (€)</option>
+            </select>
+          </div>
+          <div class="cot-group">
+            <h5>Desarrollo Web</h5>
+            <label class="cot-check"><input type="checkbox" data-sku="express"><span>Vela Express — Landing</span><span class="cot-amt" data-gtq="999" data-usd="199" data-eur="185"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="pro"><span>Vela Web Pro — Corporativo</span><span class="cot-amt" data-gtq="1899" data-usd="349" data-eur="325"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="commerce"><span>Vela Commerce — E-Commerce</span><span class="cot-amt" data-gtq="2999" data-usd="499" data-eur="465"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="enterprise"><span>Vela Enterprise — Ecosistema</span><span class="cot-amt" data-gtq="4999" data-usd="899" data-eur="835"></span></label>
+          </div>
+          <div class="cot-group">
+            <h5>SaaS CRM/ERP</h5>
+            <label class="cot-check"><input type="checkbox" data-sku="emprendedor" data-monthly="true"><span>Plan Emprendedor</span><span class="cot-amt" data-gtq="250" data-usd="32" data-eur="30"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="pyme" data-monthly="true"><span>Plan PYME</span><span class="cot-amt" data-gtq="550" data-usd="70" data-eur="65"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="empresarial" data-monthly="true"><span>Plan Empresarial</span><span class="cot-amt" data-gtq="1200" data-usd="150" data-eur="140"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="setup"><span>Implementación e Inicio</span><span class="cot-amt" data-gtq="1500" data-usd="250" data-eur="235"></span></label>
+          </div>
+          <div class="cot-group">
+            <h5>Ingeniería y Seguridad</h5>
+            <label class="cot-check"><input type="checkbox" data-sku="mobile"><span>Apps Móviles</span><span class="cot-amt" data-gtq="4500" data-usd="799" data-eur="745"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="saasapi"><span>SaaS Personalizado & APIs</span><span class="cot-amt" data-gtq="3500" data-usd="500" data-eur="465"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="pentest"><span>Auditoría & Pentesting</span><span class="cot-amt" data-gtq="1500" data-usd="250" data-eur="235"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="hardening"><span>Hardening & WAF</span><span class="cot-amt" data-gtq="999" data-usd="150" data-eur="140"></span></label>
+            <label class="cot-check"><input type="checkbox" data-sku="malware"><span>Limpieza de Malware</span><span class="cot-amt" data-gtq="750" data-usd="120" data-eur="112"></span></label>
+          </div>
+        </div>
+      </div>
+      <aside class="cot-summary">
+        <h4>Resumen del Pedido</h4>
+        <div id="summaryList" class="summary-list"><p class="empty">Aún no has seleccionado servicios.</p></div>
+        <div class="summary-total"><span>Total</span><strong id="totalAmt">Q0.00</strong></div>
+        <button id="waBtn" class="btn btn-primary btn-block">Enviar a WhatsApp →</button>
+        <p class="cot-note">Los planes SaaS se facturan según el toggle Mensual/Anual. Conversión de moneda en tiempo real.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="scanner">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">SCANNER SIMULADO DE SEGURIDAD Y VELOCIDAD</span>
+      <h2>Audita tu Sitio Web</h2>
+      <p>Ingresa la URL de tu negocio para un diagnóstico simulado de velocidad móvil, estado WAF y SSL.</p>
+    </div>
+    <div class="scanner-box">
+      <div class="scanner-input-row">
+        <input id="scanUrl" type="url" placeholder="https://tunegocio.com" />
+        <button id="scanBtn" class="btn btn-primary">Ejecutar Escaneo</button>
+      </div>
+      <div id="scanResult" class="scan-result" hidden></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <span class="eyebrow">CANALES DIRECTOS</span>
+      <h2>Construyamos algo legendario.</h2>
+      <p>Gerardo García · Fundador, Vela Web Studio</p>
+      <div class="contact-lines">
+        <a href="https://wa.me/50244661266" target="_blank" rel="noopener">WhatsApp: +502 4466 1266</a>
+        <a href="mailto:gerardogarciavelaa@gmail.com">Email: gerardogarciavelaa@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <h4>100% Remoto · Global</h4>
+      <p>Guatemala · LATAM · USA · Europa</p>
+      <a class="btn btn-primary btn-block" href="https://wa.me/50244661266?text=Hola%20Gerardo,%20quiero%20cotizar%20un%20proyecto%20con%20Vela%20Web%20Studio." target="_blank" rel="noopener">Iniciar Conversación</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="yr"></span> Vela Web Studio · Gerardo García</span>
+    <span>vela-nexus-engine · build de producción</span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/50244661266?text=Hola%20Gerardo,%20necesito%20ayuda." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
