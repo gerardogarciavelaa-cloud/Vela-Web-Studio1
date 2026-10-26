@@ -2,14 +2,17 @@
   "brand": {
     "name": "Vela Web Studio",
     "founder": "Gerardo García",
-    "style": "Dark Fintech",
+    "style": "Customized",
     "colors": {
       "background": "#0a0f1a",
       "accentTeal": "#22d3ee",
       "accentCyan": "#0891b2"
     },
     "locale": "bilingual",
-    "languages": ["es", "en"]
+    "languages": [
+      "es",
+      "en"
+    ]
   },
   "contact": {
     "whatsapp": "+502 4466 1266",
@@ -24,7 +27,7 @@
       "GTQ": "Quetzal",
       "USD": "Dólar"
     },
-    "annualDiscount": 0.20,
+    "annualDiscount": 0.2,
     "annualDiscountLabel": "-20%"
   },
   "levels": {
@@ -38,7 +41,12 @@
           "priceGTQ": 999,
           "priceUSD": 199,
           "description": "Sitio web rápido y profesional, ideal para empezar.",
-          "includes": ["Diseño Dark Fintech", "Garantía de 7 días", "1 mes de mantenimiento gratis", "Correo corporativo incluido"]
+          "includes": [
+            "Diseño personalizado",
+            "Garantía de 7 días",
+            "1 mes de mantenimiento gratis",
+            "Correo corporativo incluido"
+          ]
         },
         {
           "id": "web-pro",
@@ -46,7 +54,12 @@
           "priceGTQ": 1899,
           "priceUSD": 349,
           "description": "Página web avanzada con diseño a medida y mayor funcionalidad.",
-          "includes": ["Todo lo de Express", "Panel de administración", "Optimización SEO básica", "Favicon personalizado"]
+          "includes": [
+            "Todo lo de Express",
+            "Panel de administración",
+            "Optimización SEO básica",
+            "Favicon personalizado"
+          ]
         },
         {
           "id": "commerce",
@@ -54,7 +67,12 @@
           "priceGTQ": 2999,
           "priceUSD": 499,
           "description": "Tienda online completa con pasarela de pagos y gestión de productos.",
-          "includes": ["Todo lo de Web Pro", "Pasarela de pagos", "Gestión de inventario", "Soporte priority"]
+          "includes": [
+            "Todo lo de Web Pro",
+            "Pasarela de pagos",
+            "Gestión de inventario",
+            "Soporte priority"
+          ]
         },
         {
           "id": "enterprise",
@@ -62,7 +80,12 @@
           "priceGTQ": 4999,
           "priceUSD": 899,
           "description": "Soluciones corporativas a medida con integraciones y escalabilidad.",
-          "includes": ["Diseño UX/UI personalizado", "Integraciones ERP/CRM", "Auditoría de seguridad", "2 meses de mantenimiento"]
+          "includes": [
+            "Diseño UX/UI personalizado",
+            "Integraciones ERP/CRM",
+            "Auditoría de seguridad",
+            "2 meses de mantenimiento"
+          ]
         }
       ]
     },
@@ -80,7 +103,11 @@
           "setupGTQ": null,
           "setupUSD": null,
           "description": "Plan mensual para emprendedores.",
-          "includes": ["Hosting incluido", "SSL certificado", "Soporte básico"]
+          "includes": [
+            "Hosting incluido",
+            "SSL certificado",
+            "Soporte básico"
+          ]
         },
         {
           "id": "pyme",
@@ -91,7 +118,11 @@
           "setupGTQ": null,
           "setupUSD": null,
           "description": "Plan mensual para PYMEs.",
-          "includes": ["Hosting premium", "Backups diarios", "Soporte 24/7"]
+          "includes": [
+            "Hosting premium",
+            "Backups diarios",
+            "Soporte 24/7"
+          ]
         },
         {
           "id": "empresarial",
@@ -102,7 +133,11 @@
           "setupGTQ": 1500,
           "setupUSD": null,
           "description": "Plan empresarial con set-up inicial.",
-          "includes": ["SLA de respuesta 1h", "Escalabilidad ilimitada", "Monitoreo 24/7"]
+          "includes": [
+            "SLA de respuesta 1h",
+            "Escalabilidad ilimitada",
+            "Monitoreo 24/7"
+          ]
         }
       ]
     },
@@ -116,7 +151,10 @@
           "priceGTQ": 4500,
           "priceUSD": 799,
           "description": "Aplicaciones móviles nativas e híbridas.",
-          "includes": ["Diseño responsive", "Despliegue en Stores"]
+          "includes": [
+            "Diseño responsive",
+            "Despliegue en Stores"
+          ]
         },
         {
           "id": "saas-a-medida",
@@ -124,7 +162,10 @@
           "priceGTQ": 3500,
           "priceUSD": 500,
           "description": "Plataformas SaaS personalizadas.",
-          "includes": ["Arquitectura cloud", "Documentación API"]
+          "includes": [
+            "Arquitectura cloud",
+            "Documentación API"
+          ]
         },
         {
           "id": "pentesting",
@@ -132,7 +173,10 @@
           "priceGTQ": 1500,
           "priceUSD": 250,
           "description": "Evaluación de vulnerabilidades.",
-          "includes": ["Reporte detallado", "Plan de remediación"]
+          "includes": [
+            "Reporte detallado",
+            "Plan de remediación"
+          ]
         },
         {
           "id": "hardening",
@@ -140,7 +184,10 @@
           "priceGTQ": 999,
           "priceUSD": 150,
           "description": "Endurecimiento de sistemas.",
-          "includes": ["Auditoría de logs", "Configuración firewall"]
+          "includes": [
+            "Auditoría de logs",
+            "Configuración firewall"
+          ]
         },
         {
           "id": "desinfeccion-malware",
@@ -148,7 +195,10 @@
           "priceGTQ": 750,
           "priceUSD": 120,
           "description": "Limpieza profunda de malware.",
-          "includes": ["Eliminación de backdoors", "Revisión integridad"]
+          "includes": [
+            "Eliminación de backdoors",
+            "Revisión integridad"
+          ]
         }
       ]
     }

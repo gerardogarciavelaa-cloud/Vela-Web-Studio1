@@ -12,13 +12,22 @@
     "badge": "Agencia Digital & Ciberseguridad • Guatemala",
     "title1": "Tu Proyecto, Tu Estilo",
     "title2": "No más templates genéricos",
-    "subtitle": "Transformamos ideas en ecosistemas digitales ultrarrápidos, seguros y con diseño Dark Fintech impecable para escalar tu negocio en LATAM y el mundo.",
+    "subtitle": "Diseñamos tu proyecto 100% a tu medida. No más templates genéricos: cada página es única, adaptada a tu negocio y hecha para crecer contigo.",
     "ctaPrimary": "Cotizar Proyecto",
     "ctaSecondary": "Explorar Catálogo",
     "stats": [
-      { "number": "7 Días", "label": "Garantía de Entrega" },
-      { "number": "+502", "label": "Soporte Directo WhatsApp" },
-      { "number": "100%", "label": "Dark Fintech Estética" }
+      {
+        "number": "7 Días",
+        "label": "Garantía de Entrega"
+      },
+      {
+        "number": "+502",
+        "label": "Soporte Directo WhatsApp"
+      },
+      {
+        "number": "100%",
+        "label": "100% a Tu Medida"
+      }
     ]
   },
   "services": {
@@ -60,6 +69,6 @@
     "rights": "Todos los derechos reservados.",
     "founder": "Fundado por Gerardo García",
     "contactInfo": "Guatemala • WhatsApp +502 4466 1266",
-    "disclaimer": "Diseño Dark Fintech con acentos Teal/Cyan."
+    "disclaimer": "Diseño a tu medida con acentos Teal/Cyan."
   }
 }
